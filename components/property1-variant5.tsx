@@ -1,3 +1,4 @@
+"use client"
 import type { NextPage } from "next";
 import { useMemo, type CSSProperties } from "react";
 import ColourChnage from "./colour-chnage";
@@ -24,7 +25,7 @@ const Property1Variant5: NextPage<Property1Variant5Type> = ({
       className="flex flex-col items-start justify-start gap-[16px] text-left text-xs text-text font-title-20px-semibold"
       style={property1Variant5Style}
     >
-      <div className="relative rounded-xl bg-secondary w-[270px] h-[250px] overflow-hidden shrink-0">
+      <div className="relative rounded-xl bg-secondary w-[270px] h-[250px] overflow-hidden   ">
         <div className="absolute top-[8px] right-[8px] flex flex-col items-start justify-start">
           <img
             className="relative w-[34px] h-[34px] object-cover"
@@ -43,12 +44,12 @@ const Property1Variant5: NextPage<Property1Variant5Type> = ({
           <div className="relative leading-[18px]">NEW</div>
         </div>
       </div>
-      <div className="shrink-0 flex flex-col items-start justify-start gap-[8px] text-base text-text2">
+      <div className=" flex flex-col items-start justify-start gap-[8px] text-base text-text2">
         <div className="relative leading-[24px] font-medium">
           ASUS FHD Gaming Laptop
         </div>
-        <div className="shrink-0 flex flex-row items-center justify-start text-lg text-primary1">
-          <div className="shrink-0 flex flex-row items-start justify-start">
+        <div className=" flex flex-row items-center justify-start text-lg text-primary1">
+          <div className=" flex flex-row items-start justify-start">
             <div className="relative leading-[24px] font-semibold">700 EGP</div>
           </div>
         </div>

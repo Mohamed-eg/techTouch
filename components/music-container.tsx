@@ -6,9 +6,9 @@ const MusicContainer: NextPage = () => {
   return (
     <section className="absolute top-[2404px] left-[135px] w-[1185px] overflow-hidden flex flex-col items-start justify-center text-left text-base text-scondry font-title-20px-semibold">
       <div className="w-[1170px] flex flex-col items-center justify-center">
-        <div className="rounded-sm bg-primary1 w-[1170px] h-[500px] overflow-hidden shrink-0 flex flex-row items-center justify-start py-0 px-11 box-border gap-[27px]">
-          <div className="w-[443px] h-[362px] overflow-hidden shrink-0 flex flex-col items-start justify-start gap-[32px]">
-            <div className="w-[443px] h-[172px] overflow-hidden shrink-0 flex flex-col items-start justify-start gap-[32px]">
+        <div className="rounded-sm bg-primary1 w-[1170px] h-[500px] overflow-hidden  flex flex-row items-center justify-start py-0 px-11 box-border gap-[27px]">
+          <div className="w-[443px] h-[362px] overflow-hidden  flex flex-col items-start justify-start gap-[32px]">
+            <div className="w-[443px] h-[172px] overflow-hidden  flex flex-col items-start justify-start gap-[32px]">
               <span className="relative leading-[20px] font-semibold">
                 Categories
               </span>
@@ -16,7 +16,7 @@ const MusicContainer: NextPage = () => {
                 Enhance Your Music Experience
               </h1>
             </div>
-            <div className="w-80 h-[158px] overflow-hidden shrink-0 flex flex-col items-start justify-start gap-[40px]">
+            <div className="w-80 h-[158px] overflow-hidden  flex flex-col items-start justify-start gap-[40px]">
               <div className="flex flex-row items-start justify-start gap-[24px]">
                 <FlashSaleOfferSeconds
                   prop="23"
@@ -76,8 +76,8 @@ const MusicContainer: NextPage = () => {
               />
             </div>
           </div>
-          <div className="w-[600px] h-[500px] overflow-hidden shrink-0 flex flex-row items-center justify-end">
-            <div className="w-[600px] h-[420px] overflow-hidden shrink-0 flex flex-col items-end justify-center py-0 pr-0 pl-4 box-border">
+          <div className="w-[600px] h-[500px] overflow-hidden  flex flex-row items-center justify-end">
+            <div className="w-[600px] h-[420px] overflow-hidden  flex flex-col items-end justify-center py-0 pr-0 pl-4 box-border">
               <img
                 className="relative w-[568px] h-[330px] object-contain"
                 alt=""

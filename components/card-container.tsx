@@ -1,3 +1,4 @@
+"use client"
 import type { NextPage } from "next";
 import { useMemo, type CSSProperties } from "react";
 import UnderLineIcon from "./under-line-icon";
@@ -37,7 +38,7 @@ const CardContainer: NextPage<CardContainerType> = ({
       className="absolute top-[446px] left-[32px] flex flex-col items-start justify-start gap-[16px] text-left text-5xl text-text font-heading-24px-semibold"
       style={frameDiv4Style}
     >
-      <div className="shrink-0 flex flex-col items-start justify-start gap-[16px]">
+      <div className=" flex flex-col items-start justify-start gap-[16px]">
         <div className="relative tracking-[0.03em] leading-[24px] font-semibold">
           {productTitle}
         </div>
@@ -48,7 +49,7 @@ const CardContainer: NextPage<CardContainerType> = ({
           {productDescription}
         </div>
       </div>
-      <div className="shrink-0 flex flex-col items-start justify-start text-base text-secondary-colors-white font-title-20px-semibold">
+      <div className=" flex flex-col items-start justify-start text-base text-secondary-colors-white font-title-20px-semibold">
         <div className="relative leading-[24px] font-medium">Shop Now</div>
         <UnderLineIcon
           underLineIconUnderLine="/underline@2x.png"

@@ -1,3 +1,4 @@
+"use client"
 import type { NextPage } from "next";
 import { useMemo, type CSSProperties } from "react";
 import ButtonPrimaryHoverNo from "./button-primary-hover-no";

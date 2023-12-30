@@ -1,3 +1,4 @@
+"use client"
 import type { NextPage } from "next";
 import { useMemo, type CSSProperties } from "react";
 import UnderLineIcon from "./under-line-icon";
@@ -23,7 +24,7 @@ const SpeakerContainer: NextPage<SpeakerContainerType> = ({
 
   return (
     <div className="absolute top-[175px] left-[24px] flex flex-col items-start justify-start gap-[8px] text-left text-5xl text-text font-heading-24px-semibold">
-      <div className="shrink-0 flex flex-col items-start justify-start gap-[8px]">
+      <div className=" flex flex-col items-start justify-start gap-[8px]">
         <div className="relative tracking-[0.03em] leading-[24px] font-semibold">
           {productTitle}
         </div>
@@ -34,7 +35,7 @@ const SpeakerContainer: NextPage<SpeakerContainerType> = ({
           {productDescription}
         </div>
       </div>
-      <div className="shrink-0 flex flex-col items-start justify-start text-base text-secondary-colors-white font-title-20px-semibold">
+      <div className=" flex flex-col items-start justify-start text-base text-secondary-colors-white font-title-20px-semibold">
         <div className="relative leading-[24px] font-medium">Shop Now</div>
         <UnderLineIcon
           underLineIconUnderLine="/underline@2x.png"

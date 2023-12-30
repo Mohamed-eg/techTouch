@@ -3,9 +3,9 @@ import Link from "next/link";
 
 const CardWithLinksAndText: NextPage = () => {
   return (
-    <div className="shrink-0 flex flex-col items-start justify-start gap-[16px] text-left text-base text-text2 font-title-20px-semibold">
+    <div className=" flex flex-col items-start justify-start gap-[16px] text-left text-base text-text2 font-title-20px-semibold">
       <Link
-        className="cursor-pointer [text-decoration:none] relative rounded-xl bg-secondary w-[270px] h-[250px] overflow-hidden shrink-0"
+        className="cursor-pointer [text-decoration:none] relative rounded-xl bg-secondary w-[270px] h-[250px] overflow-hidden   "
         href="/product-details-page"
       >
         <img
@@ -19,12 +19,12 @@ const CardWithLinksAndText: NextPage = () => {
           src="/frame-604@2x.png"
         />
       </Link>
-      <div className="shrink-0 flex flex-col items-start justify-start gap-[8px]">
+      <div className=" flex flex-col items-start justify-start gap-[8px]">
         <p className="m-0 relative leading-[24px] font-medium">
           ASUS FHD Gaming Laptop
         </p>
-        <div className="shrink-0 flex flex-row items-center justify-start text-lg text-primary1">
-          <span className="shrink-0 flex flex-row items-start justify-start">
+        <div className=" flex flex-row items-center justify-start text-lg text-primary1">
+          <span className=" flex flex-row items-start justify-start">
             <div className="relative leading-[24px] font-semibold">700 EGP</div>
           </span>
         </div>

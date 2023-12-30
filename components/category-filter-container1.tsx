@@ -1,13 +1,14 @@
 import type { NextPage } from "next";
+import CategoryCamera from "./category-camera"
 import CategoryPhoneGamingHoverN from "./category-phone-gaming-hover-n";
 import CategoryPhoneSmartWatchHov from "./category-phone-smart-watch-hov";
 
 const CategoryFilterContainer1: NextPage = () => {
   return (
-    <div className="shrink-0 flex flex-col items-start justify-start gap-[60px] text-left text-base text-primary1 font-title-20px-semibold">
-      <div className="shrink-0 flex flex-row items-end justify-start gap-[691px]">
-        <div className="shrink-0 flex flex-col items-start justify-start gap-[20px]">
-          <div className="shrink-0 flex flex-row items-center justify-start gap-[16px]">
+    <div className=" flex flex-col items-start justify-start gap-[60px] text-left text-base text-primary1 font-title-20px-semibold">
+      <div className=" flex flex-row items-end justify-start gap-[691px]">
+        <div className=" flex flex-col items-start justify-start gap-[20px]">
+          <div className=" flex flex-row items-center justify-start gap-[16px]">
             <div className="relative w-5 h-10">
               <div className="absolute h-full w-full top-[0%] right-[0%] bottom-[0%] left-[0%] rounded bg-primary1" />
             </div>
@@ -19,7 +20,7 @@ const CategoryFilterContainer1: NextPage = () => {
             Browse By Category
           </h1>
         </div>
-        <div className="shrink-0 flex flex-row items-start justify-start gap-[8px]">
+        <div className=" flex flex-row items-start justify-start gap-[8px]">
           <img
             className="relative w-[46px] h-[46px]"
             alt=""
@@ -32,20 +33,12 @@ const CategoryFilterContainer1: NextPage = () => {
           />
         </div>
       </div>
-      <div className="shrink-0 flex flex-row items-start justify-start gap-[30px]">
-        <CategoryPhoneGamingHoverN
-          gaming="Phones"
-          categoryGamepad="/categorycellphone@2x.png"
-          categoryPhoneGamingHoverNBorderRadius="32px"
-          categoryPhoneGamingHoverNPosition="relative"
-          categoryPhoneGamingHoverNFlexShrink="0"
-          categoryPhoneGamingHoverNBorder="1px solid rgba(0, 0, 0, 0.3)"
-          categoryPhoneGamingHoverNBoxSizing="border-box"
-          categoryPhoneGamingHoverNBackgroundColor="unset"
-          categoryPhoneGamingHoverNBoxShadow="unset"
-          gamingLeft="calc(50% - 30px)"
-          gamingColor="#000"
-          categoryGamepadIconLeft="calc(50% - 28px)"
+      <div className=" flex flex-row items-start justify-start gap-[30px]">
+        <CategoryCamera
+          category="/categorycamera@2x.png"
+          IconPosition="relative"
+          IconTop="calc(50% - 30px)"
+          IconLeft="calc(50% - 28px)"
         />
         <CategoryPhoneGamingHoverN
           gaming="Computers"

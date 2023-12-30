@@ -1,3 +1,4 @@
+"use client"
 import type { NextPage } from "next";
 import { useMemo, type CSSProperties } from "react";
 import CategorySmartWatch from "./category-smart-watch";
@@ -38,7 +39,7 @@ const CategoryPhoneSmartWatchHov: NextPage<CategoryPhoneSmartWatchHovType> = ({
         SmartWatch
       </div>
       <CategorySmartWatch
-        vector="/vector4@2x.png"
+        vector="/vector-4@2x.png"
         categorySmartWatchPosition="absolute"
         categorySmartWatchTop="25px"
         categorySmartWatchLeft="calc(50% - 28px)"

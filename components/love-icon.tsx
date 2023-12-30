@@ -1,10 +1,10 @@
 import type { NextPage } from "next";
 import Link from "next/link";
 
-const FormLink: NextPage = () => {
+const Loveicon: NextPage = () => {
   return (
     <Link
-      className="cursor-pointer [text-decoration:none] relative w-8 h-8"
+      className="cursor-pointer [text-decoration:none] relative w-8 h-8 max-md:w-[5vw] max-md:h-[5vw] max-w-8 max-sm:hidden max-h-8"
       href="/wishlist"
     >
       <img
@@ -16,4 +16,4 @@ const FormLink: NextPage = () => {
   );
 };
 
-export default FormLink;
+export default Loveicon;

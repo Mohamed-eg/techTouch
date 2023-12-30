@@ -7,10 +7,10 @@ import ButtonPrimaryHoverNo from "./button-primary-hover-no";
 
 const ExploreOurProducts: NextPage = () => {
   return (
-    <div className="shrink-0 flex flex-col items-center justify-start gap-[60px] text-left text-base text-primary1 font-title-20px-semibold">
-      <div className="shrink-0 flex flex-row items-end justify-start gap-[672px]">
-        <div className="shrink-0 flex flex-col items-start justify-start gap-[20px]">
-          <div className="shrink-0 flex flex-row items-center justify-start gap-[16px]">
+    <div className=" flex flex-col items-center justify-start gap-[60px] text-left text-base text-primary1 font-title-20px-semibold">
+      <div className=" flex flex-row items-end justify-start gap-[672px]">
+        <div className=" flex flex-col items-start justify-start gap-[20px]">
+          <div className=" flex flex-row items-center justify-start gap-[16px]">
             <div className="relative w-5 h-10">
               <div className="absolute h-full w-full top-[0%] right-[0%] bottom-[0%] left-[0%] rounded bg-primary1" />
             </div>
@@ -22,53 +22,53 @@ const ExploreOurProducts: NextPage = () => {
             Explore Our Products
           </h1>
         </div>
-        <div className="shrink-0 flex flex-row items-start justify-start gap-[8px]">
+        <div className=" flex flex-row items-start justify-start gap-[8px]">
           <img
             className="relative w-[46px] h-[46px] object-cover"
             alt=""
-            src="/fill-with-left-arrow2@2x.png"
+            src="/fill-with-left-arrow@2x.png"
           />
           <img
             className="relative w-[46px] h-[46px] object-cover"
             alt=""
-            src="/fill-with-right-arrow2@2x.png"
+            src="/fill-with-right-arrow.svg"
           />
         </div>
       </div>
-      <div className="shrink-0 flex flex-row items-start justify-start gap-[30px] text-xs text-text">
+      <div className=" flex flex-row items-start justify-start gap-[30px] text-xs text-text">
         <Property1Variant4
           wishlist="/wishlist@2x.png"
           property1Variant4FlexShrink="0"
         />
         <Property1Variant2
-          wishlist="/wishlist1@2x.png"
-          iconsCurvedBuy="/iconscurvedbuy1.svg"
+          wishlist="/wishlist@2x.png"
+          iconsCurvedBuy="/iconscurvedbuy.svg"
           property1Variant2FlexShrink="0"
           iconsCurvedBuyObjectFit="unset"
         />
         <FormWithRadiosAndTitle />
         <Property1Variant5
-          wishlist="/wishlist1@2x.png"
+          wishlist="/wishlist@2x.png"
           property1Variant5FlexShrink="0"
         />
       </div>
-      <div className="shrink-0 flex flex-row items-start justify-start gap-[30px]">
+      <div className=" flex flex-row items-start justify-start gap-[30px]">
         <Property1Variant4
           wishlist="/wishlist@2x.png"
           property1Variant4FlexShrink="0"
         />
         <Property1Variant2
-          wishlist="/wishlist1@2x.png"
-          iconsCurvedBuy="/iconscurvedbuy3@2x.png"
+          wishlist="/wishlist@2x.png"
+          iconsCurvedBuy="/iconscurvedbuy.svg"
           property1Variant2FlexShrink="0"
           iconsCurvedBuyObjectFit="cover"
         />
         <Property1Variant5
-          wishlist="/wishlist1@2x.png"
+          wishlist="/wishlist@2x.png"
           property1Variant5FlexShrink="0"
         />
         <Property1Variant5
-          wishlist="/wishlist1@2x.png"
+          wishlist="/wishlist@2x.png"
           property1Variant5FlexShrink="0"
         />
       </div>

@@ -1,3 +1,4 @@
+"use client"
 import type { NextPage } from "next";
 import { useMemo, type CSSProperties } from "react";
 import QrCode from "./qr-code";
@@ -69,8 +70,8 @@ const FrameComponent: NextPage<FrameComponentType> = ({
       style={frameDivStyle}
     >
       <div className="flex flex-col items-start justify-start gap-[42px]">
-        <div className="w-[1170px] shrink-0 flex flex-row items-start justify-between">
-          <div className="shrink-0 flex flex-col items-start justify-start gap-[24px] text-mini text-steam-color">
+        <div className="w-[1170px]  flex flex-row items-start justify-between">
+          <div className=" flex flex-col items-start justify-start gap-[24px] text-mini text-steam-color">
             <img
               className="relative w-[103px] h-[71px] object-cover"
               alt=""
@@ -82,27 +83,27 @@ const FrameComponent: NextPage<FrameComponentType> = ({
               ever since.
             </div>
           </div>
-          <div className="shrink-0 flex flex-col items-start justify-start gap-[24px]">
+          <div className=" flex flex-col items-start justify-start gap-[24px]">
             <b className="relative leading-[140%]">Customer</b>
-            <div className="shrink-0 flex flex-col items-start justify-start gap-[12px] text-mini text-steam-color">
+            <div className=" flex flex-col items-start justify-start gap-[12px] text-mini text-steam-color">
               <div className="relative leading-[150%]">About us</div>
               <div className="relative leading-[150%]">Shop</div>
               <div className="relative leading-[150%]">Blog</div>
             </div>
           </div>
-          <div className="shrink-0 flex flex-col items-start justify-start gap-[24px]">
+          <div className=" flex flex-col items-start justify-start gap-[24px]">
             <b className="relative leading-[140%]">Information</b>
-            <div className="shrink-0 flex flex-col items-start justify-start gap-[12px] text-mini text-steam-color">
+            <div className=" flex flex-col items-start justify-start gap-[12px] text-mini text-steam-color">
               <div className="relative leading-[150%]">Contact</div>
               <div className="relative leading-[150%]">FAQ</div>
               <div className="relative leading-[150%]">Service</div>
             </div>
           </div>
-          <div className="shrink-0 flex flex-col items-start justify-start gap-[24px]">
+          <div className=" flex flex-col items-start justify-start gap-[24px]">
             <b className="relative leading-[140%]">Contact Info</b>
-            <div className="shrink-0 flex flex-col items-start justify-start gap-[12px] text-mini text-steam-color">
-              <div className="shrink-0 flex flex-row items-center justify-start gap-[16px]">
-                <div className="rounded-[38.25px] bg-secondary-colors-white shrink-0 flex flex-row items-start justify-start p-[8.5px]">
+            <div className=" flex flex-col items-start justify-start gap-[12px] text-mini text-steam-color">
+              <div className=" flex flex-row items-center justify-start gap-[16px]">
+                <div className="rounded-[38.25px] bg-secondary-colors-white  flex flex-row items-start justify-start p-[8.5px]">
                   <img
                     className="relative w-[17px] h-[17px] object-cover"
                     alt=""
@@ -112,8 +113,8 @@ const FrameComponent: NextPage<FrameComponentType> = ({
                 </div>
                 <div className="relative leading-[150%]">Behira Egypt</div>
               </div>
-              <div className="shrink-0 flex flex-row items-center justify-start gap-[14px]">
-                <div className="rounded-[38.25px] bg-secondary-colors-white shrink-0 flex flex-row items-center justify-center p-[8.5px]">
+              <div className=" flex flex-row items-center justify-start gap-[14px]">
+                <div className="rounded-[38.25px] bg-secondary-colors-white  flex flex-row items-center justify-center p-[8.5px]">
                   <img
                     className="relative w-[17px] h-[17px] object-cover"
                     alt=""
@@ -122,8 +123,8 @@ const FrameComponent: NextPage<FrameComponentType> = ({
                 </div>
                 <div className="relative leading-[150%]">01288929611</div>
               </div>
-              <div className="shrink-0 flex flex-row items-center justify-start gap-[12px]">
-                <div className="rounded-[38.25px] bg-secondary-colors-white shrink-0 flex flex-row items-start justify-start p-[8.5px]">
+              <div className=" flex flex-row items-center justify-start gap-[12px]">
+                <div className="rounded-[38.25px] bg-secondary-colors-white  flex flex-row items-start justify-start p-[8.5px]">
                   <img
                     className="relative w-[17px] h-[17px] object-cover"
                     alt=""
@@ -136,18 +137,18 @@ const FrameComponent: NextPage<FrameComponentType> = ({
               </div>
             </div>
           </div>
-          <div className="shrink-0 flex flex-col items-start justify-start gap-[24px] text-xl text-text font-title-20px-semibold">
+          <div className=" flex flex-col items-start justify-start gap-[24px] text-xl text-text font-title-20px-semibold">
             <div className="relative leading-[28px] font-medium">
               Download App
             </div>
-            <div className="shrink-0 flex flex-col items-start justify-start">
-              <div className="shrink-0 flex flex-row items-center justify-start gap-[8px]">
+            <div className=" flex flex-col items-start justify-start">
+              <div className=" flex flex-row items-center justify-start gap-[8px]">
                 <QrCode
-                  qrcode1="/qrcode-11@2x.png"
+                  qrcode1="/qrcode.png"
                   qrCodePosition="relative"
                   qrCodeFlexShrink="0"
                 />
-                <div className="h-[82px] shrink-0 flex flex-col items-start justify-start gap-[4px]">
+                <div className="h-[82px]  flex flex-col items-start justify-start gap-[4px]">
                   <div className="flex-1 bg-foundation-blue-darker overflow-hidden flex flex-col items-start justify-start p-[3px] relative gap-[10px]">
                     <img
                       className="relative rounded w-[104px] h-[30px] object-cover z-[0]"
@@ -175,7 +176,7 @@ const FrameComponent: NextPage<FrameComponentType> = ({
                       src={vector4}
                     />
                   </div>
-                  <div className="relative rounded-lg bg-foundation-blue-darker w-[110px] h-10 overflow-hidden shrink-0">
+                  <div className="relative rounded-lg bg-foundation-blue-darker w-[110px] h-10 overflow-hidden   ">
                     <img
                       className="absolute top-[3px] left-[3px] rounded w-[104px] h-[34px] object-cover"
                       alt=""
@@ -187,35 +188,35 @@ const FrameComponent: NextPage<FrameComponentType> = ({
             </div>
           </div>
         </div>
-        <div className="shrink-0 flex flex-col items-start justify-start gap-[20px] text-mini text-steam-color">
+        <div className=" flex flex-col items-start justify-start gap-[20px] text-mini text-steam-color">
           <div className="relative box-border w-[1170.8px] h-[0.8px] border-t-[0.8px] border-solid border-steam-color" />
-          <div className="shrink-0 flex flex-row items-center justify-start gap-[687px]">
+          <div className=" flex flex-row items-center justify-start gap-[687px]">
             <div className="relative font-semibold">
               @ 2023 DIVANO. All Rights Reserved Ali Atwan
             </div>
-            <div className="shrink-0 flex flex-row items-start justify-start gap-[15px]">
+            <div className=" flex flex-row items-start justify-start gap-[15px]">
               <img
-                className="relative w-[18px] h-[18px] overflow-hidden shrink-0 object-cover"
+                className="relative w-[18px] h-[18px] overflow-hidden  object-cover"
                 alt=""
                 src={facebook}
               />
               <img
-                className="relative w-[18px] h-[18px] overflow-hidden shrink-0 object-cover"
+                className="relative w-[18px] h-[18px] overflow-hidden  object-cover"
                 alt=""
                 src={twitter}
               />
               <img
-                className="relative w-[18px] h-[18px] overflow-hidden shrink-0 object-cover"
+                className="relative w-[18px] h-[18px] overflow-hidden  object-cover"
                 alt=""
                 src={whatsApp}
               />
               <img
-                className="relative w-[18px] h-[18px] overflow-hidden shrink-0 object-cover"
+                className="relative w-[18px] h-[18px] overflow-hidden  object-cover"
                 alt=""
                 src={instagram}
               />
               <img
-                className="relative w-[18px] h-[18px] overflow-hidden shrink-0 object-cover"
+                className="relative w-[18px] h-[18px] overflow-hidden  object-cover"
                 alt=""
                 src={linkedIn}
               />

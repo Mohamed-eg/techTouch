@@ -1,3 +1,4 @@
+"use client"
 import type { NextPage } from "next";
 import { useMemo, type CSSProperties } from "react";
 import ServicesMoneyBack from "./services-money-back";
@@ -44,7 +45,7 @@ const DeliveryContainer: NextPage<DeliveryContainerType> = ({
 
   return (
     <div
-      className="shrink-0 flex flex-col items-center justify-start gap-[24px] text-left text-xl text-text2 font-title-20px-semibold"
+      className=" flex flex-col items-center justify-start gap-[24px] text-left text-xl text-text2 font-title-20px-semibold"
       style={frameDiv2Style}
     >
       <ServicesMoneyBack
@@ -52,7 +53,7 @@ const DeliveryContainer: NextPage<DeliveryContainerType> = ({
         servicesMoneyBackIconPosition="relative"
       />
       <div
-        className="shrink-0 flex flex-col items-center justify-start gap-[8px]"
+        className=" flex flex-col items-center justify-start gap-[8px]"
         style={frameDiv3Style}
       >
         <div className="relative leading-[28px] font-semibold">

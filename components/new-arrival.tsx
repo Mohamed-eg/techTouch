@@ -13,8 +13,8 @@ const NewArrival: NextPage = () => {
         propColor="#0a5c99"
         propMargin="unset"
       />
-      <div className="shrink-0 flex flex-row items-start justify-start gap-[30px]">
-        <div className="relative rounded-sm bg-primary1 w-[570px] h-[600px] overflow-hidden shrink-0">
+      <div className=" flex flex-row items-start justify-start gap-[30px]">
+        <div className="relative rounded-sm bg-primary1 w-[570px] h-[600px] overflow-hidden   ">
           <img
             className="absolute top-[89px] left-[29px] w-[511px] h-[511px] object-cover"
             alt=""
@@ -28,8 +28,8 @@ const NewArrival: NextPage = () => {
             propWidth="242px"
           />
         </div>
-        <div className="shrink-0 flex flex-col items-center justify-start gap-[32px]">
-          <div className="relative rounded-sm bg-primary1 w-[570px] h-[284px] overflow-hidden shrink-0">
+        <div className=" flex flex-col items-center justify-start gap-[32px]">
+          <div className="relative rounded-sm bg-primary1 w-[570px] h-[284px] overflow-hidden   ">
             <CardContainer
               productTitle="Kitchen's Collections"
               productDescription="Featured woman collections that give you another vibe."
@@ -43,8 +43,8 @@ const NewArrival: NextPage = () => {
               src="/blender-juice-machine@2x.png"
             />
           </div>
-          <div className="shrink-0 flex flex-row items-center justify-center gap-[30px]">
-            <div className="relative rounded-sm bg-primary1 w-[270px] h-[284px] overflow-hidden shrink-0">
+          <div className=" flex flex-row items-center justify-center gap-[30px]">
+            <div className="relative rounded-sm bg-primary1 w-[270px] h-[284px] overflow-hidden   ">
               <img
                 className="absolute top-[calc(50%_-_98px)] left-[calc(50%_-_98px)] w-[196px] h-[196px] object-cover"
                 alt=""
@@ -63,11 +63,11 @@ const NewArrival: NextPage = () => {
                 propWidth="191px"
               />
             </div>
-            <div className="relative rounded-sm bg-primary1 w-[270px] h-[284px] overflow-hidden shrink-0">
+            <div className="relative rounded-sm bg-primary1 w-[270px] h-[284px] overflow-hidden   ">
               <img
                 className="absolute top-[calc(50%_-_119px)] left-[calc(50%_-_119px)] w-[238px] h-[238px] object-cover"
                 alt=""
-                src="/ellipse-241@2x.png"
+                src="/ellipse-24@2x.png"
               />
               <img
                 className="absolute top-[-25px] left-[calc(50%_-_66px)] w-[154px] h-[232px] object-cover"

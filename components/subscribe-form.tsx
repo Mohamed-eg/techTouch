@@ -1,3 +1,4 @@
+"use client"
 import type { NextPage } from "next";
 import { useState } from "react";
 import DeliveryContainer from "./delivery-container";
@@ -8,8 +9,8 @@ const SubscribeForm: NextPage = () => {
   const [enterYourEmailValue, setEnterYourEmailValue] = useState("");
   return (
     <div className="absolute top-[4591px] left-[2px] w-[1465px] h-[1005px] overflow-hidden flex flex-row items-start justify-between text-left text-xl text-text2 font-title-20px-semibold">
-      <div className="w-[1440px] h-[1014.5px] overflow-hidden shrink-0 flex flex-col items-center justify-end">
-        <div className="w-[1440px] h-[1014.5px] overflow-hidden shrink-0 flex flex-col items-center justify-end">
+      <div className="w-[1440px] h-[1014.5px] overflow-hidden  flex flex-col items-center justify-start">
+        <div className="w-[1440px] h-[1014.5px] overflow-hidden  flex flex-col items-center justify-end">
           <div className="flex flex-row items-center justify-center gap-[88px]">
             <DeliveryContainer
               featureImageUrl="/services@2x.png"
@@ -51,7 +52,7 @@ const SubscribeForm: NextPage = () => {
                 />
                 <div className="relative bg-lead w-[1440px] h-[337.5px] opacity-[0.5] mix-blend-normal mt-[-337px]" />
               </div>
-              <div className="my-0 mx-[!important] absolute top-[52.5px] left-[276px] shrink-0 flex flex-col items-center justify-start gap-[26px] z-[1]">
+              <div className="my-0 mx-[!important] absolute top-[52.5px] left-[276px]  flex flex-col items-center justify-start gap-[26px] z-[1]">
                 <h1 className="m-0 relative text-inherit leading-[140%] font-bold font-inherit">
                   Subscribe Now To Get Services Best Of Us
                 </h1>
@@ -84,7 +85,7 @@ const SubscribeForm: NextPage = () => {
               </div>
             </div>
             <FrameComponent
-              touchTechLogoFinal2="/touch-tech-logo-final-2@2x.png"
+              touchTechLogoFinal2="/touch tech logo.png"
               iconsCurvedLocation="/iconscurvedlocation.svg"
               iconsCurvedCall="/iconscurvedcall@2x.png"
               iconsCurvedMessage="/iconscurvedmessage@2x.png"
@@ -109,7 +110,7 @@ const SubscribeForm: NextPage = () => {
         </div>
       </div>
       <img
-        className="relative w-[46px] h-[271px] overflow-hidden shrink-0 object-cover"
+        className="relative w-[46px] h-[271px] overflow-hidden  object-cover"
         alt=""
         src="/frame@2x.png"
       />

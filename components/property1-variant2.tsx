@@ -1,3 +1,4 @@
+"use client"
 import type { NextPage } from "next";
 import { useMemo, type CSSProperties } from "react";
 
@@ -33,7 +34,7 @@ const Property1Variant2: NextPage<Property1Variant2Type> = ({
       className="flex flex-col items-start justify-start gap-[16px] text-left text-base text-secondary-colors-white font-title-20px-semibold"
       style={property1Variant2Style}
     >
-      <div className="relative rounded-xl bg-secondary w-[270px] h-[250px] overflow-hidden shrink-0">
+      <div className="relative rounded-xl bg-secondary w-[270px] h-[250px] overflow-hidden   ">
         <div className="absolute top-[8px] right-[8px] flex flex-col items-start justify-start">
           <img
             className="relative w-[34px] h-[34px] object-cover"
@@ -58,12 +59,12 @@ const Property1Variant2: NextPage<Property1Variant2Type> = ({
           <div className="relative leading-[24px] font-medium">Add To Cart</div>
         </div>
       </div>
-      <div className="shrink-0 flex flex-col items-start justify-start gap-[8px] text-text2">
+      <div className=" flex flex-col items-start justify-start gap-[8px] text-text2">
         <div className="relative leading-[24px] font-medium">
           ASUS FHD Gaming Laptop
         </div>
-        <div className="shrink-0 flex flex-row items-center justify-start text-lg text-primary1">
-          <div className="shrink-0 flex flex-row items-start justify-start">
+        <div className=" flex flex-row items-center justify-start text-lg text-primary1">
+          <div className=" flex flex-row items-start justify-start">
             <div className="relative leading-[24px] font-semibold">700 EGP</div>
           </div>
         </div>

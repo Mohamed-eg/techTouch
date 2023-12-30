@@ -1,3 +1,4 @@
+"use client"
 import type { NextPage } from "next";
 import { useMemo, type CSSProperties } from "react";
 
@@ -37,8 +38,8 @@ const BestSellingProductsCard: NextPage<BestSellingProductsCardType> = ({
   }, [propMargin]);
 
   return (
-    <div className="shrink-0 flex flex-col items-start justify-start gap-[20px] text-left text-base text-primary1 font-title-20px-semibold">
-      <div className="shrink-0 flex flex-row items-center justify-start gap-[16px]">
+    <div className=" flex flex-col items-start justify-start gap-[20px] text-left text-base text-primary1 font-title-20px-semibold">
+      <div className=" flex flex-row items-center justify-start gap-[16px]">
         <div className="relative w-5 h-10">
           <div
             className="absolute h-full w-full top-[0%] right-[0%] bottom-[0%] left-[0%] rounded bg-primary1"
