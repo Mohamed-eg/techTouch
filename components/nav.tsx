@@ -81,7 +81,6 @@ const Nav = () => {
             />
             <Image  alt="img"
               className="relative w-[2.2vw] h-[2.2vw]  max-md:w-[5vw] max-md:h-[5vw] max-w-8 max-h-8 object-cover max-sm:hidden cursor-pointer"
-               
               src={buyImg}
               onClick={onIconsCurvedBuyClick}
             />
