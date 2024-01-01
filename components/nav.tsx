@@ -6,10 +6,22 @@ import { useState, useCallback } from "react";
 import buyImg from "../public/iconscurvedbuy.png"
 import userImg from "../public/user@2x.png"
 import Sidebar from "./sidebar";
-import Image from 'next/image'
+import Image from 'next/image';
+import { useSelector } from "react-redux";
 
 
 const Nav = () => {
+
+  const cart = useSelector((state:any) => state.products.cart)
+
+  const getTotalQuantity = () => {
+    let total = 0
+    cart.forEach((item:any) => {
+      total += item.quantity
+    })
+    return total
+  }
+
   const [searchComponentSetValue, setSearchComponentSetValue] = useState("");
   const router = useRouter();
 
@@ -60,7 +72,7 @@ const Nav = () => {
             value={searchComponentSetValue}
             onChange={(event) => setSearchComponentSetValue(event.target.value)}
           />
-          <div className=" flex flex-row items-center justify-center gap-[2vw]">
+          <div className="relative flex flex-row items-center justify-center gap-[2vw]">
             <Loveicon />
             <Image  alt="img"
               className="relative w-[2.2vw] h-[2.2vw] max-md:w-[5vw] max-md:h-[5vw] max-w-8 max-h-8 overflow-hidden object-cover max-sm:hidden cursor-pointer"
@@ -73,6 +85,7 @@ const Nav = () => {
               src={buyImg}
               onClick={onIconsCurvedBuyClick}
             />
+            <span className="bg-red absolute top-3 right-3 rounded-full ">{getTotalQuantity() || 0}</span>
             <div className="md:hidden"><Sidebar /></div>
 
           </div>

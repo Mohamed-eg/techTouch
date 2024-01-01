@@ -17,9 +17,9 @@ const HOME: NextPage = () => {
         <MainHeader />
         <Hero/>
       </div>
-      <div className="absolute top-[543px] left-[-295px] w-[2045px] overflow-hidden flex flex-col items-start justify-center">
+      <div className="absolute top-[543px] left-[-297px]  z-0 w-[500px] overflow-hidden ">
         <Image  alt="img"
-          className="relative rounded-[50%] w-[417px] h-[410px] object-cover"
+          className="relative rounded-[50%] w-[417px]  h-[410px] object-cover"
            
           src={circle}
         />
@@ -31,40 +31,40 @@ const HOME: NextPage = () => {
           <ExploreOurProducts />
         </section>
       </div>
-      <div className="absolute top-[1087px] left-[-297px] w-[2049px] overflow-hidden flex flex-col items-end justify-center">
+      <div className="absolute top-[1087px] right-[-297px] z-0 w-[500px] overflow-hidden ">
         <Image  alt="img"
-          className="relative rounded-[50%] w-[417px] h-[410px] object-cover"
+          className="relative rounded-[50%] w-[417px]  h-[410px] object-cover"
            
           src={circle}
         />
       </div>
-      <div className="absolute top-[2073px] left-[-282px] w-[2019px] overflow-hidden flex flex-col items-start justify-center">
+      <div className="absolute top-[2073px] left-[-282px] z-0 w-[500px] overflow-hidden ">
         <Image  alt="img"
-          className="relative rounded-[50%] w-[417px] h-[410px] object-cover"
+          className="relative rounded-[50%] w-[417px]  h-[410px] object-cover"
            
           src={circle}
         />
       </div>
       <MusicContainer />
-      <div className="absolute top-[2798px] left-[-297px] w-[2049px] overflow-hidden flex flex-col items-end justify-center">
+      <div className="absolute top-[2798px] right-[-297px] z-0 w-[500px] overflow-hidden ">
         <Image  alt="img"
-          className="relative rounded-[50%] w-[417px] h-[410px] object-cover"
+          className="relative rounded-[50%] w-[417px]  h-[410px] object-cover"
            
           src={circle}
         />
       </div>
       <BestSelling />
-      <div className="absolute top-[3398px] left-[-297px] w-[2049px] overflow-hidden flex flex-col items-start justify-center">
+      <div className="absolute top-[3398px] left-[-297px] z-0 w-[500px] overflow-hidden ">
         <Image  alt="img"
-          className="relative rounded-[50%] w-[417px] h-[410px] object-cover"
+          className="relative rounded-[50%] w-[417px]  h-[410px] object-cover"
            
           src={circle}
         />
       </div>
       <NewArrival />
-      <div className="absolute top-[4359px] left-[-322px] w-[2049px] overflow-hidden flex flex-col items-end justify-center">
+      <div className="absolute top-[4359px] right-[-322px] z-0 w-[500px] overflow-hidden ">
         <Image  alt="img"
-          className="relative rounded-[50%] w-[417px] h-[410px] object-cover"
+          className="relative rounded-[50%] w-[417px]  h-[410px] object-cover"
            
           src={circle}
         />
