@@ -1,23 +1,24 @@
 import type { NextPage } from "next";
-import FlashSaleOfferSeconds from "./flash-sale-offer-seconds";
-import Property1Default from "./property1-default";
+// import FlashSaleOfferSeconds from "./flash-sale-offer-seconds";
+import Image from 'next/image'
+import speakerImg from '../public/jbl-boombox-2-hero-020-x1-1-1@2x.png'
 
 const MusicContainer: NextPage = () => {
   return (
-    <section className="absolute top-[2404px] left-[135px] w-[1185px] overflow-hidden flex flex-col items-start justify-center text-left text-base text-scondry font-title-20px-semibold">
-      <div className="w-[1170px] flex flex-col items-center justify-center">
-        <div className="rounded-sm bg-primary1 w-[1170px] h-[500px] overflow-hidden  flex flex-row items-center justify-start py-0 px-11 box-border gap-[27px]">
-          <div className="w-[443px] h-[362px] overflow-hidden  flex flex-col items-start justify-start gap-[32px]">
-            <div className="w-[443px] h-[172px] overflow-hidden  flex flex-col items-start justify-start gap-[32px]">
-              <span className="relative leading-[20px] font-semibold">
+    <section className="relative w-full overflow-hidden flex flex-col items-center m-auto justify-center text-left text-base text-scondry font-title-20px-semibold">
+      <div className="w-[82vw] flex flex-col items-center justify-center">
+        <div className="rounded-sm bg-primary1 w-full h-auto overflow-hidden flex flex-row items-center justify-center py-0 px-11 box-border gap-[27px]">
+          <div className=" h-[362px]   flex flex-col items-start justify-start gap-[32px]">
+            <div className=" h-[172px]  flex flex-col items-start justify-start gap-[32px]">
+              <span className="absolute leading-[20px] pt-9 font-semibold">
                 Categories
               </span>
-              <h1 className="m-0 relative text-29xl tracking-[0.04em] leading-[60px] font-semibold font-heading-24px-semibold text-text inline-block w-[443px]">
+              <h1 className="m-0 relative text-[3.3vw] tracking-[0.04em] leading-[60px] mt-16 font-semibold font-heading-24px-semibold text-wrap text-text  max-sm:hidden inline-block">
                 Enhance Your Music Experience
               </h1>
             </div>
-            <div className="w-80 h-[158px] overflow-hidden  flex flex-col items-start justify-start gap-[40px]">
-              <div className="flex flex-row items-start justify-start gap-[24px]">
+            {/* <div className=" h-[158px] flex flex-col items-start justify-start gap-[40px]">
+              <div className="flex flex-row items-center justify-start flex-wrap gap-[24px]">
                 <FlashSaleOfferSeconds
                   prop="23"
                   seconds="Hours"
@@ -67,24 +68,17 @@ const MusicContainer: NextPage = () => {
                   secondsWidth="48px"
                 />
               </div>
-              <Property1Default
-                property1DefaultCursor="pointer"
-                property1DefaultBorder="none"
-                property1DefaultPadding="0"
-                property1DefaultBackgroundColor="transparent"
-                viewAllProductsDisplay="inline-block"
-              />
-            </div>
+            </div> */}
           </div>
-          <div className="w-[600px] h-[500px] overflow-hidden  flex flex-row items-center justify-end">
-            <div className="w-[600px] h-[420px] overflow-hidden  flex flex-col items-end justify-center py-0 pr-0 pl-4 box-border">
-              <img
-                className="relative w-[568px] h-[330px] object-contain"
-                alt=""
-                src="/jbl-boombox-2-hero-020-x1-1-1@2x.png"
+          <div className="w-[40vw]  max-sm:w-full flex flex-row items-center justify-center">
+            <div className="w-full  flex flex-col items-center justify-center py-0 pr-0 box-border">
+              <Image alt="img"
+                className="relative w-[32vw] max-sm:w-full h-[22.7vw] z-30 mr-11 object-contain"
+                 
+                src={speakerImg}
               />
+            <div className="absolute rounded-[50%] bg-gainsboro-200 [filter:blur(200px)] w-[35vw] h-[35vw]" />
             </div>
-            <div className="relative rounded-[50%] bg-gainsboro-200 [filter:blur(200px)] w-[504px] h-[500px] opacity-[0.3] ml-[-574px]" />
           </div>
         </div>
       </div>

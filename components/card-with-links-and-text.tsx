@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import Link from "next/link";
+import Image from 'next/image'
 
 const CardWithLinksAndText: NextPage = () => {
   return (
@@ -8,14 +9,15 @@ const CardWithLinksAndText: NextPage = () => {
         className="cursor-pointer [text-decoration:none] relative rounded-xl bg-secondary w-[270px] h-[250px] overflow-hidden   "
         href="/product-details-page"
       >
-        <img
+        <Image  width={5} height={5} alt="img"
           className="absolute top-[8px] right-[8px] max-w-full overflow-hidden max-h-full"
-          alt=""
+           
           src="/wishlist@2x.png"
         />
-        <img
+        <Image height={5} alt="img"
+          width={190}
           className="absolute top-[calc(50%_-_90px)] left-[calc(50%_-_95px)] w-[190px] h-[180px] overflow-hidden object-cover"
-          alt=""
+           
           src="/frame-604@2x.png"
         />
       </Link>

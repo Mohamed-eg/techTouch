@@ -1,4 +1,7 @@
 import type { NextPage } from "next";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faArrowDownWideShort} from '@fortawesome/free-solid-svg-icons'
+
 
 const Header1: NextPage = () => {
   return (
@@ -17,6 +20,7 @@ const Header1: NextPage = () => {
           >
             ShopNow
           </a>
+         <span className="w-[24px]"> <FontAwesomeIcon icon={faArrowDownWideShort} /></span>
         </div>
         <select className="bg-[transparent] [border:none] mr-[136px] max-md:mr-5 py-[1.5px] px-0 font-title-20px-semibold text-sm text-secondary-colors-white" >
           <option className="text-black">English</option>

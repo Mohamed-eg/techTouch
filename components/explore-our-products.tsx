@@ -1,13 +1,12 @@
 import type { NextPage } from "next";
-import Property1Variant4 from "./property1-variant4";
-import Property1Variant2 from "./property1-variant2";
-import FormWithRadiosAndTitle from "./form-with-radios-and-title";
-import Property1Variant5 from "./property1-variant5";
-import ButtonPrimaryHoverNo from "./button-primary-hover-no";
+import Image from 'next/image'
+import AllProducts from "./allProducts";
+import leftArrow from "../public/fill-with-left-arrow@2x.png"
+import rightArrow from "../public/fill-with-right-arrow.svg"
 
 const ExploreOurProducts: NextPage = () => {
   return (
-    <div className=" flex flex-col items-center justify-start gap-[60px] text-left text-base text-primary1 font-title-20px-semibold">
+    <div className=" flex flex-col justify-start gap-[60px] text-left text-base text-primary1 font-title-20px-semibold">
       <div className=" flex flex-row items-end justify-start gap-[672px]">
         <div className=" flex flex-col items-start justify-start gap-[20px]">
           <div className=" flex flex-row items-center justify-start gap-[16px]">
@@ -23,67 +22,19 @@ const ExploreOurProducts: NextPage = () => {
           </h1>
         </div>
         <div className=" flex flex-row items-start justify-start gap-[8px]">
-          <img
+          <Image  alt="img"
             className="relative w-[46px] h-[46px] object-cover"
-            alt=""
-            src="/fill-with-left-arrow@2x.png"
+             
+            src={leftArrow}
           />
-          <img
+          <Image  alt="img"
             className="relative w-[46px] h-[46px] object-cover"
-            alt=""
-            src="/fill-with-right-arrow.svg"
+             
+            src={rightArrow}
           />
         </div>
       </div>
-      <div className=" flex flex-row items-start justify-start gap-[30px] text-xs text-text">
-        <Property1Variant4
-          wishlist="/wishlist@2x.png"
-          property1Variant4FlexShrink="0"
-        />
-        <Property1Variant2
-          wishlist="/wishlist@2x.png"
-          iconsCurvedBuy="/iconscurvedbuy.svg"
-          property1Variant2FlexShrink="0"
-          iconsCurvedBuyObjectFit="unset"
-        />
-        <FormWithRadiosAndTitle />
-        <Property1Variant5
-          wishlist="/wishlist@2x.png"
-          property1Variant5FlexShrink="0"
-        />
-      </div>
-      <div className=" flex flex-row items-start justify-start gap-[30px]">
-        <Property1Variant4
-          wishlist="/wishlist@2x.png"
-          property1Variant4FlexShrink="0"
-        />
-        <Property1Variant2
-          wishlist="/wishlist@2x.png"
-          iconsCurvedBuy="/iconscurvedbuy.svg"
-          property1Variant2FlexShrink="0"
-          iconsCurvedBuyObjectFit="cover"
-        />
-        <Property1Variant5
-          wishlist="/wishlist@2x.png"
-          property1Variant5FlexShrink="0"
-        />
-        <Property1Variant5
-          wishlist="/wishlist@2x.png"
-          property1Variant5FlexShrink="0"
-        />
-      </div>
-      <ButtonPrimaryHoverNo
-        viewAllProducts="View All Products"
-        buttonPrimaryHoverNoBorderRadius="12px"
-        buttonPrimaryHoverNoBackgroundColor="#0a5c99"
-        buttonPrimaryHoverNoBoxSizing="border-box"
-        buttonPrimaryHoverNoCursor="pointer"
-        buttonPrimaryHoverNoBorder="none"
-        buttonPrimaryHoverNoFlexShrink="0"
-        buttonPrimaryHoverNoWidth="unset"
-        viewAllProductsDisplay="inline-block"
-        viewAllProductsColor="#fafafa"
-      />
+      <AllProducts/>
     </div>
   );
 };

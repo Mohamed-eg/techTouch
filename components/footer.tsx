@@ -2,24 +2,42 @@
 import type { NextPage } from "next";
 import { useMemo, type CSSProperties } from "react";
 import QrCode from "./qr-code";
+import Image from 'next/image'
+import touchTechLogo from '../public/touch tech logo.png'
+import iconsCurvedLocation from '../public/iconscurvedlocation.svg'
+import iconsCurvedCall from '../public/iconscurvedcall@2x.png'
+import iconsCurvedMessage from '../public/iconscurvedmessage@2x.png'
+import pngTransparentGooglePlayS from '../public/pngtransparentgoogleplaystorelogogoogleplayappstoreandroidwalletstextlabellogo@2x.png'
+import vector1 from '../public/vector-1@2x.png'
+import vector2 from '../public/vector-2@2x.png'
+import vector3 from '../public/vector-3@2x.png'
+import vector4 from '../public/vector-4@2x.png'
+import downloadAppstore from '../public/downloadappstore@2x.png'
+import facebook from '../public/-facebook@2x.png'
+import twitter from '../public/twitter@2x.png'
+import whatsApp from '../public/whatsapp@2x.png'
+import instagram from '../public/instagram@2x.png'
+import linkedIn from '../public/linkedin@2x.png'
+
+
+              // touchTechLogoFinal2="/touch tech logo.png"
+              // iconsCurvedLocation="/iconscurvedlocation.svg"
+              // iconsCurvedCall="/"
+              // ="/"
+              // ="/qrcode-1@2x.png"
+              // pngTransparentGooglePlayS="/pngtransparentgoogleplaystorelogogoogleplayappstoreandroidwalletstextlabellogo@2x.png"
+              // vector1="/"
+              // vector2="/vector-2@2x.png"
+              // vector3="/vector-3@2x.png"
+              // vector4="/vector-4@2x.png"
+              // downloadAppstore="/"
+              // ="/"
+              // twitter="/"
+              // ="/"
+              // ="/"
+              // linkedIn="/"
 
 type FrameComponentType = {
-  touchTechLogoFinal2?: string;
-  iconsCurvedLocation?: string;
-  iconsCurvedCall?: string;
-  iconsCurvedMessage?: string;
-  qrcode1?: string;
-  pngTransparentGooglePlayS?: string;
-  vector1?: string;
-  vector2?: string;
-  vector3?: string;
-  vector4?: string;
-  downloadAppstore?: string;
-  facebook?: string;
-  twitter?: string;
-  whatsApp?: string;
-  instagram?: string;
-  linkedIn?: string;
 
   /** Style props */
   frameDivPosition?: CSSProperties["position"];
@@ -28,23 +46,7 @@ type FrameComponentType = {
   iconsCurvedLocationObjectFit?: CSSProperties["objectFit"];
 };
 
-const FrameComponent: NextPage<FrameComponentType> = ({
-  touchTechLogoFinal2,
-  iconsCurvedLocation,
-  iconsCurvedCall,
-  iconsCurvedMessage,
-  qrcode1,
-  pngTransparentGooglePlayS,
-  vector1,
-  vector2,
-  vector3,
-  vector4,
-  downloadAppstore,
-  facebook,
-  twitter,
-  whatsApp,
-  instagram,
-  linkedIn,
+const FooterComp: NextPage<FrameComponentType> = ({
   frameDivPosition,
   frameDivBottom,
   frameDivLeft,
@@ -72,10 +74,9 @@ const FrameComponent: NextPage<FrameComponentType> = ({
       <div className="flex flex-col items-start justify-start gap-[42px]">
         <div className="w-[1170px]  flex flex-row items-start justify-between">
           <div className=" flex flex-col items-start justify-start gap-[24px] text-mini text-steam-color">
-            <img
+            <Image alt="img"
               className="relative w-[103px] h-[71px] object-cover"
-              alt=""
-              src={touchTechLogoFinal2}
+              src={touchTechLogo}
             />
             <div className="relative leading-[150%] inline-block w-[307.5px]">
               Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -104,9 +105,9 @@ const FrameComponent: NextPage<FrameComponentType> = ({
             <div className=" flex flex-col items-start justify-start gap-[12px] text-mini text-steam-color">
               <div className=" flex flex-row items-center justify-start gap-[16px]">
                 <div className="rounded-[38.25px] bg-secondary-colors-white  flex flex-row items-start justify-start p-[8.5px]">
-                  <img
+                  <Image alt="img"
                     className="relative w-[17px] h-[17px] object-cover"
-                    alt=""
+                     
                     src={iconsCurvedLocation}
                     style={iconsCurvedLocationStyle}
                   />
@@ -115,9 +116,9 @@ const FrameComponent: NextPage<FrameComponentType> = ({
               </div>
               <div className=" flex flex-row items-center justify-start gap-[14px]">
                 <div className="rounded-[38.25px] bg-secondary-colors-white  flex flex-row items-center justify-center p-[8.5px]">
-                  <img
+                  <Image alt="img"
                     className="relative w-[17px] h-[17px] object-cover"
-                    alt=""
+                     
                     src={iconsCurvedCall}
                   />
                 </div>
@@ -125,9 +126,9 @@ const FrameComponent: NextPage<FrameComponentType> = ({
               </div>
               <div className=" flex flex-row items-center justify-start gap-[12px]">
                 <div className="rounded-[38.25px] bg-secondary-colors-white  flex flex-row items-start justify-start p-[8.5px]">
-                  <img
+                  <Image alt="img"
                     className="relative w-[17px] h-[17px] object-cover"
-                    alt=""
+                     
                     src={iconsCurvedMessage}
                   />
                 </div>
@@ -144,42 +145,41 @@ const FrameComponent: NextPage<FrameComponentType> = ({
             <div className=" flex flex-col items-start justify-start">
               <div className=" flex flex-row items-center justify-start gap-[8px]">
                 <QrCode
-                  qrcode1="/qrcode.png"
                   qrCodePosition="relative"
                   qrCodeFlexShrink="0"
                 />
                 <div className="h-[82px]  flex flex-col items-start justify-start gap-[4px]">
                   <div className="flex-1 bg-foundation-blue-darker overflow-hidden flex flex-col items-start justify-start p-[3px] relative gap-[10px]">
-                    <img
+                    <Image alt="img"
                       className="relative rounded w-[104px] h-[30px] object-cover z-[0]"
-                      alt=""
+                       
                       src={pngTransparentGooglePlayS}
                     />
-                    <img
+                    <Image alt="img"
                       className="absolute my-0 mx-[!important] top-[22.2px] left-[99.4px] w-[0.6px] h-px object-cover z-[1]"
-                      alt=""
+                       
                       src={vector1}
                     />
-                    <img
+                    <Image alt="img"
                       className="absolute my-0 mx-[!important] top-[22px] left-[98.2px] w-[1.3px] h-[3.9px] object-cover z-[2]"
-                      alt=""
+                       
                       src={vector2}
                     />
-                    <img
+                    <Image alt="img"
                       className="absolute my-0 mx-[!important] top-[22.2px] left-[94.9px] w-[0.3px] h-[0.1px] object-cover z-[3]"
-                      alt=""
+                       
                       src={vector3}
                     />
-                    <img
+                    <Image alt="img"
                       className="absolute my-0 mx-[!important] top-[22.7px] left-[98.4px] w-[1.2px] h-[2.2px] object-cover z-[4]"
-                      alt=""
+                       
                       src={vector4}
                     />
                   </div>
                   <div className="relative rounded-lg bg-foundation-blue-darker w-[110px] h-10 overflow-hidden   ">
-                    <img
+                    <Image alt="img"
                       className="absolute top-[3px] left-[3px] rounded w-[104px] h-[34px] object-cover"
-                      alt=""
+                       
                       src={downloadAppstore}
                     />
                   </div>
@@ -195,29 +195,29 @@ const FrameComponent: NextPage<FrameComponentType> = ({
               @ 2023 DIVANO. All Rights Reserved Ali Atwan
             </div>
             <div className=" flex flex-row items-start justify-start gap-[15px]">
-              <img
+              <Image alt="img"
                 className="relative w-[18px] h-[18px] overflow-hidden  object-cover"
-                alt=""
+                 
                 src={facebook}
               />
-              <img
+              <Image alt="img"
                 className="relative w-[18px] h-[18px] overflow-hidden  object-cover"
-                alt=""
+                 
                 src={twitter}
               />
-              <img
+              <Image alt="img"
                 className="relative w-[18px] h-[18px] overflow-hidden  object-cover"
-                alt=""
+                 
                 src={whatsApp}
               />
-              <img
+              <Image alt="img"
                 className="relative w-[18px] h-[18px] overflow-hidden  object-cover"
-                alt=""
+                 
                 src={instagram}
               />
-              <img
+              <Image alt="img"
                 className="relative w-[18px] h-[18px] overflow-hidden  object-cover"
-                alt=""
+                 
                 src={linkedIn}
               />
             </div>
@@ -228,4 +228,4 @@ const FrameComponent: NextPage<FrameComponentType> = ({
   );
 };
 
-export default FrameComponent;
+export default FooterComp;

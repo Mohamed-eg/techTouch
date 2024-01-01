@@ -1,71 +1,31 @@
 "use client"
 import type { NextPage } from "next";
-import { useMemo, type CSSProperties } from "react";
-import ServicesMoneyBack from "./services-money-back";
+import Image from "next/image";
 
 type DeliveryContainerType = {
-  featureImageUrl?: string;
+  featureImageUrl?: string | any;
   serviceDescription?: string;
-  promotionImageUrl?: string;
-
-  /** Style props */
-  propFlexShrink?: CSSProperties["flexShrink"];
-  propWidth?: CSSProperties["width"];
-  propFlexShrink1?: CSSProperties["flexShrink"];
-  propTextAlign?: CSSProperties["textAlign"];
+  discreption?: string;
 };
 
 const DeliveryContainer: NextPage<DeliveryContainerType> = ({
   featureImageUrl,
   serviceDescription,
-  promotionImageUrl,
-  propFlexShrink,
-  propWidth,
-  propFlexShrink1,
-  propTextAlign,
+  discreption,
 }) => {
-  const frameDiv2Style: CSSProperties = useMemo(() => {
-    return {
-      flexShrink: propFlexShrink,
-      width: propWidth,
-    };
-  }, [propFlexShrink, propWidth]);
-
-  const frameDiv3Style: CSSProperties = useMemo(() => {
-    return {
-      flexShrink: propFlexShrink1,
-    };
-  }, [propFlexShrink1]);
-
-  const freeDeliveryForStyle: CSSProperties = useMemo(() => {
-    return {
-      textAlign: propTextAlign,
-    };
-  }, [propTextAlign]);
 
   return (
     <div
       className=" flex flex-col items-center justify-start gap-[24px] text-left text-xl text-text2 font-title-20px-semibold"
-      style={frameDiv2Style}
     >
-      <ServicesMoneyBack
-        servicesMoneyBackServices="/services@2x.png"
-        servicesMoneyBackIconPosition="relative"
-      />
-      <div
-        className=" flex flex-col items-center justify-start gap-[8px]"
-        style={frameDiv3Style}
-      >
-        <div className="relative leading-[28px] font-semibold">
-          {serviceDescription}
-        </div>
-        <div
-          className="relative text-sm leading-[21px] text-center"
-          style={freeDeliveryForStyle}
-        >
-          {promotionImageUrl}
-        </div>
-      </div>
+      <Image alt="img"
+        className="relative w-[5.5vw] h-[5.5vw] object-cover"
+        src={featureImageUrl}
+      ></Image>
+
+      <h1 className="m-0 relative text-inherit leading-[140%] font-bold font-inherit">{serviceDescription}</h1>
+      <p className="relative text-lg leading-[140%] font-semibold inline-block w-[526.5px]">{discreption}</p>
+      
     </div>
   );
 };

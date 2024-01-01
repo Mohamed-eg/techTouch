@@ -4,8 +4,8 @@ import CardWithLinksAndText from "./card-with-links-and-text";
 
 const BestSelling: NextPage = () => {
   return (
-    <div className="absolute top-[3044px] left-[135px] w-[1185px] flex flex-col items-center justify-center">
-      <section className="w-[1185px] overflow-hidden flex flex-col items-start justify-center text-left text-base text-primary1 font-title-20px-semibold">
+    <div className=" p-[8vw] relative w-full flex flex-col items-center justify-center">
+      <section className="w-full overflow-hidden flex flex-col items-start justify-center text-left text-base text-primary1 font-title-20px-semibold">
         <div className="flex flex-col items-start justify-start gap-[60px]">
           <div className=" flex flex-row items-end justify-start gap-[611px]">
             <BestSellingProductsCard

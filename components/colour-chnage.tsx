@@ -1,9 +1,10 @@
 "use client"
 import type { NextPage } from "next";
 import { useMemo, type CSSProperties } from "react";
+import Image from 'next/image'
 
 type ColourChnageType = {
-  group1000005935?: string;
+  group1000005935?: string |any;
 
   /** Style props */
   colourChnageFlexShrink?: CSSProperties["flexShrink"];
@@ -32,9 +33,9 @@ const ColourChnage: NextPage<ColourChnageType> = ({
       className="flex flex-row items-start justify-start gap-[8px]"
       style={colourChnageStyle}
     >
-      <img
+      <Image  width={5} height={5} alt="img"
         className="relative w-5 h-5 object-cover"
-        alt=""
+         
         src={group1000005935}
       />
       <div

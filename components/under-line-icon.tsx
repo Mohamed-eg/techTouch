@@ -1,9 +1,11 @@
 "use client"
 import type { NextPage } from "next";
 import { useMemo, type CSSProperties } from "react";
+import Image from "next/image";
+import underLineIcone from  "../public/underline@2x.png"
 
 type UnderLineIconType = {
-  underLineIconUnderLine?: string;
+  underLineIconUnderLine?: string | any;
 
   /** Style props */
   underLineIconWidth?: CSSProperties["width"];
@@ -34,10 +36,9 @@ const UnderLineIcon: NextPage<UnderLineIconType> = ({
   ]);
 
   return (
-    <img
+    <Image alt="img"
       className="max-h-full w-12 object-cover opacity-[0.5]"
-      alt=""
-      src={underLineIconUnderLine}
+      src={underLineIcone}
       style={underLineIconStyle}
     />
   );

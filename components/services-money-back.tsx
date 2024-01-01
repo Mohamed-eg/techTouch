@@ -1,9 +1,10 @@
 "use client"
 import type { NextPage } from "next";
 import { useMemo, type CSSProperties } from "react";
+import Image from 'next/image'
 
 type ServicesMoneyBackType = {
-  servicesMoneyBackServices?: string;
+  servicesMoneyBackServices?: string | any;
 
   /** Style props */
   servicesMoneyBackIconPosition?: CSSProperties["position"];
@@ -20,9 +21,9 @@ const ServicesMoneyBack: NextPage<ServicesMoneyBackType> = ({
   }, [servicesMoneyBackIconPosition]);
 
   return (
-    <img
+    <Image  width={5} height={5} alt="img"
       className="w-20 h-20 object-cover"
-      alt=""
+       
       src={servicesMoneyBackServices}
       style={servicesMoneyBackIconStyle}
     />

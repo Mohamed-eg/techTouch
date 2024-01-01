@@ -3,7 +3,10 @@ import Loveicon from "./love-icon"
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, useCallback } from "react";
+import buyImg from "../public/iconscurvedbuy.png"
+import userImg from "../public/user@2x.png"
 import Sidebar from "./sidebar";
+import Image from 'next/image'
 
 
 const Nav = () => {
@@ -15,18 +18,16 @@ const Nav = () => {
   }, [router]);
 
   return (
-    <header className="w-full h-[94px] flex flex-col items-center justify-center p-2.5 box-border">
+    <header className="w-full h-[94px] flex flex-col bg-slate-50 items-center justify-center p-2.5 box-border">
       <nav
         className="m-0 w-full flex flex-row items-center  "
         id="mainNav">
         <nav className="m-auto p-2 flex flex-row items-center justify-center w-full max-lg:w-[75%] max-sm:m-0 max-sm:p-0 max-md:w-[25%]">
-          <img
-            className="relative w-[4.9vw] max-md:w-[20vw] max-w-[71px] object-cover"
-            alt=""
+         <div className="relative w-[4.9vw] max-md:w-[20vw] max-w-[71px] object-cover"> <Image  width={71} height={49} alt="img"
             src="/touch tech logo.png"
-          />
+          /></div>
           <ul
-            className="m-0  flex flex-row items-start justify-start gap-[48px] max-md:hidden text-center text-base text-darkslategray font-title-20px-semibold"
+            className="m-0  flex flex-row items-start justify-start gap-[48px] max-md:hidden text-center text-base max-lg:text-sm text-darkslategray font-title-20px-semibold"
             id="topNav">
             <Link
               className="cursor-pointer [text-decoration:none] relative leading-[24px] text-[inherit] hover:text-[#28a12e] focus:[text-decoration:underline]"
@@ -61,15 +62,15 @@ const Nav = () => {
           />
           <div className=" flex flex-row items-center justify-center gap-[2vw]">
             <Loveicon />
-            <img
-              className="relative w-8 h-8 max-md:w-[5vw] max-md:h-[5vw] max-w-8 max-h-8 overflow-hidden object-cover max-sm:hidden cursor-pointer"
-              alt=""
-              src="/user@2x.png"
+            <Image  alt="img"
+              className="relative w-[2.2vw] h-[2.2vw] max-md:w-[5vw] max-md:h-[5vw] max-w-8 max-h-8 overflow-hidden object-cover max-sm:hidden cursor-pointer"
+               
+              src={userImg}
             />
-            <img
-              className="relative w-8 h-8  max-md:w-[5vw] max-md:h-[5vw] max-w-8 max-h-8 object-cover max-sm:hidden cursor-pointer"
-              alt=""
-              src="/iconscurvedbuy.png"
+            <Image  alt="img"
+              className="relative w-[2.2vw] h-[2.2vw]  max-md:w-[5vw] max-md:h-[5vw] max-w-8 max-h-8 object-cover max-sm:hidden cursor-pointer"
+               
+              src={buyImg}
               onClick={onIconsCurvedBuyClick}
             />
             <div className="md:hidden"><Sidebar /></div>

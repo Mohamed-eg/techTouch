@@ -38,7 +38,6 @@ const SpeakerContainer: NextPage<SpeakerContainerType> = ({
       <div className=" flex flex-col items-start justify-start text-base text-secondary-colors-white font-title-20px-semibold">
         <div className="relative leading-[24px] font-medium">Shop Now</div>
         <UnderLineIcon
-          underLineIconUnderLine="/underline@2x.png"
           underLineIconWidth="81px"
           underLineIconPosition="relative"
           underLineIconTop="unset"
