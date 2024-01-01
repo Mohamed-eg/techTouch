@@ -39,7 +39,7 @@ const CategoryFilterContainer1: NextPage = () => {
           return (
             <div className="relative flex flex-row items-center justify-start gap-[16px]"key={category.Name}> 
               <div className="relative leading-[20px] font-semibold">
-                <Image  width={100} height={120} alt="img" src={category.url}   className="w-[15vw] max-md:w-[25vw] max-sm:w-[50vw]"/>
+                <Image  width={100} height={120} alt="img" src={category.url} className="w-[15vw] max-md:w-[25vw] max-sm:w-[50vw]"/>
                 {category.Name}
               </div>
             </div>

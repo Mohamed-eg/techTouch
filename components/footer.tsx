@@ -79,8 +79,8 @@ const FooterComp: NextPage<FrameComponentType> = ({
               src={touchTechLogo}
             />
             <div className="relative leading-[150%] inline-block w-[307.5px]">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
+             Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry&apos;s standard dummy text
               ever since.
             </div>
           </div>
@@ -133,7 +133,7 @@ const FooterComp: NextPage<FrameComponentType> = ({
                   />
                 </div>
                 <div className="relative leading-[150%]">
-                  aliatwan002@gmail.com
+                  {"aliatwan002@gmail.com"}
                 </div>
               </div>
             </div>
@@ -192,7 +192,7 @@ const FooterComp: NextPage<FrameComponentType> = ({
           <div className="relative box-border w-[1170.8px] h-[0.8px] border-t-[0.8px] border-solid border-steam-color" />
           <div className=" flex flex-row items-center justify-start gap-[687px]">
             <div className="relative font-semibold">
-              @ 2023 DIVANO. All Rights Reserved Ali Atwan
+              {"@ 2023 DIVANO. All Rights Reserved Ali Atwan"}
             </div>
             <div className=" flex flex-row items-start justify-start gap-[15px]">
               <Image alt="img"
