@@ -14,9 +14,9 @@ const SubscribeForm: NextPage = () => {
   const [enterYourEmailValue, setEnterYourEmailValue] = useState("");
   return (
     <div className=" w-full h-[1005px] overflow-hidden flex flex-row items-start justify-between text-left text-xl text-text2 font-title-20px-semibold">
-      <div className="w-full h-[1014.5px] overflow-hidden  flex flex-col items-center justify-start">
-        <div className="w-full h-[1014.5px] overflow-hidden  flex flex-col items-center justify-end">
-          <div className="flex flex-row items-center justify-center gap-[88px]">
+      <div className="w-full overflow-hidden  flex flex-col items-center justify-start">
+        <div className="w-full overflow-hidden  flex flex-col items-center justify-end">
+          <div className="flex flex-row items-center justify-around">
             <DeliveryContainer
               featureImageUrl={deleveryImg1}
               serviceDescription="FREE AND FAST DELIVERY"
@@ -37,7 +37,7 @@ const SubscribeForm: NextPage = () => {
             className="w-full h-[713px] mt-12 flex flex-col items-start justify-start text-center text-26xl text-secondary-colors-white font-nunito-sans"
             id="footerSec"
           >
-            <div className="flex flex-col items-center justify-center relative gap-[10px]">
+            <div className="flex w-full flex-col items-center justify-center relative gap-[10px]">
               <div className="w-full h-[337.5px] flex flex-col items-center justify-start z-[0]">
                 <Image  width={5} height={5} alt="img"
                   className="relative w-full h-[337.5px] object-cover"
@@ -84,11 +84,12 @@ const SubscribeForm: NextPage = () => {
               frameDivLeft="unset"
               iconsCurvedLocationObjectFit="unset"
             />
-              <Image alt="img"
-        className="fixed w-[46px] h-[271px] overflow-hidden bottom-10 right-5 object-cover"
-         
-        src={upArrow}
-      />
+          <a href="#hero" className="fixed w-[46px] h-[46px] bottom-10 right-5">
+            <Image alt="img"
+            className="relative w-[46px] h-[46px] overflow-hidden rounder object-cover"
+            src={upArrow}
+            />
+            </a>
           </section>
         </div>
       </div>

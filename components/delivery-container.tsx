@@ -16,7 +16,7 @@ const DeliveryContainer: NextPage<DeliveryContainerType> = ({
 
   return (
     <div
-      className=" flex flex-col items-center justify-start gap-[24px] text-left text-xl text-text2 font-title-20px-semibold"
+      className=" flex flex-col items-center justify-start gap-[24px] m-5 text-xl text-text2 font-title-20px-semibold"
     >
       <Image alt="img"
         className="relative w-[5.5vw] h-[5.5vw] object-cover"
@@ -24,7 +24,8 @@ const DeliveryContainer: NextPage<DeliveryContainerType> = ({
       ></Image>
 
       <h1 className="m-0 relative text-inherit leading-[140%] font-bold font-inherit">{serviceDescription}</h1>
-      <p className="relative text-lg leading-[140%] font-semibold inline-block w-[526.5px]">{discreption}</p>
+      <p className="relative text-lg leading-[140%] font-semibold inline-block text-center
+      ">{discreption}</p>
       
     </div>
   );
