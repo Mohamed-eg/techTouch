@@ -50,7 +50,7 @@ const Catagerypage = () => {
             <h1>All Catageres</h1>
             {categories.map((catagory:any)=>{
                 return (
-                    <div>
+                    <div key={catagory.name}>
                         <p className="flex flex-row items-center justify-start gap-[16px]">
                                 {catagory.Name}
                         </p>
