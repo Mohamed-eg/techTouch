@@ -50,8 +50,6 @@ const CategoryFilterContainer1: NextPage = () => {
         1020 : {slidesPerView:4},
         1440 : {slidesPerView:5},
       }}
-      onSlideChange={() => console.log('slide change')}
-      onSwiper={(swiper) => console.log(swiper)}
     >
       {categories.allCategories.map((category:any)=>{
           return (

@@ -13,6 +13,7 @@ import { useSwiper } from 'swiper/react';
 import 'swiper/css';
 
 const AllProducts:NextPage = () => {
+  let i: number =0;
   const dispatch = useDispatch()
   const AllProducts = useSelector((state:any)=>state.categories.allproducts)
   return (
@@ -21,12 +22,13 @@ const AllProducts:NextPage = () => {
     spaceBetween={50}
     slidesPerView={1}>
       {AllProducts.map((PageProducts:any)=>{
+        i++;
       return(
-        <SwiperSlide className="!w-[85vw]" key={PageProducts.index}>
+        <SwiperSlide className="!w-[85vw]" key={i}>
       <div className="w-full flex flex-row items-center justify-center flex-wrap">
        {PageProducts.slice(0,8).map((product:any)=>{
             return (
-              <div className="flex m-5 w-[270px] flex-row group items-center justify-start gap-[16px]"key={product.id}> 
+              <div className="flex m-5 w-[270px] flex-row group items-center justify-start gap-[16px]"key={`${i}-${product.id}`}> 
                 <div className="relative flex flex-col normal-border leading-[20px] font-semibold">
                   <div className="w-full relative hover: flex flex-col rounded-xl z-0 h-[250px] items-center bg-slate-100 overflow-hidden">
                     <Image alt="img" src={productImg} className="w-[230px] object-contain p-5 max-md:w-[25vw] max-sm:w-[50vw]"/>
@@ -43,7 +45,7 @@ const AllProducts:NextPage = () => {
                   <div className="my-[10px] ml-[-10px]">
                     {product.colors.map((color:any)=>{
                       return (
-                        <div className={`w-[16px] h-[18px] relative inline rounded-full m-2 px-2 text-[#2220] bg-black !bg-${color}`} key={color.id}>.</div>
+                        <div className={`w-[16px] h-[18px] relative inline rounded-full m-2 px-2 text-[#2220] bg-black !bg-${color}`} key={`${Math.random()}`}>.</div>
                       )
                     })}
                   </div>
