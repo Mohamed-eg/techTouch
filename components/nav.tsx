@@ -84,8 +84,8 @@ const Nav = () => {
               src={buyImg}
               onClick={onIconsCurvedBuyClick}
             />
-            <span className="bg-[#d61414] absolute top-[-5px] right-[-5px] px-1 text-white rounded-full ">{getTotalQuantity() || 0}</span>
-            <div className="md:hidden"><Sidebar /></div>
+            <span className="bg-[#d61414] absolute max-sm:hidden top-[-5px] right-[-5px] px-1 text-white rounded-full ">{getTotalQuantity() || 0}</span>
+            <div className="hidden max-sm:block"><Sidebar/></div>
 
           </div>
         </div>

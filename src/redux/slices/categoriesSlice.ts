@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 type StringObject = {
-    [key: string]: string | number;
+    [key: string]: string | number | boolean | any;
 };
 
 type StringObjectArray = StringObject[];
@@ -27,29 +27,38 @@ interface CategoriesState {
 
 const initialState: CategoriesState = {
     allCategories: [
-        { Name: "computer", url: "/categorycomputer@2x.png" },
-        { Name: "camera", url: "/categorycamera@2x.png" },
-        { Name: "smartwatch", url: "/categorycamera@2x.png" },
-        { Name: "headphone", url: "/categoryheadphone@2x.png" },
-        { Name: "phone", url: "/categorycellphone@2x.png" },
-        { Name: "gaming", url: "/categorygamepad@2x.png" },
-        { Name: "Taplet", url: "/categorycamera@2x.png" },
-        { Name: "Acsses", url: "/categorycamera@2x.png" },
-        { Name: "Tools", url: "/categorycamera@2x.png" },],
+        { quantety: 20, Name: "computer", url: "/apple-imac-2021.svg" },
+        { quantety: 30, Name: "camera", url: "/camera.svg" },
+        { quantety: 40, Name: "smartwatch", url: "/device-smart-watch.svg" },
+        { quantety: 50, Name: "headphone", url: "/headset.svg" },
+        { quantety: 60, Name: "phone", url: "/phone.svg" },
+        { quantety: 70, Name: "gaming", url: "/gamepad.svg" },
+        { quantety: 80, Name: "Taplet", url: "/device-smart-watch.svg" },
+        { quantety: 90, Name: "Acsses", url: "/device-smart-watch.svg" },
+        { quantety: 95, Name: "Tools", url: "/device-smart-watch.svg" },],
     selectedCategory: 'computer',
     allproducts: [
-        { name: "ASUS FHD Gaming Laptop", id: "1", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 700 },
-        { name: "ASUS FHD Gaming Laptop", id: "2", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 700 },
-        { name: "ASUS FHD Gaming Laptop", id: "3", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 700 },
-        { name: "ASUS FHD Gaming Laptop", id: "4", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 700 },
-        { name: "ASUS FHD Gaming Laptop", id: "5", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 700 },
-        { name: "ASUS FHD Gaming Laptop", id: "6", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 700 },
-        { name: "ASUS FHD Gaming Laptop", id: "7", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 700 },
-        { name: "ASUS FHD Gaming Laptop", id: "8", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 700 },
-        { name: "ASUS FHD Gaming Laptop", id: "9", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 700 },
-        { name: "ASUS FHD Gaming Laptop", id: "10", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 700 },
-        { name: "ASUS FHD Gaming Laptop", id: "11", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 700 },
-        { name: "ASUS FHD Gaming Laptop", id: "12", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 700 },
+        [
+            { name: "ASUS FHD Gaming Laptop", id: "1", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 700, colors: ["red", "white", "black"], isNew: true },
+            { name: "ASUS FHD Gaming Laptop", id: "2", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 700, colors: ["blue", "black", "white"], isNew: false },
+            { name: "ASUS FHD Gaming Laptop", id: "3", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 700, colors: ["red", "black", "white"], isNew: true },
+            { name: "ASUS FHD Gaming Laptop", id: "4", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 700, colors: ["green", "black", "white"], isNew: false },
+            { name: "ASUS FHD Gaming Laptop", id: "5", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 700, colors: ["blue", "black", "white"], isNew: true },
+            { name: "ASUS FHD Gaming Laptop", id: "6", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 700, colors: ["red", "black", "white"], isNew: false },
+            { name: "ASUS FHD Gaming Laptop", id: "7", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 700, colors: ["white", "black", "white"], isNew: true },
+            { name: "ASUS FHD Gaming Laptop", id: "8", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 700, colors: ["black", "black", "white"], isNew: false },
+        ],
+        [
+            { name: "ASUS FHD Gaming Laptop", id: "9", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 700, colors: ["red", "white", "black"], isNew: true },
+            { name: "ASUS FHD Gaming Laptop", id: "10", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 700, colors: ["blue", "black", "white"], isNew: false },
+            { name: "ASUS FHD Gaming Laptop", id: "11", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 700, colors: ["red", "black", "white"], isNew: true },
+            { name: "ASUS FHD Gaming Laptop", id: "12", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 700, colors: ["green", "black", "white"], isNew: false },
+            { name: "ASUS FHD Gaming Laptop", id: "13", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 700, colors: ["blue", "black", "white"], isNew: true },
+            { name: "ASUS FHD Gaming Laptop", id: "14", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 700, colors: ["red", "black", "white"], isNew: false },
+            { name: "ASUS FHD Gaming Laptop", id: "15", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 700, colors: ["white", "black", "white"], isNew: true },
+            { name: "ASUS FHD Gaming Laptop", id: "16", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 700, colors: ["black", "black", "white"], isNew: false },
+        ]
+
     ]
 };
 

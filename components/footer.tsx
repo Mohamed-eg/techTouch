@@ -68,7 +68,7 @@ const FooterComp: NextPage<FrameComponentType> = ({
 
   return (
     <div
-      className="bg-foundation-blue-darker w-[1440px] h-[374px] flex flex-col items-center justify-center p-2.5 box-border text-left text-lg text-secondary-colors-white font-nunito-sans"
+      className="bg-foundation-blue-darker w-full h-[374px] flex flex-col items-center justify-center p-2.5 box-border text-left text-lg text-secondary-colors-white font-nunito-sans"
       style={frameDivStyle}
     >
       <div className="flex flex-col items-start justify-start gap-[42px]">
@@ -189,7 +189,7 @@ const FooterComp: NextPage<FrameComponentType> = ({
           </div>
         </div>
         <div className=" flex flex-col items-start justify-start gap-[20px] text-mini text-steam-color">
-          <div className="relative box-border w-[1170.8px] h-[0.8px] border-t-[0.8px] border-solid border-steam-color" />
+          <div className="relative box-border w-full h-[0.8px] border-t-[0.8px] border-solid border-steam-color" />
           <div className=" flex flex-row items-center justify-start gap-[687px]">
             <div className="relative font-semibold">
               {"@ 2023 DIVANO. All Rights Reserved Ali Atwan"}

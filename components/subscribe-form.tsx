@@ -8,6 +8,7 @@ import deleveryImg1 from "../public/services.png";
 import deleveryImg2 from "../public/services1.png";
 import deleveryImg3 from "../public/services@2x.png";
 import upArrow from "../public/frame@2x.png"
+import Rectangle from "../public/rectangle-133@2x.png"
 import Image from 'next/image'
 
 const SubscribeForm: NextPage = () => {
@@ -39,10 +40,9 @@ const SubscribeForm: NextPage = () => {
           >
             <div className="flex w-full flex-col items-center justify-center relative gap-[10px]">
               <div className="w-full h-[337.5px] flex flex-col items-center justify-start z-[0]">
-                <Image  width={5} height={5} alt="img"
+                <Image  alt="img"
                   className="relative w-full h-[337.5px] object-cover"
-                   
-                  src="/rectangle-133@2x.png"
+                  src={Rectangle}
                 />
                 <div className="relative bg-lead w-full h-[337.5px] opacity-[0.5] mix-blend-normal mt-[-337px]" />
               </div>
@@ -86,7 +86,7 @@ const SubscribeForm: NextPage = () => {
             />
           <a href="#hero" className="fixed w-[46px] h-[46px] bottom-10 right-5">
             <Image alt="img"
-            className="relative w-[46px] h-[46px] overflow-hidden rounder object-cover"
+            className="relative w-[46px] rounded-full h-[46px] overflow-hidden rounder object-cover"
             src={upArrow}
             />
             </a>

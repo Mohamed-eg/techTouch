@@ -1,9 +1,14 @@
 "use client"
 import type { NextPage } from "next";
 import {useSelector} from "react-redux";
-import Image from 'next/image'
+import Image from 'next/image';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { useSwiper } from 'swiper/react';
+import 'swiper/css';
+
 
 const CategoryFilterContainer1: NextPage = () => {
+  const swiper = useSwiper();
   const categories = useSelector((state:any)=>state.categories)
   return (
     <div className=" flex flex-col items-start w-full justify-start gap-[60px] text-center text-base text-primary1 font-title-20px-semibold">
@@ -23,28 +28,46 @@ const CategoryFilterContainer1: NextPage = () => {
         </div>
         <div className=" flex flex-row items-start justify-start max-sm:w-[50%] max-sm:m-auto gap-[8px]">
           <Image  width={40} height={40} alt="img"
-            className="relative w-[46px] h-[46px] max-sm:w-8 max-sm:h-8"
+            className="relative w-[46px] h-[46px] cursor-poniter max-sm:w-8 max-sm:h-8"
              
             src="/fill-with-left-arrow.svg"
           />
           <Image  width={40} height={40} alt="img"
-            className="relative w-[46px] h-[46px] max-sm:w-8 max-sm:h-8"
+            className="relative w-[46px] h-[46px] cursor-poniter max-sm:w-8 max-sm:h-8"
              
             src="/fill-with-right-arrow.svg"
           />
         </div>
       </div>
-      <div className=" flex flex-row items-start justify-start gap-[30px]">
-        {categories.allCategories.map((category:any)=>{
+      <div className=" flex flex-row items-start overflow-hidden justify-start gap-[30px]">
+      <Swiper
+      className="!flex justify-center items-cente"
+      spaceBetween={50}
+      slidesPerView={1}
+      breakpoints={{
+        480 : {slidesPerView:2},
+        740 : {slidesPerView:3},
+        1020 : {slidesPerView:4},
+        1440 : {slidesPerView:5},
+      }}
+      onSlideChange={() => console.log('slide change')}
+      onSwiper={(swiper) => console.log(swiper)}
+    >
+      {categories.allCategories.map((category:any)=>{
           return (
-            <div className="relative flex flex-row items-center justify-start gap-[16px]"key={category.Name}> 
-              <div className="relative leading-[20px] font-semibold">
-                <Image  width={100} height={120} alt="img" src={category.url} className="w-[15vw] max-md:w-[25vw] max-sm:w-[50vw]"/>
-                {category.Name}
+            <SwiperSlide className=" !w-[170px]" key={category.Name}>
+              <div className="relative flex flex-row w-[170px] h-[145px] items-center cursor-poniter justify-center peer border hover:bg-scondry border-[#0000004d] border-solid rounded-3xl gap-[16px]"> 
+              <div className="relative leading-[20px] hover:text-white font-semibold">
+                <Image  width={56} height={56} alt="img" src={category.url} className="text-white" />
+                <p className="text-[#000] peer-hover:text-white">{category.Name}</p>
               </div>
             </div>
+            </SwiperSlide>
           )
         })}
+      ...
+    </Swiper>
+        
       </div>
     </div>
   );

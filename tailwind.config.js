@@ -3,8 +3,6 @@ module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
-    ".app/**/*.{js,ts,jsx,tsx}",
-    ".app/cart/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
@@ -14,6 +12,10 @@ module.exports = {
         text: "#fafafa",
         text2: "#000",
         secondary: "#f5f5f5",
+        red: "#ff0000",
+        green: "#00ff00",
+        blue: "#0000ff",
+        yellow: "#ffff00",
         gainsboro: {
           100: "#e7e6e6",
           200: "#d9d9d9",
