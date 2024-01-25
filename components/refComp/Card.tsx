@@ -132,7 +132,12 @@ const Cart: NextPage = () => {
         </div>
       </div>
 <footer>
-  <FooterComp/>
+<FooterComp
+              frameDivPosition="unset"
+              frameDivBottom="unset"
+              frameDivLeft="unset"
+              iconsCurvedLocationObjectFit="unset"
+            />
 </footer>
     </main>
   );

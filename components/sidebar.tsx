@@ -3,7 +3,9 @@ import React, { useState } from 'react';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useSelector } from "react-redux";
-import { faBars,faHome,faShop,faStream,faCog,faPerson,faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faBars,faHome,faShop,faStream,faCog,faPerson } from '@fortawesome/free-solid-svg-icons';
+import {faHeart } from "@fortawesome/free-regular-svg-icons";
+import Link from 'next/link';
 
 interface NavItemProps {
  text: string;
@@ -13,10 +15,10 @@ interface NavItemProps {
 
 const NavItem: React.FC<NavItemProps> = ({ text, icon, href }) => {
  return (
-    <a href={href} className="flex items-center px-4 py-2 text-black hover:bg-gray-200">
+    <Link href={href} className="flex items-center px-4 py-2 text-black hover:bg-gray-200">
       <FontAwesomeIcon icon={icon} className="mr-4" />
       <span className="mx-4">{text}</span>
-    </a>
+    </Link>
  );
 };
 

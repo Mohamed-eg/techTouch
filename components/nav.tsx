@@ -1,5 +1,4 @@
 "use client"
-import Loveicon from "./love-icon"
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, useCallback } from "react";
@@ -8,16 +7,40 @@ import userImg from "../public/user@2x.png"
 import Sidebar from "./sidebar";
 import Image from 'next/image';
 import { useSelector } from "react-redux";
+import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faHeart } from "@fortawesome/free-regular-svg-icons";
 
+interface NavItemProps {
+  text: string;
+  icon: IconDefinition;
+  href: string;
+ }
+
+const NavItem: React.FC<NavItemProps> = ({ text, icon, href }) => {
+  return (
+     <Link href={href} className="flex items-center text-black">
+       <FontAwesomeIcon icon={icon} className="" />
+     </Link>
+  );
+ };
 
 const Nav = () => {
 
   const cart = useSelector((state:any) => state.products.cart)
+  const List = useSelector((state:any) => state.wishList.List)
 
   const getTotalQuantity = () => {
     let total = 0
     cart.forEach((item:any) => {
       total += item.quantity
+    })
+    return total
+  }
+  const getWishQuantity = () => {
+    let total = 0
+    List.forEach((item:any) => {
+      total++
     })
     return total
   }
@@ -28,7 +51,10 @@ const Nav = () => {
   const onIconsCurvedBuyClick = useCallback(() => {
     router.push("/cart");
   }, [router]);
-
+  // const onIconsWishListClick = useCallback(() => {
+  //   router.push("/wishList");
+  // }, [router]);
+  
   return (
     <header className="w-full h-[94px] flex flex-col bg-slate-50 items-center justify-center p-2.5 box-border">
       <nav
@@ -73,20 +99,23 @@ const Nav = () => {
             onChange={(event) => setSearchComponentSetValue(event.target.value)}
           />
           <div className="relative flex flex-row items-center justify-center gap-[2vw]">
-            <Loveicon />
-            <span className="bg-[#d61414] absolute max-sm:hidden top-[-5px] right-[120px] px-1 text-white rounded-full ">
-              {getTotalQuantity() || 0}</span>
+
+            <div className="relative max-sm:hidden"><NavItem text="" icon={faHeart} href="/wishList" /> <span className="bg-[#d61414] absolute top-[-10px] right-[0] px-1 text-white rounded-full ">
+              {getWishQuantity() || 0}</span></div>
+           
             <Image  alt="img"
               className="relative w-[2.2vw] h-[2.2vw] max-md:w-[5vw] max-md:h-[5vw] max-w-8 max-h-8 overflow-hidden object-cover max-sm:hidden cursor-pointer"
                
               src={userImg}
             />
+            <div className="relative max-sm:hidden">
             <Image  alt="img"
-              className="relative w-[2.2vw] h-[2.2vw]  max-md:w-[5vw] max-md:h-[5vw] max-w-8 max-h-8 object-cover max-sm:hidden cursor-pointer"
+              className="relative w-[2.2vw] h-[2.2vw]  max-md:w-[5vw] max-md:h-[5vw] max-w-8 max-h-8 object-cover cursor-pointer"
               src={buyImg}
               onClick={onIconsCurvedBuyClick}
             />
-            <span className="bg-[#d61414] absolute max-sm:hidden top-[-5px] right-[-5px] px-1 text-white rounded-full ">{getTotalQuantity() || 0}</span>
+            <span className="bg-[#d61414] absolute top-[-8px] right-[-5px] px-1 text-white rounded-full ">{getTotalQuantity() || 0}</span>
+              </div>
             <div className="hidden max-sm:block"><Sidebar/></div>
 
           </div>
