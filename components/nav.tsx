@@ -74,6 +74,8 @@ const Nav = () => {
           />
           <div className="relative flex flex-row items-center justify-center gap-[2vw]">
             <Loveicon />
+            <span className="bg-[#d61414] absolute max-sm:hidden top-[-5px] right-[120px] px-1 text-white rounded-full ">
+              {getTotalQuantity() || 0}</span>
             <Image  alt="img"
               className="relative w-[2.2vw] h-[2.2vw] max-md:w-[5vw] max-md:h-[5vw] max-w-8 max-h-8 overflow-hidden object-cover max-sm:hidden cursor-pointer"
                

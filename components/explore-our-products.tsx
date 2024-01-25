@@ -1,10 +1,13 @@
+"use client"
 import type { NextPage } from "next";
 import Image from 'next/image'
 import AllProducts from "./allProducts";
 import leftArrow from "../public/fill-with-left-arrow@2x.png"
 import rightArrow from "../public/fill-with-right-arrow.svg"
+import { useSwiper } from 'swiper/react';
 
 const ExploreOurProducts: NextPage = () => {
+  const swiper = useSwiper();
   return (
     <div className=" flex flex-col justify-start gap-[60px] text-left text-base text-primary1 font-title-20px-semibold">
       <div className=" flex flex-row items-end justify-start gap-[672px]">
@@ -24,7 +27,7 @@ const ExploreOurProducts: NextPage = () => {
         <div className=" flex flex-row items-start justify-start gap-[8px]">
           <Image  alt="img"
             className="relative w-[46px] h-[46px] object-cover"
-             
+            onClick={() => swiper.slideNext()}
             src={leftArrow}
           />
           <Image  alt="img"
