@@ -51,7 +51,7 @@ const Cart: NextPage = () => {
                 </div>
                 {cart.map((product:any)=>{
                   return (
-                    <div className="relative rounded-lg bg-bg shadow-[0px_1px_13px_rgba(0,_0,_0,_0.05)] w-[1170px] h-[102px] overflow-hidden shrink-0">
+                    <div key={`${product.id}-cart`} className="relative rounded-lg bg-bg shadow-[0px_1px_13px_rgba(0,_0,_0,_0.05)] w-[1170px] h-[102px] overflow-hidden shrink-0">
                     <div className="absolute top-[20px] left-[30px] w-[285px] h-[58px] overflow-hidden flex flex-row items-start justify-start">
                       <div className="overflow-hidden flex flex-row items-start justify-start p-[3px] relative gap-[10px]">
                         <div className="relative rounded-[50%] bg-secondary-2 w-[18px] h-[18px] z-[0]" />
