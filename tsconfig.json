@@ -30,7 +30,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/redux/provider.jsx",
-    "src/redux/slices/productsSlice.js"
+    "src/redux/slices/productsSlice.js",
+    "src/app/productDeta/[id].js"
   ],
   "exclude": [
     "node_modules"

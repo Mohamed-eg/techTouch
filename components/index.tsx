@@ -7,7 +7,7 @@ import MusicContainer from "./music-container";
 import BestSelling from "./best-selling";
 import NewArrival from "./new-arrival";
 import Hero from "./hero";
-import Image from 'next/image'
+
 import circle from '../public/ellipse-3@2x.png'
 
 const HOME: NextPage = () => {
@@ -18,10 +18,8 @@ const HOME: NextPage = () => {
         <Hero/>
       </div>
       <div className="absolute top-[543px] left-[-297px]  z-0 w-[500px] overflow-hidden ">
-        <Image  alt="img"
-          className="relative rounded-[50%] w-[417px]  h-[410px] object-cover"
-           
-          src={circle}
+        <div 
+          className="relative rounded-[50%] w-[417px]  h-[410px] bg-[#00ff0060] "
         />
       </div>
       <div className="relative mt-12 mb-12 pl-[9.3vw] w-full overflow-hidden flex flex-col items-start justify-center">
@@ -32,41 +30,31 @@ const HOME: NextPage = () => {
         </section>
       </div>
       <div className="absolute top-[1087px] right-[-297px] z-0 w-[500px] overflow-hidden ">
-        <Image  alt="img"
-          className="relative rounded-[50%] w-[417px]  h-[410px] object-cover"
-           
-          src={circle}
+        <div 
+          className="relative rounded-[50%] w-[417px]  h-[410px] bg-[#00ff0060] "
         />
       </div>
       <div className="absolute top-[2073px] left-[-282px] z-0 w-[500px] overflow-hidden ">
-        <Image  alt="img"
-          className="relative rounded-[50%] w-[417px]  h-[410px] object-cover"
-           
-          src={circle}
+        <div 
+          className="relative rounded-[50%] w-[417px]  h-[410px] bg-[#00ff0060] "
         />
       </div>
       <MusicContainer />
       <div className="absolute top-[2798px] right-[-297px] z-0 w-[500px] overflow-hidden ">
-        <Image  alt="img"
-          className="relative rounded-[50%] w-[417px]  h-[410px] object-cover"
-           
-          src={circle}
+        <div 
+          className="relative rounded-[50%] w-[417px]  h-[410px] bg-[#00ff0060] "
         />
       </div>
       <BestSelling />
       <div className="absolute top-[3398px] left-[-297px] z-0 w-[500px] overflow-hidden ">
-        <Image  alt="img"
-          className="relative rounded-[50%] w-[417px]  h-[410px] object-cover"
-           
-          src={circle}
+        <div 
+          className="relative rounded-[50%] w-[417px]  h-[410px] bg-[#00ff0060] "
         />
       </div>
       <NewArrival />
       <div className="absolute top-[4359px] right-[-322px] z-0 w-[500px] overflow-hidden ">
-        <Image  alt="img"
-          className="relative rounded-[50%] w-[417px]  h-[410px] object-cover"
-           
-          src={circle}
+        <div 
+          className="relative rounded-[50%] w-[417px]  h-[410px] bg-[#00ff0060] "
         />
       </div>
       <SubscribeForm />

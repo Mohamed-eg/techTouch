@@ -4,8 +4,6 @@ import MainHeader from "../main-header";
 import Link from "next/link";
 import FooterComp from "../footer";
 import Image from "next/image";
-import product2 from "../../public/Monitor-Cart-Small2.png"
-import product1 from "../../public/Monitor-Cart-Small.png"
 import { useSelector } from "react-redux";
 const Cart: NextPage = () => {
   let shipping=0
