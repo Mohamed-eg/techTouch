@@ -3,6 +3,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=SF+UI+Display:wght@600&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 body {
   @apply leading-[normal] m-0;
 }
@@ -24,6 +27,4 @@ body {
 .bg-yellow{
   background: yellow;
 }
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+

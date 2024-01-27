@@ -1,4 +1,66 @@
 .normal-border {
     border: 2px #000;
+  }
+  /*# sourceMappingURL=index.css.map */
+  .swiper{
+    overflow: visible !important;
+    padding-bottom: 100px !important;
+  }
+  .swiper-button-next,.swiper-button-prev {
+    border-radius: 50%;
+    width: 40px !important;
+    height: 40px !important;
+    top:-70px !important;
+  }
+  .swiper-button-next{
+    right: 0 !important;
+  }
+  .swiper-button-prev{
+    right: 60px !important;
+    left: auto !important;
 
-}
+  }
+  .icon-box-selected{
+    div{
+        img{
+            filter:invert(100%)
+        }
+    }
+  }
+  .icon-box,.icon-box-selected{
+    padding-top: 80px;
+    position: relative;
+    border: 1px solid #eeeeee;
+    div{
+        position: absolute;
+        top: 20px;
+    }
+  }
+  .icon-box-selected:hover{
+    background: #0a5c99;
+    color: #fff;
+    transition: 0.25s;
+    div{
+        background: #fff;
+        color: #000;
+        img{
+            filter:invert(0%)
+        }
+        border: 5px solid #A76694;
+        box-sizing: content-box !important;
+    }
+  }
+  .icon-box:hover{
+    background: #0a5c99;
+    color: #fff;
+    transition: 0.25s;
+    div{
+        background: #fff;
+        color: #000;
+        img{
+            filter: invert(100%);
+        }
+        border: 5px solid #A76694;
+        box-sizing: content-box !important;
+    }
+  }

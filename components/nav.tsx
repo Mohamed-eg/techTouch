@@ -84,7 +84,7 @@ const Nav = () => {
             </Link>
             <Link
               className="cursor-pointer [text-decoration:none] relative leading-[24px] text-[inherit] hover:text-[#28a12e] focus:[text-decoration:underline]"
-              href="/home">
+              href="/about">
               About
             </Link>
           </ul>

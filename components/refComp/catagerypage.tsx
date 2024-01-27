@@ -11,7 +11,8 @@ import slidesImg from "../../public/Photo.png";
 import ExploreOurProducts from "../explore-our-products"
 const Catagerypage = () => {
 
-    const categories = useSelector((state:any)=>state.categories.allCategories)    
+    const categories = useSelector((state:any)=>state.categories.allCategories);
+    const ourProdutWidth = 60;
 
   return (
     <div>
@@ -43,7 +44,7 @@ const Catagerypage = () => {
         </div>
 
         <div className="flex flex-row justify-start items-start">
-            <div className="w-[80%] overflow-hidden p-24">
+            <div className="w-[100%] overflow-hidden p-24">
                <ExploreOurProducts/>
             </div>
             <div className="w-[20%] flex flex-col items-start p-10">

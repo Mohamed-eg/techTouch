@@ -19,10 +19,10 @@ const HOME: NextPage = () => {
       </div>
       <div className="absolute top-[543px] left-[-297px]  z-0 w-[500px] overflow-hidden ">
         <div 
-          className="relative rounded-[50%] w-[417px]  h-[410px] bg-[#00ff0060] "
+          className="relative rounded-[50%] w-[417px]  h-[410px] bg-scondry opacity-30 "
         />
       </div>
-      <div className="relative mt-12 mb-12 pl-[9.3vw] w-full overflow-hidden flex flex-col items-start justify-center">
+      <div className="relative mt-12 mb-12 pl-[7vw] w-full overflow-hidden flex flex-col items-center justify-center">
         <section className="flex flex-col items-start justify-start w-full gap-[70px] pr-10">
           <CategoryFilterContainer1 />
           <div className="relative box-border w-[85%] h-[0.5px] opacity-[0.3] border-t-[0.5px] border-solid border-text2" />
@@ -31,30 +31,30 @@ const HOME: NextPage = () => {
       </div>
       <div className="absolute top-[1087px] right-[-297px] z-0 w-[500px] overflow-hidden ">
         <div 
-          className="relative rounded-[50%] w-[417px]  h-[410px] bg-[#00ff0060] "
+          className="relative rounded-[50%] w-[417px]  h-[410px] bg-scondry opacity-30 "
         />
       </div>
       <div className="absolute top-[2073px] left-[-282px] z-0 w-[500px] overflow-hidden ">
         <div 
-          className="relative rounded-[50%] w-[417px]  h-[410px] bg-[#00ff0060] "
+          className="relative rounded-[50%] w-[417px]  h-[410px] bg-scondry opacity-30 "
         />
       </div>
       <MusicContainer />
       <div className="absolute top-[2798px] right-[-297px] z-0 w-[500px] overflow-hidden ">
         <div 
-          className="relative rounded-[50%] w-[417px]  h-[410px] bg-[#00ff0060] "
+          className="relative rounded-[50%] w-[417px]  h-[410px] bg-scondry opacity-30 "
         />
       </div>
       <BestSelling />
       <div className="absolute top-[3398px] left-[-297px] z-0 w-[500px] overflow-hidden ">
         <div 
-          className="relative rounded-[50%] w-[417px]  h-[410px] bg-[#00ff0060] "
+          className="relative rounded-[50%] w-[417px]  h-[410px] bg-scondry opacity-30 "
         />
       </div>
       <NewArrival />
       <div className="absolute top-[4359px] right-[-322px] z-0 w-[500px] overflow-hidden ">
         <div 
-          className="relative rounded-[50%] w-[417px]  h-[410px] bg-[#00ff0060] "
+          className="relative rounded-[50%] w-[417px]  h-[410px] bg-scondry opacity-30 "
         />
       </div>
       <SubscribeForm />

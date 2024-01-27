@@ -16,16 +16,16 @@ const OnePageProdac = (props:any) => {
   const AllProducts = useSelector((state:any)=>state.categories.allproducts)
   return (
     <div className="w-full flex flex-row items-center justify-center flex-wrap">
-    {AllProducts[props.pageNum].slice(0,8).map((product:any)=>{
+    {props.PageProducts.map((product:any)=>{
          return (
-           <div className="flex m-5 w-[270px] flex-row group items-center justify-start gap-[16px]"key={`${props.pageNum}-${product.id}`}> 
+           <div className="flex m-5 w-[240px] flex-row group items-center justify-start gap-[16px]"key={`prod-${product.id}`}> 
              <div className="relative flex flex-col normal-border w-full leading-[20px] font-semibold">
                <div className="w-full relative hover: flex flex-col rounded-xl z-0 h-[250px] items-center bg-slate-100 overflow-hidden">
                 <Link href={`/productDeta/${product.id}`} className="object-contain w-full"> <Image alt="img" src={productImg} className="w-full h-auto  object-contain p-10"/></Link>
                  <FontAwesomeIcon  onClick={(mouse_event, id=product.id,name=product.name,url=product.url,prise=product.prise,colors=product.colors) => dispatch(addToList({id, name, url, prise,colors}))} icon={faHeart} className="w-[18px] cursor-pointer h-[18px] absolute right-2 top-2 text-black bg-white p-2 rounded-full" />
                  <div className={`w-[51px] h-[26px] absolute top-2 left-2 rounded-lg text-white text-center leading-[26px] bg-scondry ${!product.isNew && "hidden"} `}>new</div>
                    <button  onClick={(mouse_event, categore=product.categories, id=product.id,name=product.name,url=product.url,prise=product.prise,colors=product.colors) => dispatch(addToCart({id, name, url, prise,colors,categore}))}
-                   className="w-[270px] h-[40px] absolute text-white  bottom-[-40px] group-hover:bottom-[0px] z-10 text-xl duration-300 p-1 cursor-pointer bg-scondry border-none flex items-center justify-center flex-row"
+                   className="w-[240px] h-[40px] absolute text-white  bottom-[-40px] group-hover:bottom-[0px] z-10 text-xl duration-300 p-1 cursor-pointer bg-scondry border-none flex items-center justify-center flex-row"
                    ><Image alt="img" className="w-[24px] mr-[10px] h-[24px]" src={cartIcon}/><p className="m-0">add to cart</p></button>
                </div>
                <div>
@@ -35,8 +35,8 @@ const OnePageProdac = (props:any) => {
                <div className="my-[10px] ml-[-10px]">
                  {product.colors.map((color:any)=>{
                    return (
-                     <div className={`w-[16px] h-[18px] relative inline rounded-full m-2 px-2 border border-solid bg-${color}`} 
-                     key={`page-${props.pageNum}-product-${product.id}`}>.</div>
+                     <div className={`w-[18px] h-[18px] relative inline rounded-full m-2 px-2 border border-solid bg-${color}`} 
+                     key={`-product-${product.id}`}>.</div>
                    )
                  })}
                </div>
