@@ -86,7 +86,7 @@ const isitcheaked = () => {
   return filters.flat().options.checked;
 };
 
-export default function Example() {
+export default function Categorypage() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(true);
   const categories = useSelector((state) => state.categories.allCategories);
   const AllProducts = useSelector((state) => state.categories.allproducts);
