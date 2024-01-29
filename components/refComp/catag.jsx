@@ -2,6 +2,7 @@
 import { Fragment, useState } from "react";
 import { addToCart } from "../../src/redux/slices/productsSlice";
 import { addToList } from "../../src/redux/slices/wishListSlice";
+import { setSelectedProducts } from "../../src/redux/slices/categoriesSlice";
 import productImg from "../../public/ideapadgaming3i01500x500-1@2x.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
@@ -29,22 +30,22 @@ import {
 
 const sortOptions = [
   { name: "Most Popular", href: "#", current: true },
-  { name: "Best Rating", href: "#", current: false },
-  { name: "Newest", href: "#", current: false },
-  { name: "Price: Low to High", href: "#", current: false },
-  { name: "Price: High to Low", href: "#", current: false },
+  { name: "Best Rating", href: "#", current: true },
+  { name: "Newest", href: "#", current: true },
+  { name: "Price: Low to High", href: "#", current: true },
+  { name: "Price: High to Low", href: "#", current: true },
 ];
 const filters = [
   {
     id: "color",
     name: "Color",
     options: [
-      { value: "white", label: "White", checked: false },
-      { value: "black", label: "Black", checked: false },
+      { value: "white", label: "White", checked: true },
+      { value: "black", label: "Black", checked: true },
       { value: "blue", label: "Blue", checked: true },
-      { value: "red", label: "Red", checked: false },
-      { value: "green", label: "Green", checked: false },
-      { value: "purple", label: "Purple", checked: false },
+      { value: "red", label: "Red", checked: true },
+      { value: "green", label: "Green", checked: true },
+      { value: "purple", label: "Purple", checked: true },
     ],
   },
   {
@@ -57,10 +58,10 @@ const filters = [
       { value: "smartwatch", label: "Smartwatch", checked: true },
       { value: "headphone", label: "Headphone", checked: true },
       { value: "gaming", label: "Gaming", checked: true },
-      { value: "taplet", label: "Taplet", checked: false },
-      { value: "tools", label: "Tools", checked: false },
-      { value: "phone", label: "Phone", checked: false },
-      { value: "accessories", label: "Accessories", checked: false },
+      { value: "taplet", label: "Taplet", checked: true },
+      { value: "tools", label: "Tools", checked: true },
+      { value: "phone", label: "Phone", checked: true },
+      { value: "accessories", label: "Accessories", checked: true },
     ],
   },
   {
@@ -81,10 +82,17 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
+const isitcheaked = () => {
+  return filters.flat().options.checked;
+};
+
 export default function Example() {
-  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(true);
   const categories = useSelector((state) => state.categories.allCategories);
   const AllProducts = useSelector((state) => state.categories.allproducts);
+  const selectedProduct = useSelector(
+    (state) => state.categories.selectedProducts
+  );
   const List = useSelector((state) => state.wishList.List);
   const dispatch = useDispatch();
   return (
@@ -125,7 +133,7 @@ export default function Example() {
                     <button
                       type="button"
                       className="-mr-2 flex h-10 w-10 items-center justify-center rounded-md bg-white p-2 text-gray-400"
-                      onClick={() => setMobileFiltersOpen(false)}>
+                      onClick={() => setMobileFiltersOpen(true)}>
                       <span className="sr-only">Close menu</span>
                       <XMarkIcon className="h-6 w-6" aria-hidden="true" />
                     </button>
@@ -328,11 +336,12 @@ export default function Example() {
                 <div className="w-full flex flex-row items-center justify-center flex-wrap">
                   {AllProducts.flat()
                     .filter((p) => {
-                      return (
-                        p.categories === "gaming" || p.categories === "computer"
-                      );
+                      return p.ischeaked;
                     })
                     .map((product) => {
+                      {
+                        /* {selectedProduct.map((product) => { */
+                      }
                       return (
                         <div
                           className="flex m-5 w-[240px] flex-row group items-center justify-start gap-[16px]"
@@ -406,7 +415,7 @@ export default function Example() {
                               </button>
                             </div>
                             <div>
-                              <p className="text-black">{product.name}</p>
+                              <p className="text-black">{product.categories}</p>
                               <span className="">{`${product.prise} EGP`}</span>
                             </div>
                             <div className="my-[10px] text-white ml-[-10px]">
@@ -417,6 +426,7 @@ export default function Example() {
                                     key={`-product-${product.id}`}></div>
                                 );
                               })}
+                              <h2>{product.categories}</h2>
                             </div>
                           </div>
                         </div>
@@ -467,9 +477,9 @@ export default function Example() {
                                   type="checkbox"
                                   defaultChecked={option.checked}
                                   className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                                  onClick={(e) => {
+                                  onClick={(e, category = option.value) => {
                                     option.checked = !option.checked;
-                                    console.log(option.checked);
+                                    dispatch(setSelectedProducts({ category }));
                                   }}
                                 />
                                 <label
