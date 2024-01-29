@@ -6,6 +6,9 @@ module.exports = {
     ".app/**/*.{js,ts,jsx,tsx}",
     ".app/cart/**/*.{js,ts,jsx,tsx}",
   ],
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
   theme: {
     extend: {
       colors: {
