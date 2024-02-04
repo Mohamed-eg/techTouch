@@ -17,18 +17,30 @@ import LogImg from "../../public/background@2x.png";
 import lock from "../../public/icons/Lock.svg";
 import send from "../../public/icons/Send.svg";
 import message from "../../public/icons/Message.svg";
-
+import { signInWithEmailAndPassword } from "../../src/firebase/firebase";
+import { useRouter } from "next/navigation";
 export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
-
+  const router = useRouter();
   const bg = useColorModeValue("gray.100", "gray.700");
   const color = useColorModeValue("gray.700", "gray.100");
   const isError = email === "";
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(email, password, rememberMe);
+    signInWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log(`User ${user.email} signed in with UID ${user.uid}`);
+        // Redirect to the home page, update the UI, etc.
+        router.push("/");
+      })
+      .catch((error) => {
+        console.error("Error signing in:", error);
+        // Handle the error, show an error message, etc.
+      });
+    // console.log(email, password, rememberMe);
   };
 
   return (
