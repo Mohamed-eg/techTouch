@@ -49,7 +49,7 @@ const OnePageProdac = (props: any) => {
               <div className="my-[10px] flex flex-wrap w-full text-white ml-[-10px]">
                 {product.colors.map((e: any) => {
                   return (
-                    <div className={`w-[18px] h-[18px] inline rounded-full m-2 !box-content border-[5px] border-solid border-${toColor(parseInt(e.color))}`} key={`-product-${product.id}`}></div>
+                    <div className={`w-[18px] h-[18px] inline rounded-full m-2 !box-content border-[5px] border-solid border-[${toColor(parseInt(e.color))}] bg-primary1`} key={`-product-${product.id}`}></div>
                   )
                 })}
               </div>
