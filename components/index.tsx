@@ -33,15 +33,15 @@ const HOME: NextPage = () => {
     //   .catch(error => {
     //     console.error(error);
     //   });
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        const uid = user.uid;
-        console.log("uid", uid);
-      } else {
-        router.push("/login")
-        console.log("user is logged out");
-      }
-    });
+    // onAuthStateChanged(auth, (user) => {
+    //   if (user) {
+    //     const uid = user.uid;
+    //     console.log("uid", uid);
+    //   } else {
+    //     router.push("/login")
+    //     console.log("user is logged out");
+    //   }
+    // });
     // fetchData().then(data => { console.log(data.data) });
     // console.log(fetchData())
   }, []);
