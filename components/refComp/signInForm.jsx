@@ -146,7 +146,7 @@ export default function SignIn() {
                 </Button>
               </form>
               <p mt={6}>
-                Don't have an account?{" "}
+                Do not have an account?{" "}
                 <Link color={"blue.400"} href={"/signup"}>
                   Sign Up
                 </Link>

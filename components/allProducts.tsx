@@ -19,7 +19,7 @@ const AllProducts: NextPage = (props: any) => {
   const AllProducts = useSelector((state: any) => state.categories.allproducts);
   useEffect(() => {
     AllProducts.then((data: any) => { setState(data) });
-  }, [])
+  })
   return (
     <Swiper
       // ref={swiperRef}

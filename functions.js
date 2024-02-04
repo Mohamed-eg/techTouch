@@ -24,16 +24,21 @@ const commonColors = [
 ];
 
 function hexToRgb(hex) {
-  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  if (!result) {
-    throw new Error("Invalid HEX color code");
+  if (hex.length === 4 || hex.length === 7) {
+    const [r, g, b] = hex
+      .slice(1)
+      .match(/.{1,2}/g)
+      .map((val) => parseInt(val, 16));
+    return { r, g, b };
   }
 
-  return {
-    r: parseInt(result[1], 16),
-    g: parseInt(result[2], 16),
-    b: parseInt(result[3], 16),
-  };
+  if (hex.length === 9) {
+    const [r, g, b, a] = hex
+      .slice(1)
+      .match(/../g)
+      .map((val) => parseInt(val, 16));
+    return { r, g, b, a };
+  }
 }
 function hexToClosestCommonColor(hex) {
   const color = hexToRgb(hex);
