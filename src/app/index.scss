@@ -65,6 +65,83 @@
     }
   }
   .loved{
+    filter: invert(100%) sepia(100%) hue-rotate(0deg) saturate(10000%) brightness(100%) contrast(100%);
+  }
+  .img-shadow{
+    position: absolute;
+    background: linear-gradient(#56874800,#ffff0000,#ffff0000,#181818);
+  }
+  .div-shadow{
+    box-shadow: inset 6px 6px 10px 0 rgba(0, 0, 0, 0.2), inset -6px -6px 10px 0 rgba(255, 255, 255, 0.5);
+  }
+  .formlabel{
+    span{
+      color: red;
+      margin:3px;
+    }
+  }
+  .formIcon{
     filter: invert(100%);
+    right: 0
+  }
+  .border-red{
+    border: 5px solid red
+  }
+  .border-green{
+    border: 5px solid green
+  }
+  .border-blue{
+    border: 5px solid blue
+  }
+  .border-black{
+    border: 5px solid black
+  }
+  .border-white{
+    border: 5px solid white
+  }
+  .border-orange{
+    border: 5px solid orange
+  }
+  .border-yellow{
+    border: 5px solid yellow
+  }
+  .border-darkBlue{
+    border: 5px solid darkblue
+  }
+  .border-darkGreen{
+    border: 5px solid darkgreen
+  }
+  .border-magenta{
+    border: 5px solid magenta
+  }
+  .border-maroon{
+    border: 5px solid maroon;
+  }
+  .border-navy{
+    border: 5px solid navy;
+  }
+  .border-purple{
+    border: 5px solid purple;
+  }
+  .border-teal{
+    border: 5px solid teal;
+  }
+  .border-olive{
+    border: 5px solid olive;
+  }
+  .border-darkRed{
+    border: 5px solid darkred;
+  }
+  .border-darkCyan{
+    border: 5px solid darkcyan;
+  }
+  .border-darkMagenta{
+    border: 5px solid darkmagenta;
+  }
+  .border-oliveDrab{
+    border: 5px solid olivedrab;
+  }
+  .border-teansparent{
+    border: 5px solid transparent;
   }
   

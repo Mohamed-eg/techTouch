@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import Image from "next/image";
 import FooterComp from '../../../components/footer';
 import MainHeader from '../../../components/main-header';
+import Signup from '../../../components/refComp/signUpform'
 import market from "../../../public/background@2x.png";
 import massgIcon from "../../../public/iconscurvedmessage@2x.png";
 import bigTuch from "../../../public/touch-tech-logo-final-2@2x.png";
@@ -11,8 +12,9 @@ import LockIcone from "../../../public/iconscurvedlock@2x.png";
 const LogIn: NextPage = () => {
   return (
     <section className="bg-secondary-colors-white w-[1440px] h-[1478px] overflow-hidden text-left text-sm text-secondary-colors-white font-title-20px-medium">
-      <MainHeader/>
-      <div className="absolute top-[142px] left-[723px] w-[720px] h-[962px]">
+      <MainHeader />
+      <Signup />
+      {/* <div className="absolute top-[142px] left-[723px] w-[720px] h-[962px]">
         <Image 
           className="absolute top-[0px] left-[0px] rounded-tl-81xl rounded-tr-none rounded-b-none w-[720px] h-[962px] object-cover"
           alt="img"
@@ -108,8 +110,8 @@ const LogIn: NextPage = () => {
             Sign In
           </div>
         </div>
-      </div>
-      <FooterComp/>
+      </div> */}
+      <FooterComp />
     </section>
   );
 };

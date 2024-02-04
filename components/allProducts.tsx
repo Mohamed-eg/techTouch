@@ -1,10 +1,10 @@
 "use client"
 import type { NextPage } from "next";
-import {useRef} from "react"
+import { useEffect, useRef, useState } from "react"
 import { useSelector } from "react-redux";
 import { useSwiper } from 'swiper/react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import {  Pagination, Navigation } from 'swiper/modules';
+import { Pagination, Navigation } from 'swiper/modules';
 import Image from 'next/image'
 import leftArrow from "../public/fill-with-left-arrow@2x.png"
 import rightArrow from "../public/fill-with-right-arrow.svg"
@@ -14,45 +14,48 @@ import 'swiper/css/pagination'; // Pagination module
 import OnePageProdac from "./refComp/onePageProdac";
 
 
-const AllProducts:NextPage = () => {
-  // const swiper =useSwiper();
-  // const swiperRef = useRef(swiper);
-  const AllProducts = useSelector((state:any)=>state.categories.allproducts)
+const AllProducts: NextPage = (props: any) => {
+  const [state, setState] = useState([])
+  const AllProducts = useSelector((state: any) => state.categories.allproducts);
+  useEffect(() => {
+    AllProducts.then((data: any) => { setState(data) });
+  }, [])
   return (
     <Swiper
-    // ref={swiperRef}
-    className="!flex justify-center items-cente mb-36 !w-[80vw]"
-    modules={[Navigation, Pagination]}
-    spaceBetween={200}
-    slidesPerView={1}
-    navigation={{
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
+      // ref={swiperRef}
+      className="!flex justify-center items-cente mb-36 !w-[80vw]"
+      modules={[Navigation, Pagination]}
+      spaceBetween={200}
+      slidesPerView={1}
+      navigation={{
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
       }}
-    pagination={{ type: 'fraction' }}
-    loop={true}
-    watchSlidesProgress={true}>
-          <Image  alt="img"
-            className="relative w-[46px] h-[46px] object-cover swiper-button-prev"
-            // onClick={() => swiper.slideNext()}
-            src={leftArrow}
-          />
-          <Image  alt="img"
-            className="relative w-[46px] h-[46px] object-cover swiper-button-next"
-            // onClick={() => swiper.slidePrev()}
-            src={rightArrow}
-          />
-      {AllProducts.map((PageProducts:any)=>{
-      return(
-        <SwiperSlide className="!w-[100%]" key={`id${Math.random()*10}`}>
-          {({ isVisible }) => (
-      isVisible ? <OnePageProdac PageProducts={PageProducts}/> : <OnePageProdac PageProducts={PageProducts}/>
-          )}
-        </SwiperSlide>
-      )
-    })}
-  </Swiper>
-  
-)};
+      pagination={{ type: 'fraction' }}
+      loop={true}
+      watchSlidesProgress={true}>
+      <Image alt="img"
+        className="relative w-[46px] h-[46px] object-cover swiper-button-prev"
+        // onClick={() => swiper.slideNext()}
+        src={leftArrow}
+      />
+      <Image alt="img"
+        className="relative w-[46px] h-[46px] object-cover swiper-button-next"
+        // onClick={() => swiper.slidePrev()}
+        src={rightArrow}
+      />
+      {state.map((PageProducts: any) => {
+        return (
+          <SwiperSlide className="!w-[100%]" key={`id${Math.random() * 10}`}>
+            {({ isVisible }) => (
+              isVisible ? <OnePageProdac PageProducts={PageProducts} /> : <OnePageProdac PageProducts={PageProducts} />
+            )}
+          </SwiperSlide>
+        )
+      })}
+    </Swiper>
+
+  )
+};
 
 export default AllProducts;

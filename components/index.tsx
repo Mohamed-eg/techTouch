@@ -1,3 +1,4 @@
+"use client"
 import type { NextPage } from "next";
 import SubscribeForm from "./subscribe-form";
 import MainHeader from "./main-header";
@@ -7,18 +8,49 @@ import MusicContainer from "./music-container";
 import BestSelling from "./best-selling";
 import NewArrival from "./new-arrival";
 import Hero from "./hero";
-
-import circle from '../public/ellipse-3@2x.png'
+import { useEffect } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../src/firebase/firebase";
+import axios from 'axios';
 
 const HOME: NextPage = () => {
+  const fetchData = async () => {
+    try {
+      const response = await axios.get('http://129.146.110.127:3000/homeProducts');
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      return null;
+    }
+  };
+  useEffect(() => {
+    // axios.get('http://129.146.110.127:3000/homeProducts')
+    //   .then(response => {
+    //     console.log(response.data);
+    //   })
+    //   .catch(error => {
+    //     console.error(error);
+    //   });
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const uid = user.uid;
+        console.log("uid", uid);
+      } else {
+        console.log("user is logged out");
+      }
+    });
+    // fetchData().then(data => { console.log(data.data) });
+    // console.log(fetchData())
+  }, []);
+
   return (
     <main className="relative bg-secondary-colors-white w-full overflow-hidden">
       <div className="relative top-[0px] left-[0px] w-full overflow-hidden flex flex-col items-center justify-start">
         <MainHeader />
-        <Hero/>
+        <Hero />
       </div>
       <div className="absolute top-[543px] left-[-297px]  z-0 w-[500px] overflow-hidden ">
-        <div 
+        <div
           className="relative rounded-[50%] w-[417px]  h-[410px] bg-scondry opacity-30 "
         />
       </div>
@@ -30,30 +62,30 @@ const HOME: NextPage = () => {
         </section>
       </div>
       <div className="absolute top-[1087px] right-[-297px] z-0 w-[500px] overflow-hidden ">
-        <div 
+        <div
           className="relative rounded-[50%] w-[417px]  h-[410px] bg-scondry opacity-30 "
         />
       </div>
       <div className="absolute top-[2073px] left-[-282px] z-0 w-[500px] overflow-hidden ">
-        <div 
+        <div
           className="relative rounded-[50%] w-[417px]  h-[410px] bg-scondry opacity-30 "
         />
       </div>
       <MusicContainer />
       <div className="absolute top-[2798px] right-[-297px] z-0 w-[500px] overflow-hidden ">
-        <div 
+        <div
           className="relative rounded-[50%] w-[417px]  h-[410px] bg-scondry opacity-30 "
         />
       </div>
       <BestSelling />
       <div className="absolute top-[3398px] left-[-297px] z-0 w-[500px] overflow-hidden ">
-        <div 
+        <div
           className="relative rounded-[50%] w-[417px]  h-[410px] bg-scondry opacity-30 "
         />
       </div>
       <NewArrival />
       <div className="absolute top-[4359px] right-[-322px] z-0 w-[500px] overflow-hidden ">
-        <div 
+        <div
           className="relative rounded-[50%] w-[417px]  h-[410px] bg-scondry opacity-30 "
         />
       </div>

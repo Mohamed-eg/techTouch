@@ -223,38 +223,38 @@ export default function Categorypage() {
               slidesPerView={1}
               loop={true}
               pagination={{ clickable: true }}>
-              <SwiperSlide className="!flex justify-center items-center">
+              <SwiperSlide className="">
                 <Image
                   alt="img"
-                  className="w-[1170px] object-contain"
+                  className="w-full object-contain"
                   src={slidesImg}
                 />
               </SwiperSlide>
-              <SwiperSlide className="!flex justify-center items-center">
+              <SwiperSlide className="">
                 <Image
                   alt="img"
-                  className="w-[1170px] object-contain"
+                  className="w-full object-contain"
                   src={slidesImg}
                 />
               </SwiperSlide>
-              <SwiperSlide className="!flex justify-center items-center">
+              <SwiperSlide className="">
                 <Image
                   alt="img"
-                  className="w-[1170px] object-contain"
+                  className="w-full object-contain"
                   src={slidesImg}
                 />
               </SwiperSlide>
-              <SwiperSlide className="!flex justify-center items-center">
+              <SwiperSlide className="">
                 <Image
                   alt="img"
-                  className="w-[1170px] object-contain"
+                  className="w-full object-contain"
                   src={slidesImg}
                 />
               </SwiperSlide>
-              <SwiperSlide className="!flex justify-center items-center">
+              <SwiperSlide className="">
                 <Image
                   alt="img"
-                  className="w-[1170px] object-contain"
+                  className="w-full object-contain"
                   src={slidesImg}
                 />
               </SwiperSlide>

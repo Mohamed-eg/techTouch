@@ -2,7 +2,7 @@
 import type { NextPage } from "next";
 import AllProducts from "./allProducts";
 
-const ExploreOurProducts: NextPage = (props:any) => {
+const ExploreOurProducts: NextPage = (props: any) => {
   return (
     <div className={`flex flex-col justify-start gap-[60px] text-left text-base text-primary1 font-title-20px-semibold`}>
       <div className=" flex flex-row items-end justify-start gap-[672px]">
@@ -20,10 +20,10 @@ const ExploreOurProducts: NextPage = (props:any) => {
           </h1>
         </div>
         <div className=" flex flex-row items-start justify-start gap-[8px]">
-   
+
         </div>
       </div>
-      <AllProducts/>
+      <AllProducts />
     </div>
   );
 };
