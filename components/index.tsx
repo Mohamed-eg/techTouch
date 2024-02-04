@@ -9,6 +9,7 @@ import BestSelling from "./best-selling";
 import NewArrival from "./new-arrival";
 import Hero from "./hero";
 import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../src/firebase/firebase";
 import axios from 'axios';
@@ -23,6 +24,7 @@ const HOME: NextPage = () => {
       return null;
     }
   };
+  const router = useRouter();
   useEffect(() => {
     // axios.get('http://129.146.110.127:3000/homeProducts')
     //   .then(response => {
@@ -35,7 +37,9 @@ const HOME: NextPage = () => {
       if (user) {
         const uid = user.uid;
         console.log("uid", uid);
+        router.push("/login")
       } else {
+
         console.log("user is logged out");
       }
     });
