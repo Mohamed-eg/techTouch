@@ -17,7 +17,8 @@ import LogImg from "../../public/background@2x.png";
 import lock from "../../public/icons/Lock.svg";
 import send from "../../public/icons/Send.svg";
 import message from "../../public/icons/Message.svg";
-import { signInWithEmailAndPassword } from "../../src/firebase/firebase";
+import { auth } from "../../src/firebase/firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "next/navigation";
 export default function SignIn() {
   const [email, setEmail] = useState("");
@@ -29,7 +30,7 @@ export default function SignIn() {
   const isError = email === "";
   const handleSubmit = (e) => {
     e.preventDefault();
-    signInWithEmailAndPassword(email, password)
+    signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
         console.log(`User ${user.email} signed in with UID ${user.uid}`);

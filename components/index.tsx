@@ -37,9 +37,8 @@ const HOME: NextPage = () => {
       if (user) {
         const uid = user.uid;
         console.log("uid", uid);
-        router.push("/login")
       } else {
-
+        router.push("/login")
         console.log("user is logged out");
       }
     });
