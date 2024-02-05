@@ -89,15 +89,15 @@ let statecData = [
 ]
 const initialState: CategoriesState = {
     allCategories: [
-        { quantety: 20, Name: "computer", url: "/apple-imac-2021.svg" },
-        { quantety: 30, Name: "camera", url: "/camera.svg" },
-        { quantety: 40, Name: "smartwatch", url: "/device-smart-watch.svg" },
-        { quantety: 50, Name: "headphone", url: "/headset.svg" },
-        { quantety: 60, Name: "phone", url: "/phone.svg" },
-        { quantety: 70, Name: "gaming", url: "/gamepad.svg" },
-        { quantety: 80, Name: "Taplet", url: "/device-smart-watch.svg" },
-        { quantety: 90, Name: "accessories", url: "/device-smart-watch.svg" },
-        { quantety: 95, Name: "Tools", url: "/device-smart-watch.svg" },],
+        { createdAt: "2024-01-07T14", quantety: 20, title: "computer", id: "1", imageLink: "/apple-imac-2021.svg" },
+        { createdAt: "2024-01-07T14", quantety: 30, title: "camera", id: "2", imageLink: "/camera.svg" },
+        { createdAt: "2024-01-07T14", quantety: 40, title: "smartwatch", id: "3", imageLink: "/device-smart-watch.svg" },
+        { createdAt: "2024-01-07T14", quantety: 50, title: "headphone", id: "4", imageLink: "/headset.svg" },
+        { createdAt: "2024-01-07T14", quantety: 60, title: "phone", id: "5", imageLink: "/phone.svg" },
+        { createdAt: "2024-01-07T14", quantety: 70, title: "gaming", id: "6", imageLink: "/gamepad.svg" },
+        { createdAt: "2024-01-07T14", quantety: 80, title: "Taplet", id: "7", imageLink: "/device-smart-watch.svg" },
+        { createdAt: "2024-01-07T14", quantety: 90, title: "accessories", id: "8", imageLink: "/device-smart-watch.svg" },
+        { createdAt: "2024-01-07T14", quantety: 95, title: "Tools", id: "9", imageLink: "/device-smart-watch.svg" },],
     selectedCategory: 'computer',
     selectedProducts: [],
     allproducts: statecData

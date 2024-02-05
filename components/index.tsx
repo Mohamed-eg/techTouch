@@ -13,38 +13,66 @@ import { useRouter } from "next/navigation";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../src/firebase/firebase";
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { setAllProducts } from '../src/redux/slices/categoriesSlice';
+import { setCategories } from '../src/redux/slices/categoriesSlice';
+
 
 const HOME: NextPage = () => {
-  // const fetchData = async () => {
-  //   try {
-  //     const response = await axios.get('http://129.146.110.127:3000/homeProducts');
-  //     return response.data;
-  //   } catch (error) {
-  //     console.error('Error fetching data:', error);
-  //     return null;
-  //   }
-  // };
-  // const router = useRouter();
-  // useEffect(() => {
-    // axios.get('http://129.146.110.127:3000/homeProducts')
-    //   .then(response => {
-    //     console.log(response.data);
-    //   })
-    //   .catch(error => {
-    //     console.error(error);
-    //   });
-    // onAuthStateChanged(auth, (user) => {
-    //   if (user) {
-    //     const uid = user.uid;
-    //     console.log("uid", uid);
-    //   } else {
-    //     router.push("/login")
-    //     console.log("user is logged out");
-    //   }
-    // });
-    // fetchData().then(data => { console.log(data.data) });
-    // console.log(fetchData())
-  // }, []);
+  const dispatch = useDispatch()
+  useEffect(() => {
+    const fetchHome = async () => {
+      try {
+        const response = await axios.get('http://129.146.110.127:3000/homeProducts');
+        return response.data.data;
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        return null;
+      }
+    };
+    const fetchCategories = async () => {
+      try {
+        const response = await axios.get('http://129.146.110.127:3000/categories');
+        return response.data.data;
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        return null;
+      }
+    };
+    const fetchnewArrival = async () => {
+      try {
+        const response = await axios.get('http://129.146.110.127:3000/newArrival');
+        return response.data.data;
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        return null;
+      }
+    };
+    const fetchHighLight = async () => {
+      try {
+        const response = await axios.get('http://129.146.110.127:3000/highlight');
+        return response.data.data;
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        return null;
+      }
+    };
+    fetchHome().then((data: any) => {
+      if (data != null) { dispatch(setAllProducts(data)) }
+    });
+    fetchCategories().then((data: any) => {
+      console.log(data);
+      if (data != null) { dispatch(setCategories(data)) }
+    });
+    fetchnewArrival().then((data: any) => {
+      console.log(data)
+      // dispatch(setAllProducts(data))
+    });
+    fetchHighLight().then((data: any) => {
+      console.log(data)
+      // dispatch(setAllProducts(data))
+    });
+  }, [])
 
   return (
     <main className="relative bg-secondary-colors-white w-full overflow-hidden">

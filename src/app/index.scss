@@ -65,7 +65,12 @@
     }
   }
   .loved{
-    filter: invert(100%) sepia(100%) hue-rotate(0deg) saturate(10000%) brightness(100%) contrast(100%);
+    // filter: invert(100%) sepia(100%) hue-rotate(0deg) saturate(10000%) brightness(100%) contrast(100%);
+    fill: red;
+    color:red;
+  }
+  .loved::-ms-fill{
+    fill:red
   }
   .img-shadow{
     position: absolute;
