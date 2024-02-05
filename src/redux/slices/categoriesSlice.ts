@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 // import { useEffect } from "react";
-import axios from 'axios';
+// import axios from 'axios';
 
 type StringObject = {
     [key: string]: string | number | boolean | any;
@@ -28,15 +28,15 @@ interface CategoriesState {
 
 }
 
-const fetchData = async () => {
-    try {
-        const response = await axios.get('http://129.146.110.127:3000/homeProducts');
-        return response.data.data;
-    } catch (error) {
-        console.error('Error fetching data:', error);
-        return null;
-    }
-};
+// const fetchData = async () => {
+//     try {
+//         const response = await axios.get('http://129.146.110.127:3000/homeProducts');
+//         return response.data.data;
+//     } catch (error) {
+//         console.error('Error fetching data:', error);
+//         return null;
+//     }
+// };
 // useEffect(
 //     ()=>{
 //         fetchData().then(data => { console.log(data) });
@@ -44,46 +44,46 @@ const fetchData = async () => {
 // )
 let statecData = [
     [
-        { name: "ASUS FHD Gaming Laptop", categories: "computer", id: "1", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 700, colors: ["red", "white", "black"], isLoved: true, ischeaked: true, isNew: true },
-        { name: "ASUS FHD Gaming Laptop", categories: "computer", id: "2", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 800, colors: ["blue", "black", "white"], isLoved: false, ischeaked: true, isNew: false },
-        { name: "ASUS FHD Gaming Laptop", categories: "computer", id: "3", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 1700, colors: ["red", "black", "blue"], isLoved: true, ischeaked: true, isNew: true },
-        { name: "ASUS FHD Gaming Laptop", categories: "computer", id: "4", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 500, colors: ["green", "black", "white"], isLoved: false, ischeaked: true, isNew: false },
-        { name: "ASUS FHD Gaming Laptop", categories: "camera", id: "5", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 600, colors: ["blue", "black", "white"], isLoved: true, ischeaked: true, isNew: true },
-        { name: "ASUS FHD Gaming Laptop", categories: "camera", id: "6", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 7500, colors: ["red", "black", "white"], isLoved: false, ischeaked: true, isNew: false },
-        { name: "ASUS FHD Gaming Laptop", categories: "camera", id: "7", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 8700, colors: ["white", "black", "blue"], isLoved: false, ischeaked: true, isNew: true },
-        { name: "ASUS FHD Gaming Laptop", categories: "camera", id: "8", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 2700, colors: ["black", "black", "white"], isLoved: true, ischeaked: true, isNew: false },
+        { title: "ASUS FHD Gaming Laptop", shortDesc: "lauren lauren", longDesc: "lauren lauren lauren", categories: "computer", id: "1", url: "/ideapadgaming3i01500x500-1@2x.png", middlePrice: 1000, traderprice: 800, userPrice: 700, colors: [{ color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }, { color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }], isLoved: true, ischeaked: true, isNew: true },
+        { title: "ASUS FHD Gaming Laptop", shortDesc: "lauren lauren", longDesc: "lauren lauren lauren", categories: "computer", id: "2", url: "/ideapadgaming3i01500x500-1@2x.png", middlePrice: 1000, traderprice: 800, userPrice: 800, colors: [{ color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }, { color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }], isLoved: false, ischeaked: true, isNew: false },
+        { title: "ASUS FHD Gaming Laptop", shortDesc: "lauren lauren", longDesc: "lauren lauren lauren", categories: "computer", id: "3", url: "/ideapadgaming3i01500x500-1@2x.png", middlePrice: 1000, traderprice: 800, userPrice: 1700, colors: [{ color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }, { color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }], isLoved: true, ischeaked: true, isNew: true },
+        { title: "ASUS FHD Gaming Laptop", shortDesc: "lauren lauren", longDesc: "lauren lauren lauren", categories: "computer", id: "4", url: "/ideapadgaming3i01500x500-1@2x.png", middlePrice: 1000, traderprice: 800, userPrice: 500, colors: [{ color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }, { color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }], isLoved: false, ischeaked: true, isNew: false },
+        { title: "ASUS FHD Gaming Laptop", shortDesc: "lauren lauren", longDesc: "lauren lauren lauren", categories: "camera", id: "5", url: "/ideapadgaming3i01500x500-1@2x.png", middlePrice: 1000, traderprice: 800, userPrice: 600, colors: [{ color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }, { color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }], isLoved: true, ischeaked: true, isNew: true },
+        { title: "ASUS FHD Gaming Laptop", shortDesc: "lauren lauren", longDesc: "lauren lauren lauren", categories: "camera", id: "6", url: "/ideapadgaming3i01500x500-1@2x.png", middlePrice: 1000, traderprice: 800, userPrice: 7500, colors: [{ color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }, { color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }], isLoved: false, ischeaked: true, isNew: false },
+        { title: "ASUS FHD Gaming Laptop", shortDesc: "lauren lauren", longDesc: "lauren lauren lauren", categories: "camera", id: "7", url: "/ideapadgaming3i01500x500-1@2x.png", middlePrice: 1000, traderprice: 800, userPrice: 8700, colors: [{ color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }, { color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }], isLoved: false, ischeaked: true, isNew: true },
+        { title: "ASUS FHD Gaming Laptop", shortDesc: "lauren lauren", longDesc: "lauren lauren lauren", categories: "camera", id: "8", url: "/ideapadgaming3i01500x500-1@2x.png", middlePrice: 1000, traderprice: 800, userPrice: 2700, colors: [{ color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }, { color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }], isLoved: true, ischeaked: true, isNew: false },
     ],
     [
-        { name: "ASUS FHD Gaming Laptop", categories: "smartwatch", id: "9", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 900, colors: ["red", "white", "black"], isLoved: false, ischeaked: true, isNew: true },
-        { name: "ASUS FHD Gaming Laptop", categories: "smartwatch", id: "10", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 1000, colors: ["blue", "black", "white"], isLoved: true, ischeaked: true, isNew: false },
-        { name: "ASUS FHD Gaming Laptop", categories: "smartwatch", id: "11", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 1100, colors: ["red", "black", "white"], isLoved: false, ischeaked: true, isNew: true },
-        { name: "ASUS FHD Gaming Laptop", categories: "smartwatch", id: "12", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 1200, colors: ["green", "black", "white"], isLoved: true, ischeaked: true, isNew: false },
-        { name: "ASUS FHD Gaming Laptop", categories: "headphone", id: "13", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 1520, colors: ["blue", "black", "white"], isLoved: false, ischeaked: true, isNew: true },
-        { name: "ASUS FHD Gaming Laptop", categories: "headphone", id: "14", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 3650, colors: ["red", "black", "white"], isLoved: true, ischeaked: true, isNew: false },
-        { name: "ASUS FHD Gaming Laptop", categories: "headphone", id: "15", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 2010, colors: ["white", "black", "white"], isLoved: false, ischeaked: true, isNew: true },
-        { name: "ASUS FHD Gaming Laptop", categories: "headphone", id: "16", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 2200, colors: ["black", "black", "white"], isLoved: true, ischeaked: true, isNew: false },
+        { title: "ASUS FHD Gaming Laptop", shortDesc: "lauren lauren", longDesc: "lauren lauren lauren", categories: "smartwatch", id: "9", url: "/ideapadgaming3i01500x500-1@2x.png", middlePrice: 1000, traderprice: 800, userPrice: 900, colors: [{ color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }, { color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }], isLoved: false, ischeaked: true, isNew: true },
+        { title: "ASUS FHD Gaming Laptop", shortDesc: "lauren lauren", longDesc: "lauren lauren lauren", categories: "smartwatch", id: "10", url: "/ideapadgaming3i01500x500-1@2x.png", middlePrice: 1000, traderprice: 800, userPrice: 1000, colors: [{ color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }, { color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }], isLoved: true, ischeaked: true, isNew: false },
+        { title: "ASUS FHD Gaming Laptop", shortDesc: "lauren lauren", longDesc: "lauren lauren lauren", categories: "smartwatch", id: "11", url: "/ideapadgaming3i01500x500-1@2x.png", middlePrice: 1000, traderprice: 800, userPrice: 1100, colors: [{ color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }, { color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }], isLoved: false, ischeaked: true, isNew: true },
+        { title: "ASUS FHD Gaming Laptop", shortDesc: "lauren lauren", longDesc: "lauren lauren lauren", categories: "smartwatch", id: "12", url: "/ideapadgaming3i01500x500-1@2x.png", middlePrice: 1000, traderprice: 800, userPrice: 1200, colors: [{ color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }, { color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }], isLoved: true, ischeaked: true, isNew: false },
+        { title: "ASUS FHD Gaming Laptop", shortDesc: "lauren lauren", longDesc: "lauren lauren lauren", categories: "headphone", id: "13", url: "/ideapadgaming3i01500x500-1@2x.png", middlePrice: 1000, traderprice: 800, userPrice: 1520, colors: [{ color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }, { color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }], isLoved: false, ischeaked: true, isNew: true },
+        { title: "ASUS FHD Gaming Laptop", shortDesc: "lauren lauren", longDesc: "lauren lauren lauren", categories: "headphone", id: "14", url: "/ideapadgaming3i01500x500-1@2x.png", middlePrice: 1000, traderprice: 800, userPrice: 3650, colors: [{ color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }, { color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }], isLoved: true, ischeaked: true, isNew: false },
+        { title: "ASUS FHD Gaming Laptop", shortDesc: "lauren lauren", longDesc: "lauren lauren lauren", categories: "headphone", id: "15", url: "/ideapadgaming3i01500x500-1@2x.png", middlePrice: 1000, traderprice: 800, userPrice: 2010, colors: [{ color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }, { color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }], isLoved: false, ischeaked: true, isNew: true },
+        { title: "ASUS FHD Gaming Laptop", shortDesc: "lauren lauren", longDesc: "lauren lauren lauren", categories: "headphone", id: "16", url: "/ideapadgaming3i01500x500-1@2x.png", middlePrice: 1000, traderprice: 800, userPrice: 2200, colors: [{ color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }, { color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }], isLoved: true, ischeaked: true, isNew: false },
     ]
     ,
     [
-        { name: "ASUS FHD Gaming Laptop", categories: "phone", id: "17", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 1500, colors: ["red", "white", "black"], isLoved: true, ischeaked: true, isNew: true },
-        { name: "ASUS FHD Gaming Laptop", categories: "phone", id: "18", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 1200, colors: ["blue", "black", "white"], isLoved: false, ischeaked: true, isNew: false },
-        { name: "ASUS FHD Gaming Laptop", categories: "phone", id: "19", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 1100, colors: ["red", "black", "white"], isLoved: true, ischeaked: true, isNew: true },
-        { name: "ASUS FHD Gaming Laptop", categories: "phone", id: "20", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 5600, colors: ["green", "black", "red"], isLoved: false, ischeaked: true, isNew: false },
-        { name: "ASUS FHD Gaming Laptop", categories: "gaming", id: "21", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 7400, colors: ["blue", "black", "white"], isLoved: true, ischeaked: true, isNew: true },
-        { name: "ASUS FHD Gaming Laptop", categories: "gaming", id: "22", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 3200, colors: ["red", "black", "white"], isLoved: true, ischeaked: true, isNew: false },
-        { name: "ASUS FHD Gaming Laptop", categories: "gaming", id: "23", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 2500, colors: ["blue", "black", "white"], isLoved: false, ischeaked: true, isNew: true },
-        { name: "ASUS FHD Gaming Laptop", categories: "gaming", id: "24", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 1300, colors: ["black", "black", "white"], isLoved: false, ischeaked: true, isNew: false },
+        { title: "ASUS FHD Gaming Laptop", shortDesc: "lauren lauren", longDesc: "lauren lauren lauren", categories: "phone", id: "17", url: "/ideapadgaming3i01500x500-1@2x.png", middlePrice: 1000, traderprice: 800, userPrice: 1500, colors: [{ color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }, { color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }], isLoved: true, ischeaked: true, isNew: true },
+        { title: "ASUS FHD Gaming Laptop", shortDesc: "lauren lauren", longDesc: "lauren lauren lauren", categories: "phone", id: "18", url: "/ideapadgaming3i01500x500-1@2x.png", middlePrice: 1000, traderprice: 800, userPrice: 1200, colors: [{ color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }, { color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }], isLoved: false, ischeaked: true, isNew: false },
+        { title: "ASUS FHD Gaming Laptop", shortDesc: "lauren lauren", longDesc: "lauren lauren lauren", categories: "phone", id: "19", url: "/ideapadgaming3i01500x500-1@2x.png", middlePrice: 1000, traderprice: 800, userPrice: 1100, colors: [{ color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }, { color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }], isLoved: true, ischeaked: true, isNew: true },
+        { title: "ASUS FHD Gaming Laptop", shortDesc: "lauren lauren", longDesc: "lauren lauren lauren", categories: "phone", id: "20", url: "/ideapadgaming3i01500x500-1@2x.png", middlePrice: 1000, traderprice: 800, userPrice: 5600, colors: [{ color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }, { color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }], isLoved: false, ischeaked: true, isNew: false },
+        { title: "ASUS FHD Gaming Laptop", shortDesc: "lauren lauren", longDesc: "lauren lauren lauren", categories: "gaming", id: "21", url: "/ideapadgaming3i01500x500-1@2x.png", middlePrice: 1000, traderprice: 800, userPrice: 7400, colors: [{ color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }, { color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }], isLoved: true, ischeaked: true, isNew: true },
+        { title: "ASUS FHD Gaming Laptop", shortDesc: "lauren lauren", longDesc: "lauren lauren lauren", categories: "gaming", id: "22", url: "/ideapadgaming3i01500x500-1@2x.png", middlePrice: 1000, traderprice: 800, userPrice: 3200, colors: [{ color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }, { color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }], isLoved: true, ischeaked: true, isNew: false },
+        { title: "ASUS FHD Gaming Laptop", shortDesc: "lauren lauren", longDesc: "lauren lauren lauren", categories: "gaming", id: "23", url: "/ideapadgaming3i01500x500-1@2x.png", middlePrice: 1000, traderprice: 800, userPrice: 2500, colors: [{ color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }, { color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }], isLoved: false, ischeaked: true, isNew: true },
+        { title: "ASUS FHD Gaming Laptop", shortDesc: "lauren lauren", longDesc: "lauren lauren lauren", categories: "gaming", id: "24", url: "/ideapadgaming3i01500x500-1@2x.png", middlePrice: 1000, traderprice: 800, userPrice: 1300, colors: [{ color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }, { color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }], isLoved: false, ischeaked: true, isNew: false },
     ]
     ,
     [
-        { name: "ASUS FHD Gaming Laptop", categories: "taplet", id: "25", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 700, colors: ["red", "white", "black"], isLoved: true, ischeaked: true, isNew: true },
-        { name: "ASUS FHD Gaming Laptop", categories: "taplet", id: "26", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 200, colors: ["blue", "black", "white"], isLoved: true, ischeaked: true, isNew: false },
-        { name: "ASUS FHD Gaming Laptop", categories: "taplet", id: "27", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 900, colors: ["red", "black", "white"], isLoved: true, ischeaked: true, isNew: true },
-        { name: "ASUS FHD Gaming Laptop", categories: "taplet", id: "28", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 800, colors: ["green", "black", "white"], isLoved: true, ischeaked: true, isNew: false },
-        { name: "ASUS FHD Gaming Laptop", categories: "accessories", id: "29", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 1500, colors: ["blue", "black", "white"], isLoved: true, ischeaked: true, isNew: true },
-        { name: "ASUS FHD Gaming Laptop", categories: "accessories", id: "30", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 1200, colors: ["red", "black", "white"], isLoved: true, ischeaked: true, isNew: false },
-        { name: "ASUS FHD Gaming Laptop", categories: "accessories", id: "31", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 1100, colors: ["white", "black", "white"], isLoved: true, ischeaked: true, isNew: true },
-        { name: "ASUS FHD Gaming Laptop", categories: "accessories", id: "32", url: "/ideapadgaming3i01500x500-1@2x.png", prise: 950, colors: ["black", "black", "white"], isLoved: true, ischeaked: true, isNew: false },
+        { title: "ASUS FHD Gaming Laptop", shortDesc: "lauren lauren", longDesc: "lauren lauren lauren", categories: "taplet", id: "25", url: "/ideapadgaming3i01500x500-1@2x.png", middlePrice: 1000, traderprice: 800, userPrice: 700, colors: [{ color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }, { color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }], isLoved: true, ischeaked: true, isNew: true },
+        { title: "ASUS FHD Gaming Laptop", shortDesc: "lauren lauren", longDesc: "lauren lauren lauren", categories: "taplet", id: "26", url: "/ideapadgaming3i01500x500-1@2x.png", middlePrice: 1000, traderprice: 800, userPrice: 200, colors: [{ color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }, { color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }], isLoved: true, ischeaked: true, isNew: false },
+        { title: "ASUS FHD Gaming Laptop", shortDesc: "lauren lauren", longDesc: "lauren lauren lauren", categories: "taplet", id: "27", url: "/ideapadgaming3i01500x500-1@2x.png", middlePrice: 1000, traderprice: 800, userPrice: 900, colors: [{ color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }, { color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }], isLoved: true, ischeaked: true, isNew: true },
+        { title: "ASUS FHD Gaming Laptop", shortDesc: "lauren lauren", longDesc: "lauren lauren lauren", categories: "taplet", id: "28", url: "/ideapadgaming3i01500x500-1@2x.png", middlePrice: 1000, traderprice: 800, userPrice: 800, colors: [{ color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }, { color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }], isLoved: true, ischeaked: true, isNew: false },
+        { title: "ASUS FHD Gaming Laptop", shortDesc: "lauren lauren", longDesc: "lauren lauren lauren", categories: "accessories", id: "29", url: "/ideapadgaming3i01500x500-1@2x.png", middlePrice: 1000, traderprice: 800, userPrice: 1500, colors: [{ color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }, { color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }], isLoved: true, ischeaked: true, isNew: true },
+        { title: "ASUS FHD Gaming Laptop", shortDesc: "lauren lauren", longDesc: "lauren lauren lauren", categories: "accessories", id: "30", url: "/ideapadgaming3i01500x500-1@2x.png", middlePrice: 1000, traderprice: 800, userPrice: 1200, colors: [{ color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }, { color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }], isLoved: true, ischeaked: true, isNew: false },
+        { title: "ASUS FHD Gaming Laptop", shortDesc: "lauren lauren", longDesc: "lauren lauren lauren", categories: "accessories", id: "31", url: "/ideapadgaming3i01500x500-1@2x.png", middlePrice: 1000, traderprice: 800, userPrice: 1100, colors: [{ color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }, { color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }], isLoved: true, ischeaked: true, isNew: true },
+        { title: "ASUS FHD Gaming Laptop", shortDesc: "lauren lauren", longDesc: "lauren lauren lauren", categories: "accessories", id: "32", url: "/ideapadgaming3i01500x500-1@2x.png", middlePrice: 1000, traderprice: 800, userPrice: 950, colors: [{ color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }, { color: "4281138465.0", images: ["https://picsum.photos/id/432/500/200"] }], isLoved: true, ischeaked: true, isNew: false },
     ]
 
 ]
@@ -100,7 +100,7 @@ const initialState: CategoriesState = {
         { quantety: 95, Name: "Tools", url: "/device-smart-watch.svg" },],
     selectedCategory: 'computer',
     selectedProducts: [],
-    allproducts: fetchData() === null ? statecData : fetchData()
+    allproducts: statecData
 };
 
 const categoriesSlice = createSlice({

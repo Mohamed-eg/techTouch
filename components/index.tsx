@@ -15,17 +15,17 @@ import { auth } from "../src/firebase/firebase";
 import axios from 'axios';
 
 const HOME: NextPage = () => {
-  const fetchData = async () => {
-    try {
-      const response = await axios.get('http://129.146.110.127:3000/homeProducts');
-      return response.data;
-    } catch (error) {
-      console.error('Error fetching data:', error);
-      return null;
-    }
-  };
-  const router = useRouter();
-  useEffect(() => {
+  // const fetchData = async () => {
+  //   try {
+  //     const response = await axios.get('http://129.146.110.127:3000/homeProducts');
+  //     return response.data;
+  //   } catch (error) {
+  //     console.error('Error fetching data:', error);
+  //     return null;
+  //   }
+  // };
+  // const router = useRouter();
+  // useEffect(() => {
     // axios.get('http://129.146.110.127:3000/homeProducts')
     //   .then(response => {
     //     console.log(response.data);
@@ -44,7 +44,7 @@ const HOME: NextPage = () => {
     // });
     // fetchData().then(data => { console.log(data.data) });
     // console.log(fetchData())
-  }, []);
+  // }, []);
 
   return (
     <main className="relative bg-secondary-colors-white w-full overflow-hidden">
