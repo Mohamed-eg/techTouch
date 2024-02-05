@@ -83,10 +83,6 @@
   color: red;
 }
 
-.loved::-ms-fill {
-  fill: red;
-}
-
 .img-shadow {
   position: absolute;
   background: -webkit-gradient(linear, left top, left bottom, from(#56874800), color-stop(#ffff0000), color-stop(#ffff0000), to(#181818));

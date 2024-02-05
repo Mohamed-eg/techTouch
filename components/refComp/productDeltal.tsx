@@ -8,7 +8,7 @@ import { addToCart } from '../../src/redux/slices/productsSlice';
 import { addToList } from '../../src/redux/slices/wishListSlice';
 import cartIcon from '../../public/Buy.svg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from "@fortawesome/free-regular-svg-icons";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from "react-redux";
 import { useDispatch } from 'react-redux';
 import { toColor } from "../../functions"

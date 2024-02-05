@@ -10,6 +10,9 @@ import { useSelector } from "react-redux";
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
+import axios from "axios";
+import { useDispatch } from 'react-redux';
+import { createList } from '../src/redux/slices/searchSlice';
 
 interface NavItemProps {
   text: string;
@@ -26,9 +29,21 @@ const NavItem: React.FC<NavItemProps> = ({ text, icon, href }) => {
 };
 
 const Nav = () => {
-
+  const router = useRouter()
+  const [searchComponentSetValue, setSearchComponentSetValue] = useState("");
+  const dispatch = useDispatch()
+  const fetchSearch = async () => {
+    try {
+      const response = await axios.get(`http://129.146.110.127:3000/searchProduct?searchQuery=${searchComponentSetValue}`);
+      return response.data.data;
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      return null;
+    }
+  };
   const cart = useSelector((state: any) => state.products.cart)
   const List = useSelector((state: any) => state.wishList.List)
+  const myredux =useSelector((state:any)=> state.searchList.List)
 
   const getTotalQuantity = () => {
     let total = 0
@@ -44,9 +59,15 @@ const Nav = () => {
     })
     return total
   }
+  const handelSubmit = (e: any) => {
+    e.preventDefault()
+    fetchSearch().then((data: any) => {
+      if (data != null) { dispatch(createList(data)) }
+      console.log(myredux)
+      router.push("/home")
+    });
+  }
 
-  const [searchComponentSetValue, setSearchComponentSetValue] = useState("");
-  const router = useRouter();
 
   const onIconsCurvedBuyClick = useCallback(() => {
     router.push("/cart");
@@ -93,14 +114,15 @@ const Nav = () => {
           </ul>
         </nav>
         <div className=" flex flex-row  items-center justify-around w-[50%] max-sm:w-[75%] m-auto">
-          <input
-            className="[border:none] [outline:none] font-title-20px-semibold text-xs bg-secondary rounded-xl max-md:w-[30vw] max-md:placeholder:text-[9px] py-[7px] pr-3 pl-5 text-text2"
-            id="searchNav"
-            placeholder="What are you looking for?"
-            type="text"
-            value={searchComponentSetValue}
-            onChange={(event) => setSearchComponentSetValue(event.target.value)}
-          />
+          <form onSubmit={handelSubmit} action="">
+            <input
+              className="[border:none] [outline:none] font-title-20px-semibold text-xs bg-secondary rounded-xl max-md:w-[30vw] max-md:placeholder:text-[9px] py-[7px] pr-3 pl-5 text-text2"
+              id="searchNav"
+              placeholder="What are you looking for?"
+              type="text"
+              onChange={(event) => setSearchComponentSetValue(event.target.value)}
+            />
+          </form>
           <div className="relative flex flex-row items-center justify-center gap-[2vw]">
 
             <div className="relative max-sm:hidden"><NavItem text="" icon={faHeart} href="/wishList" /> <span className="bg-[#d61414] absolute top-[-10px] right-[0] px-1 text-white rounded-full ">
@@ -129,3 +151,4 @@ const Nav = () => {
 };
 
 export default Nav;
+
