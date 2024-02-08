@@ -38,6 +38,7 @@ const WishList = () => {
       <div className='mt-[200px]'>
 
         <div className="w-full flex flex-row items-center justify-center flex-wrap">
+          {userId === null ? <div><Link href="./login">blease sign in</Link> </div> : null}
           {List.map((product: any) => {
             return (
               <div className="flex m-5 w-[240px] h-[450px] flex-row group items-stretch justify-start gap-[16px]" key={`prod-${product.id}`}>

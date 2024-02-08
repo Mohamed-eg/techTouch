@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -15,6 +15,7 @@ import call from "../../public/icons/Call.svg";
 import profile from "../../public/icons/Profile.svg";
 import send from "../../public/icons/Send.svg";
 import message from "../../public/icons/Message.svg";
+import { Mali } from "next/font/google";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
 // import { faLock } from "";
@@ -45,26 +46,11 @@ const Signup = () => {
     formState: { errors },
   } = useForm(formOptions);
 
-  const postUser = async (id, email, name) => {
+  const postUser = async (userData) => {
+    const url = 'http://129.146.110.127:3000/gen?coll=users'
+    console.log(userData)
     try {
-      const response = await axios.post(
-        `http://129.146.110.127:3000/gen?coll=users`,
-        {
-          "id": id,
-          "name": name,
-          "email": email,
-          "createdAt": isoDate,
-          "imageLink": "http/aha.com",
-          "local": false,
-          "userType": "user",
-          "gender": null,
-          "birthDate": null,
-          "blocked": false,
-          "flag": null,
-          "needEmailVerification": false
-        }
-        );
-      console.log(id,email,name)
+      const response = await axios.post(url ,userData);
       return response;
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -78,10 +64,23 @@ const Signup = () => {
         data.email,
         data.password
       ).then((authUser) => {
+        const id =authUser.user.uid
+        const userData={
+          "id": id,
+          "name": data.fullName,
+          "email": data.email,
+          "createdAt": isoDate,
+          "imageLink": "http/aha.com",
+          "local": false,
+          "userType": "user",
+          "gender": null,
+          "birthDate": null,
+          "blocked": false,
+          "flag": null,
+          "needEmailVerification": false
+        }
         console.log("Success. The user is created in Firebase");
-        console.log(authUser);
-         postUser(authUser.user.uid, data.email, data.fullName).then((res) => {
-          console.log(res,authUser.user.uid, data.email, data.fullName);
+         postUser(userData ).then((res) => {
         });
       });
     } catch (error) {

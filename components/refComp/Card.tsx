@@ -8,42 +8,67 @@ import { useSelector } from "react-redux";
 import { auth } from "../../src/firebase/firebase"
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { toColor } from "../../functions"
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { removeItem } from "../../src/redux/slices/productsSlice"
 const Cart: NextPage = () => {
-  const uid = auth.currentUser?.uid
+  const user = auth.currentUser
+  const uid = user?.uid
   let shipping = 0
   const cart = useSelector((state: any) => state.products.cart)
   const [mycart, setMyCart] = useState(cart)
   const getTotalPrise = () => {
     let totalPrise = 0;
-    cart.map((product: any) => {
-      totalPrise += product.prise * product.quantity
+    mycart.map((product: any) => {
+      totalPrise += parseInt(product.currentPrice?.toFixed(2)) * parseInt(product.quantity)
     })
     return totalPrise
   }
-
-  const getmycart = async () => {
+  const getmycart = async (uid: string | undefined) => {
+    console.log(uid)
     try {
       const response = await axios.get(`http://129.146.110.127:3000/userGen?coll=cart&userId=${uid}`);
-      setMyCart(response.data.data);
-      // return response.data.data;
+      return response.data.data;
     } catch (error) {
       console.error('Error fetching data:', error);
-      // return null;
+      return null;
     }
   };
-  useEffect(() => {
-    if (cart) {
-      getmycart(); // Call the getmycart function only if cart is truthy
+  const deleteOne = async (id: any) => {
+    console.log(id)
+    try {
+      const response = await axios.delete(`http://129.146.110.127:3000/gen?coll=cart`, { data: id })
+      return response.status
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      return null;
     }
-  }, [cart])
+  }
+  const handelDelete = (id: string) => {
+    deleteOne(id).then((res) => {
+      removeItem(id)
+      getmycart(uid).then(() => {
+        setMyCart(res)
+      })
+      console.log(res)
+    })
+  }
+  useEffect(() => {
+    getmycart(uid).then((res) => {
+      setMyCart(res)
+      console.log(res)
+    }) // Call the getmycart function only if cart is truthy
+    console.log(cart)
+  }, [user])
   return (
     <main className="bg-bg w-full mt-12 overflow-hidden flex flex-col items-center justify-start gap-[140px] text-left text-sm text-bg font-title-20px-medium">
-      <div className="w-full overflow-hidden shrink-0 flex flex-col items-center justify-center gap-[80px]">
+      <div className="w-full overflow-hidden  flex flex-col items-center justify-center gap-[80px]">
         <MainHeader />
         <div className="w-[1170px] flex flex-col items-center justify-start gap-[80px] text-button font-rubik">
           <div className="w-[1170px] overflow-hidden flex flex-col items-start justify-center">
             <div className="flex flex-col items-start justify-start">
-              <div className="shrink-0 flex flex-row items-center justify-start gap-[12px]">
+              <div className=" flex flex-row items-center justify-start gap-[12px]">
                 <div className="relative leading-[21px] opacity-[0.5]">
                   Home /
                 </div>
@@ -52,66 +77,73 @@ const Cart: NextPage = () => {
             </div>
           </div>
           <div className="flex flex-col items-start justify-start gap-[80px] text-base font-title-20px-medium">
-            <div className="shrink-0 flex flex-col items-start justify-start gap-[24px]">
-              <div className="shrink-0 flex flex-col items-start justify-start gap-[40px]">
-                <div className="rounded-lg bg-bg shadow-[0px_1px_13px_rgba(0,_0,_0,_0.05)] w-[1168px] overflow-hidden flex flex-col items-start justify-start py-6 px-[39px] box-border">
-                  <div className="flex flex-row items-center justify-start gap-[284px]">
-                    <div className="relative leading-[24px] font-medium">
+            <div className=" flex flex-col items-start justify-start gap-[24px]">
+              <div className=" flex flex-col items-start justify-start gap-[40px]">
+                <div className="rounded-lg bg-bg shadow-[0px_1px_13px_rgba(0,_0,_0,_0.05)] w-[80vw] overflow-hidden flex flex-col items-start justify-start py-6 px-[39px] box-border">
+                  <div className="flex flex-row items-center justify-between w-full">
+                    <div className="relative text-center w-[20%] leading-[24px] font-medium">
                       Product
                     </div>
-                    <div className="relative leading-[24px] font-medium">
+                    <div className="relative text-center w-[20%] leading-[24px] font-medium">
                       Price
                     </div>
-                    <div className="relative leading-[24px] font-medium">
+                    <div className="relative text-center w-[20%] leading-[24px] font-medium">
                       Quantity
                     </div>
-                    <div className="relative leading-[24px] font-medium">
+                    <div className="relative text-center w-[20%] leading-[24px] font-medium">
+                      color
+                    </div>
+                    <div className="relative text-center w-[20%] leading-[24px] font-medium">
                       Subtotal
                     </div>
                   </div>
                 </div>
-                {cart.map((product: any) => {
+                {uid === null ? <div><Link href="./login">blease sign in</Link> </div> : null}
+                {mycart?.map((product: any) => {
                   return (
-                    <div key={`${product.id}-cart`} className="relative rounded-lg bg-bg shadow-[0px_1px_13px_rgba(0,_0,_0,_0.05)] w-[1170px] h-[102px] overflow-hidden shrink-0">
-                      <div className="absolute top-[20px] left-[30px] w-[285px] h-[58px] overflow-hidden flex flex-row items-start justify-start">
+                    <div key={`${product.id}-cart`} className="relative rounded-lg bg-bg shadow-[0px_1px_13px_rgba(0,_0,_0,_0.05)] w-full flex flex-row items-center justify-between overflow-hidden ">
+                      <div className="w-[20%] overflow-hidden flex flex-row items-start justify-start">
                         <div className="overflow-hidden flex flex-row items-start justify-start p-[3px] relative gap-[10px]">
                           <div className="relative rounded-[50%] bg-secondary-2 w-[18px] h-[18px] z-[0]" />
                         </div>
                         <div className="flex flex-row items-center justify-start gap-[20px] ml-[-15px]">
                           <Image
-                            className="relative rounded-2xl w-[54px] h-[54px] overflow-hidden shrink-0 object-cover"
+                            className="relative rounded-2xl w-[54px] h-[54px] overflow-hidden  object-cover"
                             alt="img"
                             width={54}
                             height={54}
-                            src={product.url}
+                            src={product.imageLink}
                           />
                           <div className="relative leading-[24px]">
-                            {product.name}
+                            {product.productName}
                           </div>
                         </div>
                       </div>
-                      <div className="absolute top-[39px] left-[386px] leading-[24px]">
-                        {`${product.prise} EGP`}
+                      <div className="flex items-center justify-center w-[20%] leading-[24px]">
+                        {`${product.currentPrice?.toFixed(2)} EGP`}
                       </div>
-                      <div className="absolute top-[39px] left-[1062px] leading-[24px] font-semibold text-primary">
-                        {`${product.prise * product.quantity}`}
+                      <div className="flex items-center justify-center w-[20%] overflow-hidden ">
+                        <div className="py-1.5 px-3 border-[1.5px] border-solid rounded-lg border-gray-200 relative leading-[24px]">{parseInt(product.quantity)}</div>
                       </div>
-                      <div className="absolute top-[27.5px] left-[708.5px] rounded-lg overflow-hidden flex flex-col items-start justify-start py-1.5 px-3 border-[1.5px] border-solid border-gray-200">
-                        <div className="shrink-0 flex flex-row items-center justify-start gap-[16px]">
-                          <div className="relative leading-[24px]">{product.quantity}</div>
+                      <div className="flex items-center justify-center w-[20%] overflow-hidden ">
+                        <div className="py-1.5 px-3 border-[1.5px] border-solid rounded-lg border-gray-200 relative leading-[24px]"><div style={{ background: toColor(parseInt(product.color)) }} className="flex w-4 h-4 rounded-full" ></div>
                         </div>
+                      </div>
+                      <div className="flex items-center justify-center w-[20%] leading-[24px] font-semibold text-primary">
+                        <span className=" flex justify-center w-[50%]">{`${parseInt(product.currentPrice?.toFixed(2)) * parseInt(product.quantity)}`}</span>
+                        <button onClick={(e, id = product.id) => handelDelete(id)} type="button" className="flex justify-start hover:text-red bg-transparent cursor-pointer border-none w-[50%]" ><FontAwesomeIcon icon={faTrash} /></button>
                       </div>
                     </div>)
                 })}
               </div>
-              <Link href={"../"} className="self-stretch shrink-0 flex flex-row no-underline items-center justify-start cursor-pointer text-primary font-rubik">
-                <div className="rounded-lg shrink-0 flex flex-row items-center justify-center py-4 px-12 border-[1px] border-solid border-primary">
+              <Link href={"../"} className="self-stretch  flex flex-row no-underline items-center justify-start cursor-pointer text-primary font-rubik">
+                <div className="rounded-lg  flex flex-row items-center justify-center py-4 px-12 border-[1px] border-solid border-primary">
                   <div className="relative leading-[24px]">Return To Shop</div>
                 </div>
               </Link>
             </div>
-            <div className="self-stretch shrink-0 flex flex-row items-start justify-start gap-[173px]">
-              <div className="shrink-0 flex flex-row items-end justify-start gap-[16px]">
+            <div className="self-stretch  flex flex-row items-start justify-start gap-[173px]">
+              <div className=" flex flex-row items-end justify-start gap-[16px]">
                 <input type="text" placeholder="Coupon code" className="rounded-lg outline-none text-[18px] bg-text w-[300px] overflow-hidden py-4 px-6 border-[1px] border-solid border-text">
                 </input>
                 <div className="rounded-lg cursor-pointer bg-primary text-[18px] py-4 px-12 text-bg">
@@ -123,21 +155,21 @@ const Cart: NextPage = () => {
                   <div className="relative text-xl leading-[28px] font-medium">
                     Cart Total
                   </div>
-                  <div className="w-[422px] shrink-0 flex flex-row items-start justify-between">
+                  <div className="w-[422px]  flex flex-row items-start justify-between">
                     <div className="relative leading-[24px]">Subtotal:</div>
                     <div className="relative leading-[24px]">{`${getTotalPrise()}`}</div>
                   </div>
-                  <div className="shrink-0 flex flex-col items-start justify-start opacity-[0.4]">
+                  <div className=" flex flex-col items-start justify-start opacity-[0.4]">
                     <div className="relative box-border w-[423px] h-px border-t-[1px] border-solid border-gray-100" />
                   </div>
-                  <div className="shrink-0 flex flex-row items-start justify-start gap-[314px]">
+                  <div className=" flex flex-row items-start justify-start gap-[314px]">
                     <div className="relative leading-[24px]">Shipping:</div>
                     <div className="relative leading-[24px]">Free</div>
                   </div>
-                  <div className="shrink-0 flex flex-col items-start justify-start opacity-[0.4]">
+                  <div className=" flex flex-col items-start justify-start opacity-[0.4]">
                     <div className="relative box-border w-[423px] h-px border-t-[1px] border-solid border-gray-100" />
                   </div>
-                  <div className="w-[422px] shrink-0 flex flex-row items-start justify-between">
+                  <div className="w-[422px]  flex flex-row items-start justify-between">
                     <div className="relative leading-[24px]">Total:</div>
                     <div className="relative leading-[24px]">{`${getTotalPrise() + shipping}`}</div>
                   </div>

@@ -165,9 +165,10 @@ const ProductDeltal = (producDeta: any) => {
   const handelSubmit = (e: any, id: any, quantity: any, color: any, image: any, name: any, short: any, long: any, price: any) => {
     e.preventDefault()
     console.log(id, quantity, color, image, name, short, long, price)
-    postCart(id, quantity, color, image, name, short, long, price).then((res) => {
+    quantity > 0 && postCart(id, quantity, color, image, name, short, long, price).then((res) => {
       console.log(res);
     });
+    quantity > 0 && dispatch(addToCart({ id, name, image, price, color }))
   }
   return (
     <>

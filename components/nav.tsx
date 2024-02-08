@@ -11,6 +11,7 @@ import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import axios from "axios";
+import { auth } from "../src/firebase/firebase";
 import { useDispatch } from 'react-redux';
 import { createList } from '../src/redux/slices/searchSlice';
 
@@ -29,6 +30,7 @@ const NavItem: React.FC<NavItemProps> = ({ text, icon, href }) => {
 };
 
 const Nav = () => {
+  const uid = auth.currentUser?.uid
   const router = useRouter()
   const [searchComponentSetValue, setSearchComponentSetValue] = useState("");
   const dispatch = useDispatch()
@@ -43,7 +45,7 @@ const Nav = () => {
   };
   const cart = useSelector((state: any) => state.products.cart)
   const List = useSelector((state: any) => state.wishList.List)
-  const myredux =useSelector((state:any)=> state.searchList.List)
+  const myredux = useSelector((state: any) => state.searchList.List)
 
   const getTotalQuantity = () => {
     let total = 0
@@ -128,11 +130,14 @@ const Nav = () => {
             <div className="relative max-sm:hidden"><NavItem text="" icon={faHeart} href="/wishList" /> <span className="bg-[#d61414] absolute top-[-10px] right-[0] px-1 text-white rounded-full ">
               {getWishQuantity() || 0}</span></div>
 
-            <Image alt="img"
-              className="relative w-[2.2vw] h-[2.2vw] max-md:w-[5vw] max-md:h-[5vw] max-w-8 max-h-8 overflow-hidden object-cover max-sm:hidden cursor-pointer"
-              onClick={onIconsPersonClick}
-              src={userImg}
-            />
+            <div onClick={(e, id = uid) => { router.push(`/${id}`) }}>
+              <Image alt="img"
+                className="relative w-[2.2vw] h-[2.2vw] max-md:w-[5vw] max-md:h-[5vw] max-w-8 max-h-8 overflow-hidden object-cover max-sm:hidden cursor-pointer"
+                onClick={onIconsPersonClick}
+                src={userImg}
+              />
+              {uid ? <span className=" absolute flex w-1 h-1 bg-[#00cc00] rounded-full top-[-8px] right-[10px]"></span> : <span className=" absolute flex w-1 h-1 bg-[#a7a7a7] rounded-full top-[-8px] right-[10px]"></span>}
+            </div>
             <div className="relative max-sm:hidden">
               <Image alt="img"
                 className="relative w-[2.2vw] h-[2.2vw]  max-md:w-[5vw] max-md:h-[5vw] max-w-8 max-h-8 object-cover cursor-pointer"

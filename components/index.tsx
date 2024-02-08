@@ -1,5 +1,4 @@
-"use client"
-import type { NextPage } from "next";
+'use client'
 import SubscribeForm from "./subscribe-form";
 import MainHeader from "./main-header";
 import CategoryFilterContainer1 from "./category-filter-container1";
@@ -8,7 +7,7 @@ import MusicContainer from "./music-container";
 import BestSelling from "./best-selling";
 import NewArrival from "./new-arrival";
 import Hero from "./hero";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../src/firebase/firebase";
@@ -18,45 +17,45 @@ import { setAllProducts } from '../src/redux/slices/categoriesSlice';
 import { setCategories } from '../src/redux/slices/categoriesSlice';
 
 
-const HOME: NextPage = () => {
+const HOME = () => {
   const dispatch = useDispatch()
+  const fetchHome = async () => {
+    try {
+      const response = await axios.get('http://129.146.110.127:3000/homeProducts');
+      return response.data.data;
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      return null;
+    }
+  };
+  const fetchCategories = async () => {
+    try {
+      const response = await axios.get('http://129.146.110.127:3000/categories');
+      return response.data.data;
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      return null;
+    }
+  };
+  // const fetchnewArrival = async () => {
+  //   try {
+  //     const response = await axios.get('http://129.146.110.127:3000/newArrival');
+  //     return response.data.data;
+  //   } catch (error) {
+  //     console.error('Error fetching data:', error);
+  //     return null;
+  //   }
+  // };
+  // const fetchHighLight = async () => {
+  //   try {
+  //     const response = await axios.get('http://129.146.110.127:3000/highlight');
+  //     return response.data.data;
+  //   } catch (error) {
+  //     console.error('Error fetching data:', error);
+  //     return null;
+  //   }
+  // };
   useEffect(() => {
-    const fetchHome = async () => {
-      try {
-        const response = await axios.get('http://129.146.110.127:3000/homeProducts');
-        return response.data.data;
-      } catch (error) {
-        console.error('Error fetching data:', error);
-        return null;
-      }
-    };
-    const fetchCategories = async () => {
-      try {
-        const response = await axios.get('http://129.146.110.127:3000/categories');
-        return response.data.data;
-      } catch (error) {
-        console.error('Error fetching data:', error);
-        return null;
-      }
-    };
-    // const fetchnewArrival = async () => {
-    //   try {
-    //     const response = await axios.get('http://129.146.110.127:3000/newArrival');
-    //     return response.data.data;
-    //   } catch (error) {
-    //     console.error('Error fetching data:', error);
-    //     return null;
-    //   }
-    // };
-    // const fetchHighLight = async () => {
-    //   try {
-    //     const response = await axios.get('http://129.146.110.127:3000/highlight');
-    //     return response.data.data;
-    //   } catch (error) {
-    //     console.error('Error fetching data:', error);
-    //     return null;
-    //   }
-    // };
     fetchHome().then((data: any) => {
       if (data != null) { dispatch(setAllProducts(data)) }
     });
