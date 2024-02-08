@@ -41,7 +41,7 @@ const AllProducts: NextPage = (props: any) => {
         return (
           <SwiperSlide className="!w-[100%]" key={`id${Math.random() * 10}`}>
             {({ isVisible }) => (
-              isVisible ? <OnePageProdac PageProducts={PageProducts} /> : <OnePageProdac PageProducts={PageProducts} />
+              isVisible ? <OnePageProdac PageProducts={PageProducts} /> : null
             )}
           </SwiperSlide>
         )

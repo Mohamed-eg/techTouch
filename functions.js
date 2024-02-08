@@ -78,6 +78,15 @@ function hexToClosestCommonColor(hex) {
 
   throw new Error("Invalid HEX color code");
 }
-export {toColor}
+function generateUniqueId() {
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let randomString = '';
+  for (let i = 0; i < 16; i++) {
+      randomString += characters.charAt(Math.floor(Math.random() * characters.length));
+  }
+  const timestamp = Date.now();
+  return `${randomString}-${timestamp}`;
+}
+export {toColor,generateUniqueId}
 export default hexToClosestCommonColor;
 

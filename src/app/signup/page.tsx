@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import Image from "next/image";
 import FooterComp from '../../../components/footer';
 import MainHeader from '../../../components/main-header';
-import Signup from '../../../components/refComp/signUpform'
+import Signup from "../../../components/refComp/signUpform";
 import market from "../../../public/background@2x.png";
 import massgIcon from "../../../public/iconscurvedmessage@2x.png";
 import bigTuch from "../../../public/touch-tech-logo-final-2@2x.png";

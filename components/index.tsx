@@ -39,39 +39,38 @@ const HOME: NextPage = () => {
         return null;
       }
     };
-    const fetchnewArrival = async () => {
-      try {
-        const response = await axios.get('http://129.146.110.127:3000/newArrival');
-        return response.data.data;
-      } catch (error) {
-        console.error('Error fetching data:', error);
-        return null;
-      }
-    };
-    const fetchHighLight = async () => {
-      try {
-        const response = await axios.get('http://129.146.110.127:3000/highlight');
-        return response.data.data;
-      } catch (error) {
-        console.error('Error fetching data:', error);
-        return null;
-      }
-    };
+    // const fetchnewArrival = async () => {
+    //   try {
+    //     const response = await axios.get('http://129.146.110.127:3000/newArrival');
+    //     return response.data.data;
+    //   } catch (error) {
+    //     console.error('Error fetching data:', error);
+    //     return null;
+    //   }
+    // };
+    // const fetchHighLight = async () => {
+    //   try {
+    //     const response = await axios.get('http://129.146.110.127:3000/highlight');
+    //     return response.data.data;
+    //   } catch (error) {
+    //     console.error('Error fetching data:', error);
+    //     return null;
+    //   }
+    // };
     fetchHome().then((data: any) => {
       if (data != null) { dispatch(setAllProducts(data)) }
     });
     fetchCategories().then((data: any) => {
-      console.log(data);
       if (data != null) { dispatch(setCategories(data)) }
     });
-    fetchnewArrival().then((data: any) => {
-      console.log(data)
-      // dispatch(setAllProducts(data))
-    });
-    fetchHighLight().then((data: any) => {
-      console.log(data)
-      // dispatch(setAllProducts(data))
-    });
+    // fetchnewArrival().then((data: any) => {
+    //   console.log(data)
+    //   // dispatch(setAllProducts(data))
+    // });
+    // fetchHighLight().then((data: any) => {
+    //   console.log(data)
+    //   // dispatch(setAllProducts(data))
+    // });
   }, [])
 
   return (

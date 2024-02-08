@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
+import Link from "next/link";
 
 
 const CategoryFilterContainer1: NextPage = () => {
@@ -53,12 +54,14 @@ const CategoryFilterContainer1: NextPage = () => {
           {categories.allCategories.map((category: any) => {
             return (
               <SwiperSlide className=" !w-[170px]" key={category.title}>
-                <div className="relative flex flex-row w-[170px] h-[145px] items-center cursor-poniter justify-center peer border hover:bg-scondry border-[#0000004d] border-solid rounded-3xl gap-[16px]">
-                  <div className="relative leading-[20px] hover:text-white font-semibold">
-                    <Image width={56} height={56} alt="img" src={category.imageLink} className="text-white" />
-                    <p className="text-[#000] peer-hover:text-white">{category.titel}</p>
+                <Link href={`./home`}>
+                  <div className="relative flex flex-row w-[170px] h-[145px] items-center cursor-poniter justify-center peer border hover:bg-scondry border-[#0000004d] border-solid rounded-3xl gap-[16px]">
+                    <div className="relative leading-[20px] hover:text-white font-semibold">
+                      <Image width={140} height={80} alt="img" src={category.imageLink} className="text-white rounded-lg bg-cover" />
+                      <p className="text-[#000] peer-hover:text-white">{category.title}</p>
+                    </div>
                   </div>
-                </div>
+                </Link>
               </SwiperSlide>
             )
           })}

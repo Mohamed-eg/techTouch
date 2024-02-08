@@ -21,6 +21,8 @@ import message from "../../public/icons/Message.svg";
 
 const Signup = () => {
   const [errorMessage, setErrorMessage] = useState("");
+  const milliseconds = Date.now();
+  const isoDate = new Date(milliseconds).toISOString();
 
   const validationSchema = Yup.object().shape({
     fullName: Yup.string().required("Full name is required"),
@@ -43,6 +45,32 @@ const Signup = () => {
     formState: { errors },
   } = useForm(formOptions);
 
+  const postUser = async (id, email, name) => {
+    try {
+      const response = await axios.post(
+        `http://129.146.110.127:3000/gen?coll=users`,
+        {
+          "id": id,
+          "name": name,
+          "email": email,
+          "createdAt": isoDate,
+          "imageLink": "http/aha.com",
+          "local": false,
+          "userType": "user",
+          "gender": null,
+          "birthDate": null,
+          "blocked": false,
+          "flag": null,
+          "needEmailVerification": false
+        }
+        );
+      console.log(id,email,name)
+      return response;
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      return null;
+    }
+  };
   const createUser = async (data) => {
     try {
       await createUserWithEmailAndPassword(
@@ -52,7 +80,9 @@ const Signup = () => {
       ).then((authUser) => {
         console.log("Success. The user is created in Firebase");
         console.log(authUser);
-        router.push("/");
+         postUser(authUser.user.uid, data.email, data.fullName).then((res) => {
+          console.log(res,authUser.user.uid, data.email, data.fullName);
+        });
       });
     } catch (error) {
       setErrorMessage(error.message);
