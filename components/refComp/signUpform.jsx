@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
-import { useMutation } from "react-query";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
@@ -15,7 +14,7 @@ import call from "../../public/icons/Call.svg";
 import profile from "../../public/icons/Profile.svg";
 import send from "../../public/icons/Send.svg";
 import message from "../../public/icons/Message.svg";
-import { Mali } from "next/font/google";
+import axios from "axios"
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
 // import { faLock } from "";
@@ -81,6 +80,7 @@ const Signup = () => {
         }
         console.log("Success. The user is created in Firebase");
          postUser(userData ).then((res) => {
+          console.log(res)
         });
       });
     } catch (error) {

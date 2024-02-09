@@ -74,9 +74,9 @@ const Nav = () => {
   const onIconsCurvedBuyClick = useCallback(() => {
     router.push("/cart");
   }, [router]);
-  const onIconsPersonClick = useCallback(() => {
-    router.push("/login");
-  }, [router]);
+  // const onIconsPersonClick = useCallback(() => {
+  //   router.push("/login");
+  // }, [router]);
   // const onIconsWishListClick = useCallback(() => {
   //   router.push("/wishList");
   // }, [router]);
@@ -133,7 +133,6 @@ const Nav = () => {
             <div onClick={(e, id = uid) => { router.push(`/${id}`) }}>
               <Image alt="img"
                 className="relative w-[2.2vw] h-[2.2vw] max-md:w-[5vw] max-md:h-[5vw] max-w-8 max-h-8 overflow-hidden object-cover max-sm:hidden cursor-pointer"
-                onClick={onIconsPersonClick}
                 src={userImg}
               />
               {uid ? <span className=" absolute flex w-1 h-1 bg-[#00cc00] rounded-full top-[-8px] right-[10px]"></span> : <span className=" absolute flex w-1 h-1 bg-[#a7a7a7] rounded-full top-[-8px] right-[10px]"></span>}
