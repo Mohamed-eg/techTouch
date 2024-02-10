@@ -11,13 +11,33 @@ import { useSelector } from "react-redux";
 import { useDispatch } from 'react-redux';
 import { toColor } from "../../functions"
 import Link from "next/link";
-
+import axios from "axios";
+import { auth } from "../../src/firebase/firebase"
 
 const OnePageProdac = (props: any) => {
   const mypage = props.PageProducts;
-  console.log(props)
+  const milliseconds = Date.now();
+  const isoDate = new Date(milliseconds).toISOString();
   const dispatch = useDispatch()
   const List = useSelector((state: any) => state.wishList.List)
+  const userId = auth.currentUser?.uid
+
+  // const fetchWish = async (id: any) => {
+  //   try {
+  //     const response = await axios.post(`http://129.146.110.127:3000/gen?call=wishlist`, { id: id, productId: id, addedAt: isoDate, userId: userId });
+  //     return response.data;
+  //   } catch (error) {
+  //     console.error('Error fetching data:', error);
+  //     return null;
+  //   }
+  // };
+
+  const handelHartClick = (id: any, name: any, url: any, prise: any, colors: any) => {
+    dispatch(addToList({ id, name, url, prise, colors }))
+    // fetchWish(id).then((response: any) => {
+    //   console.log(response)
+    // });
+  }
   return (
     <div className="w-full flex flex-row items-center justify-center flex-wrap">
       {mypage.map((product: any) => {
