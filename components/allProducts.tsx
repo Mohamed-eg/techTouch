@@ -13,7 +13,8 @@ import OnePageProdac from "./refComp/onePageProdac";
 
 const AllProducts: NextPage = (props: any) => {
   const AllProducts = useSelector((state: any) => state.categories.allproducts);
-  return (
+  return (<>
+    {AllProducts ? <div><h1>Loding.....</h1></div> : null}
     <Swiper
       // ref={swiperRef}
       className="!flex justify-center items-cente mb-36 !w-[80vw]"
@@ -37,17 +38,17 @@ const AllProducts: NextPage = (props: any) => {
         // onClick={() => swiper.slidePrev()}
         src={rightArrow}
       />
-      {AllProducts.map((PageProducts: any) => {
+      {AllProducts?.map((PageProducts: any) => {
         return (
           <SwiperSlide className="!w-[100%]" key={`id${Math.random() * 10}`}>
             {({ isVisible }) => (
-              isVisible ? <OnePageProdac PageProducts={PageProducts} /> : <OnePageProdac PageProducts={PageProducts} />
+              isVisible ? <OnePageProdac PageProducts={PageProducts} /> : null
             )}
           </SwiperSlide>
         )
       })}
     </Swiper>
-
+  </>
   )
 };
 

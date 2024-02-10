@@ -11,14 +11,165 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from "react-redux";
 import { useDispatch } from 'react-redux';
-import { toColor } from "../../functions"
+import { toColor } from "../../functions";
+import axios from "axios"
+import { useEffect, useId, useState } from "react"
+import { generateUniqueId } from "../../functions"
+import { auth } from "../../src/firebase/firebase"
 const ProductDeltal = (producDeta: any) => {
+  const url = window.location.href;
+  const parts = url.split('/');
+  const productId = parts[parts.length - 1];
+  const uid = auth.currentUser?.uid
+  const milliseconds = Date.now();
+  const isoDate = new Date(milliseconds).toISOString();
+  const randomeId = generateUniqueId()
+  const [myproduct, setMyproduct] = useState({
+    "_id": "AhMb1EJXlqEnPaCB6v4L-1704645506555640",
+    "id": "AhMb1EJXlqEnPaCB6v4L-1704645506555640",
+    "title": "Mus.Adverto.Tero aqua.",
+    "shortDesc": "Seductor pre.Utor orbis.Opes habeo commodum otium.",
+    "longDesc": "Vulgo, cubicularius depulso, utrum. Obduro fabula.Iocus plures renuo, eum adeo pungo.Tergus pia. Edo, quantocius curto pro me, galea.",
+    "userPrice": 53.6070935043653,
+    "middlePrice": 62.93050684215157,
+    "traderPrice": 4.60530311251296,
+    "colors": [
+      {
+        "color": "4279209220.0",
+        "images": [
+          "https://picsum.photos/id/267/500/200",
+          "https://picsum.photos/id/666/500/200",
+          "https://picsum.photos/id/299/500/200",
+          "https://picsum.photos/id/786/500/200",
+          "https://picsum.photos/id/280/500/200",
+          "https://picsum.photos/id/621/500/200",
+          "https://picsum.photos/id/401/500/200",
+          "https://picsum.photos/id/900/500/200",
+          "https://picsum.photos/id/814/500/200",
+          "https://picsum.photos/id/546/500/200",
+          "https://picsum.photos/id/580/500/200",
+          "https://picsum.photos/id/802/500/200",
+          "https://picsum.photos/id/443/500/200"
+        ]
+      },
+      {
+        "color": "4291155553.0",
+        "images": [
+          "https://picsum.photos/id/946/500/200",
+          "https://picsum.photos/id/253/500/200",
+          "https://picsum.photos/id/248/500/200",
+          "https://picsum.photos/id/756/500/200",
+          "https://picsum.photos/id/517/500/200",
+          "https://picsum.photos/id/661/500/200"
+        ]
+      },
+      {
+        "color": "4279724855.0",
+        "images": [
+          "https://picsum.photos/id/123/500/200",
+          "https://picsum.photos/id/628/500/200",
+          "https://picsum.photos/id/404/500/200",
+          "https://picsum.photos/id/80/500/200",
+          "https://picsum.photos/id/359/500/200",
+          "https://picsum.photos/id/595/500/200",
+          "https://picsum.photos/id/279/500/200",
+          "https://picsum.photos/id/729/500/200",
+          "https://picsum.photos/id/521/500/200",
+          "https://picsum.photos/id/274/500/200"
+        ]
+      },
+      {
+        "color": "4287002349.0",
+        "images": [
+          "https://picsum.photos/id/383/500/200",
+          "https://picsum.photos/id/564/500/200",
+          "https://picsum.photos/id/904/500/200",
+          "https://picsum.photos/id/989/500/200",
+          "https://picsum.photos/id/908/500/200",
+          "https://picsum.photos/id/764/500/200"
+        ]
+      },
+      {
+        "color": "4294836969.0",
+        "images": [
+          "https://picsum.photos/id/670/500/200",
+          "https://picsum.photos/id/408/500/200",
+          "https://picsum.photos/id/535/500/200",
+          "https://picsum.photos/id/900/500/200",
+          "https://picsum.photos/id/82/500/200",
+          "https://picsum.photos/id/598/500/200",
+          "https://picsum.photos/id/962/500/200",
+          "https://picsum.photos/id/455/500/200",
+          "https://picsum.photos/id/180/500/200",
+          "https://picsum.photos/id/528/500/200",
+          "https://picsum.photos/id/987/500/200",
+          "https://picsum.photos/id/127/500/200",
+          "https://picsum.photos/id/579/500/200"
+        ]
+      }
+    ],
+    "categoryId": "yp5TPQn12lk0l4UKyj8b-1704629558972540",
+    "discount": null
+  })
+  const [color, setColor] = useState("")
+  const [quantity, setQuantity] = useState(0)
+
+  const getmyproduct = async () => {
+    try {
+      const response = await axios.get(`http://129.146.110.127:3000/product?id=${productId}`);
+      setMyproduct(response.data.data);
+      // return response.data.data;
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      // return null;
+    }
+  };
+  useEffect(() => {
+    if (productId) {
+      getmyproduct(); // Call the getmyproduct function only if productId is truthy
+    }
+  }, [productId])
+
+  const postCart = async (id: any, quantity: any, color: any, image: any, name: any, short: any, long: any, price: any) => {
+    console.log(isoDate, uid)
+    try {
+      const response = await axios.post(
+        `http://129.146.110.127:3000/gen?coll=cart`,
+        {
+          "id": randomeId,
+          "productId": id,
+          "quantity": quantity,
+          "color": color,
+          "createdAt": isoDate,
+          "imageLink": image,
+          "productName": name,
+          "shortDesc": short,
+          "longDesc": long,
+          "currentPrice": price,
+          "userId": uid
+        }
+      );
+      console.log(uid)
+      return response;
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      return null;
+    }
+  };
   const List = useSelector((state: any) => state.wishList.List)
-  const myid = producDeta.producDeta.params.id
+  // const myid = producDeta.producDeta.params.id
   const dispatch = useDispatch()
   const AllProducts = useSelector((state: any) => state.categories.allproducts)
-  const mypage = AllProducts.find((page: any) => { return (page.find((product: any) => { return (product.id == myid) })) });
-  const myproduct = mypage.find((product: any) => { return (product.id == myid) })
+  // const mypage = AllProducts.find((page: any) => { return (page.find((product: any) => { return (product.id == myid) })) });
+
+  const handelSubmit = (e: any, id: any, quantity: any, color: any, image: any, name: any, short: any, long: any, price: any) => {
+    e.preventDefault()
+    console.log(id, quantity, color, image, name, short, long, price)
+    quantity > 0 && postCart(id, quantity, color, image, name, short, long, price).then((res) => {
+      console.log(res);
+    });
+    quantity > 0 && dispatch(addToCart({ id, name, image, price, color }))
+  }
   return (
     <>
       <section className="relative w-full mt-[200px] mb-[50px] overflow-hidden flex flex-col items-center justify-center">
@@ -37,35 +188,41 @@ const ProductDeltal = (producDeta: any) => {
           </div>
           <div className="flex flex-col items-start justify-start ml-16 w-[30%] text-black">
             <div className="">
-              <h1>{myproduct.titel}</h1>
+              <h1>{myproduct.title}</h1>
               <h2 className="text-blue text-xl">{`${parseFloat(myproduct.userPrice.toFixed(2))} EGP`}</h2>
               <p>{myproduct.longDesc}</p>
             </div>
-            <div>
+            <form action="" onSubmit={(event) => handelSubmit(event, myproduct.id, quantity.toString(), color, myproduct.colors.find((e: any) => e.color === color)?.images[0] || "", myproduct.title, myproduct.shortDesc, myproduct.longDesc, myproduct.userPrice)}>
               <div>
-                <span>Colours</span>
-                <div className="my-[10px] flex flex-wrap w-full text-white ml-[-10px]">
-                  {myproduct.colors.map((e: any) => {
-                    return (
-                      <div style={{ background: toColor(parseInt(e.color)) }} className={`w-[18px] h-[18px] inline rounded-full m-2 !box-content border-[5px] border-solid`}
-                        key={`page-${AllProducts.indexOf(mypage)}-product-${myproduct.id}`}></div>
-                    )
-                  })}
+                <div>
+                  <span>Colours</span>
+                  <div className="my-[10px] flex flex-wrap w-full text-white ml-[-10px]">
+                    {myproduct.colors.map((e: any) => {
+                      return (
+                        <div style={{ background: toColor(parseInt(e.color)) }} className={`w-[18px] h-[18px] p-2 flex items-center justify-center rounded-full m-2 !box-content border-[5px] border-solid`}
+                          key={`page--product-${myproduct.id}`}>
+                          <input type="radio" className="m-0" name={e.color} checked={e.color === color} value={e.color} onClick={() => {
+                            setColor(e.color)
+                            if (e.color != color) { setQuantity(0) }
+                          }} />
+                        </div>
+                      )
+                    })}
+                  </div>
                 </div>
               </div>
-            </div>
-
-            <div className="flex flex-row mt-4 items-center">
-              <div>
-                <button className="bg-white p-1 border-[#eee] px-[5px] border text-lg rounded-l-[8px]">-</button>
-                <span className="border-y border-[#eee] px-5 ">{myproduct.quantity || 0}</span>
-                <button className="bg-white border-[#eee] p-1 text-lg border  rounded-r-[8px]">+</button>
+              <div className="flex flex-row mt-4 items-center">
+                <div>
+                  <button className="bg-white p-1 border-[#eee] px-[5px] border text-lg rounded-l-[8px]" onClick={() => { quantity > 0 ? setQuantity(quantity - 1) : setQuantity(0) }} type="button">-</button>
+                  <span style={{ background: toColor(parseInt(color)) }} className="border-y border-[#eee] px-5 py-2 rounded-md ">{quantity || 0}</span>
+                  <button type="button" className="bg-white border-[#eee] p-1 text-lg border  rounded-r-[8px]" onClick={() => { setQuantity(quantity + 1) }}>+</button>
+                </div>
+                <div>
+                  <button type="submit" className="bg-blue text-white rounded-xl mx-2 px-10 py-3 border-none outline-none">Add to cart</button>
+                  <button className="rounded-lg bg-white border p-2 border-[#eee] outline-none"><FontAwesomeIcon icon={faHeart} className="" /></button>
+                </div>
               </div>
-              <div>
-                <button className="bg-blue text-white rounded-xl mx-2 px-10 py-3 border-none outline-none">Add to cart</button>
-                <button className="rounded-lg bg-white border p-2 border-[#eee] outline-none"><FontAwesomeIcon icon={faHeart} className="" /></button>
-              </div>
-            </div>
+            </form>
             <div className="flex flex-col items-start justify-center p-5 mt-8 border border-solid border-[#b1b1b1] rounded-xl ">
               <div className="flex flex-row items-center">
                 <Image className="m-3" alt="delivery icon" width={40} height={40} src={deliveryIcon} ></Image>
@@ -109,7 +266,7 @@ const ProductDeltal = (producDeta: any) => {
                     {product.colors.map((e: any) => {
                       return (
                         <div style={{ background: toColor(parseInt(e.color)) }} className={`w-[18px] h-[18px] inline rounded-full m-2 !box-content border-[5px] border-solid`}
-                          key={`page-${AllProducts.indexOf(mypage)}-product-${myproduct.id}`}></div>
+                          key={`page-product-${e.color}`}></div>
                       )
                     })}
                   </div>

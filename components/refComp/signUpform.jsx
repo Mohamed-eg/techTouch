@@ -1,9 +1,8 @@
-"use client";
+"use client"
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
-import { useMutation } from "react-query";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
@@ -15,12 +14,15 @@ import call from "../../public/icons/Call.svg";
 import profile from "../../public/icons/Profile.svg";
 import send from "../../public/icons/Send.svg";
 import message from "../../public/icons/Message.svg";
+import axios from "axios"
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
 // import { faLock } from "";
 
 const Signup = () => {
   const [errorMessage, setErrorMessage] = useState("");
+  const milliseconds = Date.now();
+  const isoDate = new Date(milliseconds).toISOString();
 
   const validationSchema = Yup.object().shape({
     fullName: Yup.string().required("Full name is required"),
@@ -43,6 +45,17 @@ const Signup = () => {
     formState: { errors },
   } = useForm(formOptions);
 
+  const postUser = async (userData) => {
+    const url = 'http://129.146.110.127:3000/gen?coll=users'
+    console.log(userData)
+    try {
+      const response = await axios.post(url ,userData);
+      return response;
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      return null;
+    }
+  };
   const createUser = async (data) => {
     try {
       await createUserWithEmailAndPassword(
@@ -50,9 +63,25 @@ const Signup = () => {
         data.email,
         data.password
       ).then((authUser) => {
+        const id =authUser.user.uid
+        const userData={
+          "id": id,
+          "name": data.fullName,
+          "email": data.email,
+          "createdAt": isoDate,
+          "imageLink": "http/aha.com",
+          "local": false,
+          "userType": "user",
+          "gender": null,
+          "birthDate": null,
+          "blocked": false,
+          "flag": null,
+          "needEmailVerification": false
+        }
         console.log("Success. The user is created in Firebase");
-        console.log(authUser);
-        router.push("/");
+         postUser(userData ).then((res) => {
+          console.log(res)
+        });
       });
     } catch (error) {
       setErrorMessage(error.message);

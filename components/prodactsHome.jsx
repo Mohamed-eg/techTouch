@@ -15,14 +15,9 @@ import { useDispatch } from 'react-redux';
 import { toColor } from "../functions"
 
 const ProdactsHome = () => {
-  // const [state, setState] = useState([]);
   const mydata = useSelector((state) => state.searchList.List);
   const dispatch = useDispatch()
   const List = useSelector((state) => state.wishList.List)
-  // useEffect(() => {
-  //   setState(mydata);
-  //   console.log(state);
-  // }, [mydata]);
 
   return (
     <div>
@@ -38,7 +33,7 @@ const ProdactsHome = () => {
             </div>
           </div>
           <h1 className="m-0 relative text-17xl tracking-[0.04em] leading-[48px] font-semibold font-heading-24px-semibold text-text2">
-            Explore Our Products
+            {List?"no resalt fond 😢":"Explore Our Products✨"}
           </h1>
         </div>
         <div className=" flex items-center justify-start flex-wrap w-full">
@@ -111,7 +106,7 @@ const ProdactsHome = () => {
                   <div>
                     <p className="text-black">{product.title}</p>
                     <span className="">{`${parseFloat(
-                      product.userPrice.toFixed(2)
+                      product.userPrice?.toFixed(2)
                     )} EGP`}</span>
                   </div>
                   <div className="my-[10px] flex flex-wrap w-full text-white ml-[-10px]">
