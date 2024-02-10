@@ -1,8 +1,7 @@
-import type { NextPage } from "next";
 import Link from "next/link";
 import Image from 'next/image'
 
-const CardWithLinksAndText: NextPage = () => {
+const CardWithLinksAndText = (props) => {
   return (
     <div className=" flex flex-col items-start justify-start gap-[16px] text-left text-base text-text2 font-title-20px-semibold">
       <Link
@@ -18,16 +17,16 @@ const CardWithLinksAndText: NextPage = () => {
           width={190}
           className="absolute top-[calc(50%_-_90px)] left-[calc(50%_-_95px)] w-[190px] h-[180px] overflow-hidden object-cover"
            
-          src="/frame-604@2x.png"
+          src={props?.imageLink}
         />
       </Link>
       <div className=" flex flex-col items-start justify-start gap-[8px]">
         <p className="m-0 relative leading-[24px] font-medium">
-          ASUS FHD Gaming Laptop
+          {props?.title}
         </p>
         <div className=" flex flex-row items-center justify-start text-lg text-primary1">
           <span className=" flex flex-row items-start justify-start">
-            <div className="relative leading-[24px] font-semibold">700 EGP</div>
+            <div className="relative leading-[24px] font-semibold">{props?.price} EGP</div>
           </span>
         </div>
       </div>

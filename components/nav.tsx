@@ -130,12 +130,12 @@ const Nav = () => {
             <div className="relative max-sm:hidden"><NavItem text="" icon={faHeart} href="/wishList" /> <span className="bg-[#d61414] absolute top-[-10px] right-[0] px-1 text-white rounded-full ">
               {getWishQuantity() || 0}</span></div>
 
-            <div onClick={(e, id = uid) => { router.push(`/${id}`) }}>
+            <div onClick={(e, id = uid) => { router.push(`/${id ? id : "login"}`) }}>
               <Image alt="img"
                 className="relative w-[2.2vw] h-[2.2vw] max-md:w-[5vw] max-md:h-[5vw] max-w-8 max-h-8 overflow-hidden object-cover max-sm:hidden cursor-pointer"
                 src={userImg}
               />
-              {uid ? <span className=" absolute flex w-1 h-1 bg-[#00cc00] rounded-full top-[-8px] right-[10px]"></span> : <span className=" absolute flex w-1 h-1 bg-[#a7a7a7] rounded-full top-[-8px] right-[10px]"></span>}
+              {uid ? <span className=" absolute flex w-3 h-3 bg-[#00cc00] rounded-full top-[-8px] right-[60px]"></span> : <span className=" absolute flex w-3 h-3 bg-[#a7a7a7] rounded-full top-[-8px] right-[60px]"></span>}
             </div>
             <div className="relative max-sm:hidden">
               <Image alt="img"

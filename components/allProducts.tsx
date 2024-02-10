@@ -14,7 +14,7 @@ import OnePageProdac from "./refComp/onePageProdac";
 const AllProducts: NextPage = (props: any) => {
   const AllProducts = useSelector((state: any) => state.categories.allproducts);
   return (<>
-    {AllProducts ? <div><h1>Loding.....</h1></div> : null}
+    {AllProducts ? null : <div><h1>Loding.....</h1></div>}
     <Swiper
       // ref={swiperRef}
       className="!flex justify-center items-cente mb-36 !w-[80vw]"

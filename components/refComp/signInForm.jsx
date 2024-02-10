@@ -21,6 +21,7 @@ import { auth } from "../../src/firebase/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "next/navigation";
 export default function SignIn() {
+  const [rong,setRong]=useState("")
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
@@ -39,6 +40,7 @@ export default function SignIn() {
       })
       .catch((error) => {
         console.error("Error signing in:", error);
+        error?setRong('invaled Email or password'):null;
         // Handle the error, show an error message, etc.
       });
     // console.log(email, password, rememberMe);
@@ -130,6 +132,7 @@ export default function SignIn() {
                     <Image className="formIcon" alt="lock" src={lock} />
                   </div>
                 </FormControl>
+                  <span className={"text-red text-sm"}>{rong}</span>
                 <Flex justifyContent={"space-between"} mt={4}>
                   <FormControl
                     className="my-4"
@@ -143,7 +146,7 @@ export default function SignIn() {
                       isChecked={rememberMe}
                       onChange={(e) => setRememberMe(e.target.checked)}
                     />
-                    <FormLabel className="text-black w-full m-6" ml={2}>
+                    <FormLabel className="text-black inline w-full m-6" ml={2}>
                       Remember me
                     </FormLabel>
                   </FormControl>

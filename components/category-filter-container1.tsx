@@ -41,7 +41,7 @@ const CategoryFilterContainer1: NextPage = () => {
       </div>
       <div className=" flex flex-row items-start overflow-hidden justify-start gap-[30px]">
         <Swiper
-          className="!flex justify-center items-cente"
+          className="!flex justify-center items-center"
           spaceBetween={50}
           slidesPerView={1}
           breakpoints={{

@@ -31,7 +31,10 @@
     ".next/types/**/*.ts",
     "src/redux/provider.jsx",
     "src/redux/slices/productsSlice.js",
-    "src/app/productDeta/[id].js"
+    "src/app/productDeta/[id].js",
+    "components/music-container.jsx",
+    "components/best-selling.jsx",
+    "components/card-with-links-and-text.jsx"
   ],
   "exclude": [
     "node_modules"
