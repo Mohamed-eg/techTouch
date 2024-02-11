@@ -13,32 +13,18 @@ import { toColor } from "../../functions"
 import Link from "next/link";
 import axios from "axios";
 import { auth } from "../../src/firebase/firebase"
-<<<<<<< HEAD
-=======
-
->>>>>>> 9fdfc6e4c46e04638fab7d203cb3ffd22920662e
 
 const OnePageProdac = (props: any) => {
   const mypage = props.PageProducts;
   const milliseconds = Date.now();
   const isoDate = new Date(milliseconds).toISOString();
-<<<<<<< HEAD
-  const dispatch = useDispatch()
-  const List = useSelector((state: any) => state.wishList.List)
-  const userId = auth.currentUser?.uid
-
-  // const fetchWish = async (id: any) => {
-  //   try {
-  //     const response = await axios.post(`http://129.146.110.127:3000/gen?call=wishlist`, { id: id, productId: id, addedAt: isoDate, userId: userId });
-  //     return response.data;
-=======
   console.log(props)
   const dispatch = useDispatch()
   const List = useSelector((state: any) => state.wishList.List)
   const userId = auth.currentUser?.uid
-  useEffect(() => {
+  // useEffect(() => {
 
-  })
+  // })
   // const fetchWish = async (id: any) => {
   //   try {
   //     const response = await axios.post(`https://backend.touchtechco.com/gen?coll=wishlist`, {
@@ -48,32 +34,31 @@ const OnePageProdac = (props: any) => {
   //       "userId": userId
   //     });
   //     return response;
->>>>>>> 9fdfc6e4c46e04638fab7d203cb3ffd22920662e
   //   } catch (error) {
   //     console.error('Error fetching data:', error);
   //     return null;
   //   }
   // };
 
-<<<<<<< HEAD
-  const handelHartClick = (id: any, name: any, url: any, prise: any, colors: any) => {
-    dispatch(addToList({ id, name, url, prise, colors }))
-    // fetchWish(id).then((response: any) => {
-    //   console.log(response)
-    // });
-  }
-=======
-  // const handelHartClick = (id: any) => {
-  //   fetchWish(id).then((response: any) => {
-  //     console.log(response)
-  //     console.log(id, isoDate, userId)
-  //   });
+  // <<<<<<< HEAD
+  // const handelHartClick = (id: any, name: any, url: any, prise: any, colors: any) => {
+  //   dispatch(addToList({ id, name, url, prise, colors }))
+  // fetchWish(id).then((response: any) => {
+  //   console.log(response)
+  // });
   // }
+  // =======
+  //   // const handelHartClick = (id: any) => {
+  //   //   fetchWish(id).then((response: any) => {
+  //   //     console.log(response)
+  //   //     console.log(id, isoDate, userId)
+  //   //   });
+  //   // }
 
->>>>>>> 9fdfc6e4c46e04638fab7d203cb3ffd22920662e
+  // >>>>>>> 9fdfc6e4c46e04638fab7d203cb3ffd22920662e
   return (
     <div className="w-full flex flex-row items-center justify-center flex-wrap">
-      {mypage.map((product: any) => {
+      {mypage?.map((product: any) => {
         return (
           <div className="flex m-5 w-[240px] h-[450px] flex-row group items-stretch justify-start gap-[16px]" key={`prod-${product.id}`}>
             <div className="relative flex flex-col normal-border w-full leading-[20px] font-semibold">
