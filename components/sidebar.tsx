@@ -26,13 +26,13 @@ const Sidebar: React.FC = () => {
 
   const cart = useSelector((state: any) => state.products.cart)
 
-  const getTotalQuantity = () => {
-    let total = 0
-    cart?.forEach((item: any) => {
-      total += item.quantity
-    })
-    return total
-  }
+  // const getTotalQuantity = () => {
+  //   let total = 0
+  //   cart?.forEach((item: any) => {
+  //     total += item.quantity
+  //   })
+  //   return total
+  // }
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const toggleSidebar = () => {
@@ -53,7 +53,7 @@ const Sidebar: React.FC = () => {
           <NavItem text="Card" icon={faShop} href="/card" />
           <NavItem text="wish list" icon={faHeart} href="/wishList" />
           <NavItem text="About" icon={faCog} href="/about" />
-          <span className="bg-[#d61414] absolute top-[140px] right-[210px] px-1 text-white rounded-full ">{getTotalQuantity() || 0}</span>
+          <span className="bg-[#d61414] absolute top-[140px] right-[210px] px-1 text-white rounded-full ">0</span>
         </nav>
       </div>
     </div>
