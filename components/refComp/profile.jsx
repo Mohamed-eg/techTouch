@@ -4,7 +4,7 @@ import axios from 'axios';
 import {auth} from "../../src/firebase/firebase";
 import Image from 'next/image';
 const Profile = () => {
-  // const url = window?.location.href;
+  // const url =  ?.location.href;
   // const parts = url.split('/');
   // const userId = parts[parts.length - 1];
   const userId = auth.currentUser?.uid

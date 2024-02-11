@@ -15,8 +15,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { removeItem } from "../../src/redux/slices/productsSlice";
 import { setCart } from "../../src/redux/slices/productsSlice";
 import { setUserId } from "firebase/analytics";
-const Cart: NextPage = () => {
-
+const Cart: NextPage = (params: any) => {
+  const uid = params.uid;
   const [userID, setUid] = useState<string | any>(null)
   let shipping = 0
   const cart = useSelector((state: any) => state.products.cart)
@@ -54,13 +54,13 @@ const Cart: NextPage = () => {
       console.log(res)
     })
   }
-  const userId = useSelector((state: any) => state.categories.currentUser);
+  // const userId = useSelector((state: any) => state.categories.currentUser);
   useEffect(() => {
-    // const url = window.location.href;
+    // const url =  .location.href;
     // const parts = url.split('/');
     // const userID = parts[parts.length - 1];
-    setUid(userId)
-    getmycart(userId).then((res) => {
+    setUid(uid)
+    getmycart(uid).then((res) => {
       setMyCart(res)
       setCart(res)
       console.log(res)
