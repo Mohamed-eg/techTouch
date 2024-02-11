@@ -17,7 +17,8 @@ import { useEffect, useId, useState } from "react"
 import { generateUniqueId } from "../../functions"
 import { auth } from "../../src/firebase/firebase"
 const ProductDeltal = (producDeta: any) => {
-  const url = window.location.href;
+
+  const url = window?.location.href;
   const parts = url.split('/');
   const productId = parts[parts.length - 1];
   const uid = auth.currentUser?.uid

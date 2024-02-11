@@ -55,15 +55,17 @@ const Cart: NextPage = () => {
     })
   }
   useEffect(() => {
-    const url = window.location.href;
-    const parts = url.split('/');
-    const userID = parts[parts.length - 1];
-    setUid(userID)
-    getmycart(userID).then((res) => {
-      setMyCart(res)
-      setCart(res)
-      console.log(res)
-    }) // Call the getmycart function only if cart is truthy
+    if (typeof window !== 'undefined') {
+      const url = window.location.href;
+      const parts = url.split('/');
+      const userID = parts[parts.length - 1];
+      setUid(userID)
+      getmycart(userID).then((res) => {
+        setMyCart(res)
+        setCart(res)
+        console.log(res)
+      }) // Call the getmycart function only if cart is truthy
+    }
     console.log(cart)
   }, [])
   return (
