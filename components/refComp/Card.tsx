@@ -109,7 +109,7 @@ const Cart = (params: any) => {
                     </div>
                   </div>
                 </div>
-                {userID === null ? <div><Link href="./login">blease sign in</Link> </div> : null}
+                {userID === null ? <div><Link href="./login">please sign in</Link> </div> : null}
                 {mycart?.map((product: any) => {
                   return (
                     <div key={`${product.id}-cart`} className="relative rounded-lg bg-bg shadow-[0px_1px_13px_rgba(0,_0,_0,_0.05)] w-full flex flex-row items-center justify-between overflow-hidden ">

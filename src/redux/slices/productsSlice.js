@@ -5,7 +5,6 @@ import {auth} from "../../firebase/firebase"
 
 const userID = auth.currentUser?.uid
   const getmycart = async () => {
-    console.log(userID)
     try {
       const response = await axios.get(`https://backend.touchtechco.com/userGen?coll=cart&userId=${userID}`);
       return response.data.data;
@@ -26,7 +25,7 @@ const cartSlice = createSlice({
             if (itemInCart) {
                 itemInCart.quantity=  parseInt(itemInCart.quantity) +1 ;
             } else {
-                state.cart.push({ ...action.payload, quantity: 1 });
+                state.cart.push({ ...action.payload });
             }
         },
         incrementQuantity: (state, action) => {
