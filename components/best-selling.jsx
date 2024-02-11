@@ -49,13 +49,13 @@ const BestSelling = () => {
         {data?null:<h1 className=" text-primary1">Loding....</h1>}
           {data?.map(p=>{
             return (
-              <SwiperSlide>
+              <SwiperSlide key={`best-prode${p.id}`}>
               <CardWithLinksAndText
                 title={p.title}
                 price={p.userPrice}
                 imageLink={p.colors[0].images[0]}
                 id={p.id}
-                key={`prod-${p.id}`}
+                key={`best-${p.id}`}
               />
               </SwiperSlide>
             )
