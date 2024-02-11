@@ -28,7 +28,7 @@ const OnePageProdac = (props: any) => {
   })
   // const fetchWish = async (id: any) => {
   //   try {
-  //     const response = await axios.post(`http://129.146.110.127:3000/gen?coll=wishlist`, {
+  //     const response = await axios.post(`https://backend.touchtechco.com/gen?coll=wishlist`, {
   //       "id": id,
   //       "productId": id,
   //       "addedAt": isoDate,

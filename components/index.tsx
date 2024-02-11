@@ -21,7 +21,7 @@ const HOME = () => {
   const dispatch = useDispatch()
   const fetchHome = async () => {
     try {
-      const response = await axios.get('http://129.146.110.127:3000/homeProducts');
+      const response = await axios.get(`https://backend.touchtechco.com/homeProducts`);
       return response.data.data;
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -30,7 +30,7 @@ const HOME = () => {
   };
   const fetchCategories = async () => {
     try {
-      const response = await axios.get('http://129.146.110.127:3000/categories');
+      const response = await axios.get(`https://backend.touchtechco.com/categories`);
       return response.data.data;
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -39,7 +39,7 @@ const HOME = () => {
   };
   // const fetchnewArrival = async () => {
   //   try {
-  //     const response = await axios.get('http://129.146.110.127:3000/newArrival');
+  //     const response = await axios.get(`https://backend.touchtechco.com/newArrival`);
   //     return response.data.data;
   //   } catch (error) {
   //     console.error('Error fetching data:', error);
@@ -48,7 +48,7 @@ const HOME = () => {
   // };
   // const fetchHighLight = async () => {
   //   try {
-  //     const response = await axios.get('http://129.146.110.127:3000/highlight');
+  //     const response = await axios.get(`https://backend.touchtechco.com/highlight`);
   //     return response.data.data;
   //   } catch (error) {
   //     console.error('Error fetching data:', error);

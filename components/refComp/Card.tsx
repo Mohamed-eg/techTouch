@@ -5,16 +5,19 @@ import Link from "next/link";
 import FooterComp from "../footer";
 import Image from "next/image";
 import { useSelector } from "react-redux";
-import { auth } from "../../src/firebase/firebase"
+import { auth } from "../../src/firebase/firebase";
+import { getAuth, onAuthStateChanged, User } from "@firebase/auth";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { toColor } from "../../functions"
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { removeItem } from "../../src/redux/slices/productsSlice"
+import { removeItem } from "../../src/redux/slices/productsSlice";
+import { setCart } from "../../src/redux/slices/productsSlice";
+import { setUserId } from "firebase/analytics";
 const Cart: NextPage = () => {
-  const user = auth.currentUser
-  const uid = user?.uid
+
+  const [userID, setUid] = useState<string | any>(null)
   let shipping = 0
   const cart = useSelector((state: any) => state.products.cart)
   const [mycart, setMyCart] = useState(cart)
@@ -25,10 +28,10 @@ const Cart: NextPage = () => {
     })
     return totalPrise
   }
-  const getmycart = async (uid: string | undefined) => {
-    console.log(uid)
+  const getmycart = async (userID: string | null) => {
+    console.log(userID)
     try {
-      const response = await axios.get(`http://129.146.110.127:3000/userGen?coll=cart&userId=${uid}`);
+      const response = await axios.get(`https://backend.touchtechco.com/userGen?coll=cart&userId=${userID}`);
       return response.data.data;
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -38,8 +41,8 @@ const Cart: NextPage = () => {
   const deleteOne = async (id: any) => {
     console.log(id)
     try {
-      const response = await axios.delete(`http://129.146.110.127:3000/gen?coll=cart`, { data: id })
-      return response.status
+      const response = await axios.delete(`https://backend.touchtechco.com/gen?coll=cart`, { data: id })
+      return response.data
     } catch (error) {
       console.error('Error fetching data:', error);
       return null;
@@ -48,19 +51,21 @@ const Cart: NextPage = () => {
   const handelDelete = (id: string) => {
     deleteOne(id).then((res) => {
       removeItem(id)
-      getmycart(uid).then(() => {
-        setMyCart(res)
-      })
       console.log(res)
     })
   }
   useEffect(() => {
-    getmycart(uid).then((res) => {
+    const url = window.location.href;
+    const parts = url.split('/');
+    const userID = parts[parts.length - 1];
+    setUid(userID)
+    getmycart(userID).then((res) => {
       setMyCart(res)
+      setCart(res)
       console.log(res)
     }) // Call the getmycart function only if cart is truthy
     console.log(cart)
-  }, [user])
+  }, [])
   return (
     <main className="bg-bg w-full mt-12 overflow-hidden flex flex-col items-center justify-start gap-[140px] text-left text-sm text-bg font-title-20px-medium">
       <div className="w-full overflow-hidden  flex flex-col items-center justify-center gap-[80px]">
@@ -98,7 +103,7 @@ const Cart: NextPage = () => {
                     </div>
                   </div>
                 </div>
-                {uid === null ? <div><Link href="./login">blease sign in</Link> </div> : null}
+                {userID === null ? <div><Link href="./login">blease sign in</Link> </div> : null}
                 {mycart?.map((product: any) => {
                   return (
                     <div key={`${product.id}-cart`} className="relative rounded-lg bg-bg shadow-[0px_1px_13px_rgba(0,_0,_0,_0.05)] w-full flex flex-row items-center justify-between overflow-hidden ">

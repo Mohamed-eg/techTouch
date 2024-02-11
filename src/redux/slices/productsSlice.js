@@ -1,16 +1,30 @@
 // src/redux/cartSlice.js
 import { createSlice } from '@reduxjs/toolkit';
+import axios from "axios"
+import {auth} from "../../firebase/firebase"
+
+const userID = auth.currentUser?.uid
+  const getmycart = async () => {
+    console.log(userID)
+    try {
+      const response = await axios.get(`https://backend.touchtechco.com/userGen?coll=cart&userId=${userID}`);
+      return response.data.data;
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      return null;
+    }
+  };
 
 const cartSlice = createSlice({
     name: 'cart',
     initialState: {
-        cart: [],
+        cart: getmycart()? getmycart():[] ,
     },
     reducers: {
         addToCart: (state, action) => {
-            const itemInCart = state.cart.find((item) => item.id === action.payload.id);
+            const itemInCart = state.cart.find((item) => item.id === action.payload.id &&item.color ===action.payload.color);
             if (itemInCart) {
-                itemInCart.quantity++;
+                itemInCart.quantity=  parseInt(itemInCart.quantity) +1 ;
             } else {
                 state.cart.push({ ...action.payload, quantity: 1 });
             }
@@ -43,4 +57,5 @@ export const {
     incrementQuantity,
     decrementQuantity,
     removeItem,
+    setCart,
 } = cartSlice.actions;

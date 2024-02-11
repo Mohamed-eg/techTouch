@@ -9,7 +9,7 @@ const BestSelling = () => {
   const [data, setData] = useState([]);
   const fetchBest = async () => {
     try {
-      const response = await axios.get('http://129.146.110.127:3000/bestSelling');
+      const response = await axios.get('`https://backend.touchtechco.com/bestSelling');
       return response.data.data;
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -46,7 +46,8 @@ const BestSelling = () => {
             1440: { slidesPerView: 5 },
           }}
         >   
-          {data.map(p=>{
+        {data?null:<h1 className=" text-primary1">Loding....</h1>}
+          {data?.map(p=>{
             return (
               <SwiperSlide>
               <CardWithLinksAndText

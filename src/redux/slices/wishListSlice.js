@@ -5,11 +5,13 @@ import axios from "axios";
 
 const milliseconds = Date.now();
 const isoDate = new Date(milliseconds).toISOString();
+const randomStrind = Math.random().toString(36).substring(2,8);
+const randomID =`${isoDate}-${randomStrind}`
 // const userId = auth.currentUser?.uid
  const fetchWish = async (id,userId) => {
     try {
-      const response = await axios.post(`http://129.146.110.127:3000/gen?coll=wishlist`, {
-        "id": id,
+      const response = await axios.post(`https://backend.touchtechco.com/gen?coll=wishlist`, {
+        "id": randomID,
         "productId": id,
         "addedAt": isoDate,
         "userId": userId
@@ -20,14 +22,9 @@ const isoDate = new Date(milliseconds).toISOString();
       return null;
     }
   };
- const deletItem = async (id,userId) => {
+ const deletItem = async (id) => {
     try {
-      const response = await axios.delete(`http://129.146.110.127:3000/gen?coll=wishlist`, {
-        "id": id,
-        "productId": id,//المفروض تبعت ال product Id بس 
-        "addedAt": isoDate,//استنه عمر علي ما بخلصها
-        "userId": userId
-      });
+      const response = await axios.delete(`https://backend.touchtechco.com/gen?coll=wishlist`, {data: id });
       return response;
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -41,8 +38,9 @@ const isoDate = new Date(milliseconds).toISOString();
       console.log(id, isoDate, userId)
     });
   }
-  const handeldeletitem = (id,userId) => {
-    deletItem(id,userId).then((response) => {
+  // delete the item from data base by his randum ID and delele it from rudex state by his product id
+  const handeldeletitem = (id=randomID) => {
+    deletItem(id).then((response) => {
       console.log(response)
       console.log(id, isoDate, userId)
     });
@@ -65,7 +63,7 @@ const listSlice = createSlice({
 
       } else {
         state.List.push({ ...action.payload }); //add item
-        handelHartClick(action.payload.id,action.payload.userId)
+        handelHartClick()
       }
     },
     removeItem: (state, action) => {

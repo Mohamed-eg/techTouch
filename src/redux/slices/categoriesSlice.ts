@@ -30,7 +30,7 @@ interface CategoriesState {
 
 // const fetchData = async () => {
 //     try {
-//         const response = await axios.get('http://129.146.110.127:3000/homeProducts');
+//         const response = await axios.get(`https://backend.touchtechco.com/homeProducts`);
 //         return response.data.data;
 //     } catch (error) {
 //         console.error('Error fetching data:', error);

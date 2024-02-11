@@ -13,7 +13,7 @@ const Profile = () => {
   const fetchUsed = async (userId) => {
     console.log(userId)
     try {
-      const response = await axios.get(`http://129.146.110.127:3000/gen?coll=users&id=${userId}`);
+      const response = await axios.get(`https://backend.touchtechco.com/gen?coll=users&id=${userId}`);
       return response.data
     } catch (error) {
       console.error('Error fetching data:', error);

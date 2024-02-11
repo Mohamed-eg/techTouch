@@ -116,7 +116,7 @@ const ProductDeltal = (producDeta: any) => {
 
   const getmyproduct = async () => {
     try {
-      const response = await axios.get(`http://129.146.110.127:3000/product?id=${productId}`);
+      const response = await axios.get(`https://backend.touchtechco.com/product?id=${productId}`);
       setMyproduct(response.data.data);
       // return response.data.data;
     } catch (error) {
@@ -134,7 +134,7 @@ const ProductDeltal = (producDeta: any) => {
     console.log(isoDate, uid)
     try {
       const response = await axios.post(
-        `http://129.146.110.127:3000/gen?coll=cart`,
+        `https://backend.touchtechco.com/gen?coll=cart`,
         {
           "id": randomeId,
           "productId": id,
@@ -160,6 +160,7 @@ const ProductDeltal = (producDeta: any) => {
   // const myid = producDeta.producDeta.params.id
   const dispatch = useDispatch()
   const AllProducts = useSelector((state: any) => state.categories.allproducts)
+  const cart = useSelector((state: any) => state.products.cart)
   // const mypage = AllProducts.find((page: any) => { return (page.find((product: any) => { return (product.id == myid) })) });
 
   const handelSubmit = (e: any, id: any, quantity: any, color: any, image: any, name: any, short: any, long: any, price: any) => {
@@ -168,39 +169,40 @@ const ProductDeltal = (producDeta: any) => {
     quantity > 0 && postCart(id, quantity, color, image, name, short, long, price).then((res) => {
       console.log(res);
     });
-    quantity > 0 && dispatch(addToCart({ id, name, image, price, color }))
+    quantity > 0 && dispatch(addToCart({ id, quantity, name, image, price, color }))
+    console.log(cart)
   }
   return (
     <>
       <section className="relative w-full mt-[200px] mb-[50px] overflow-hidden flex flex-col items-center justify-center">
-        <div><span>Home</span><span>/{myproduct.title}</span></div>
+        <div><span>Home</span><span>/{myproduct?.title}</span></div>
         <div className="flex flex-row p-12 justify-center items-start ">
           <div className="flex w-[50%] flex-row">
             <div className="flex flex-col w-[25%]">
-              <div className=" rounded-xl flex items-center justify-center mr-5 mb-[20px] bg-slate-100 p-4"><Image className="w-full h-auto object-contain p-5" alt="product" width={120} height={120} src={myproduct.colors[0]?.images[1]}></Image></div>
-              <div className=" rounded-xl flex items-center justify-center mr-5 mb-[20px] bg-slate-100 p-4"><Image className="w-full h-auto object-contain p-5" alt="product" width={120} height={120} src={myproduct.colors[0]?.images[2]}></Image></div>
-              <div className=" rounded-xl flex items-center justify-center mr-5 mb-[20px] bg-slate-100 p-4"><Image className="w-full h-auto object-contain p-5" alt="product" width={120} height={120} src={myproduct.colors[0]?.images[3]}></Image></div>
-              <div className=" rounded-xl flex items-center justify-center mr-5 bg-slate-100 p-4"><Image className="w-full h-auto object-contain p-5" alt="product" width={120} height={120} src={myproduct.colors[0]?.images[4]}></Image></div>
+              <div className=" rounded-xl flex items-center justify-center mr-5 mb-[20px] bg-slate-100 p-4"><Image className="w-full h-auto object-contain p-5" alt="product" width={120} height={120} src={myproduct?.colors[0]?.images[1]}></Image></div>
+              <div className=" rounded-xl flex items-center justify-center mr-5 mb-[20px] bg-slate-100 p-4"><Image className="w-full h-auto object-contain p-5" alt="product" width={120} height={120} src={myproduct?.colors[0]?.images[2]}></Image></div>
+              <div className=" rounded-xl flex items-center justify-center mr-5 mb-[20px] bg-slate-100 p-4"><Image className="w-full h-auto object-contain p-5" alt="product" width={120} height={120} src={myproduct?.colors[0]?.images[3]}></Image></div>
+              <div className=" rounded-xl flex items-center justify-center mr-5 bg-slate-100 p-4"><Image className="w-full h-auto object-contain p-5" alt="product" width={120} height={120} src={myproduct?.colors[0]?.images[4]}></Image></div>
             </div>
             <div className="w-[75%] rounded-xl flex justify-center items-center bg-slate-100 m-5">
-              <Image className="w-full h-auto object-contain p-5" alt="product" width={446} height={315} src={myproduct.colors[0]?.images[0]}></Image>
+              <Image className="w-full h-auto object-contain p-5" alt="product" width={446} height={315} src={myproduct?.colors[0]?.images[0]}></Image>
             </div>
           </div>
           <div className="flex flex-col items-start justify-start ml-16 w-[30%] text-black">
             <div className="">
-              <h1>{myproduct.title}</h1>
-              <h2 className="text-blue text-xl">{`${parseFloat(myproduct.userPrice.toFixed(2))} EGP`}</h2>
-              <p>{myproduct.longDesc}</p>
+              <h1>{myproduct?.title}</h1>
+              <h2 className="text-blue text-xl">{`${parseFloat(myproduct?.userPrice.toFixed(2))} EGP`}</h2>
+              <p>{myproduct?.longDesc}</p>
             </div>
-            <form action="" onSubmit={(event) => handelSubmit(event, myproduct.id, quantity.toString(), color, myproduct.colors.find((e: any) => e.color === color)?.images[0] || "", myproduct.title, myproduct.shortDesc, myproduct.longDesc, myproduct.userPrice)}>
+            <form action="" onSubmit={(event) => handelSubmit(event, myproduct?.id, quantity.toString(), color, myproduct?.colors.find((e: any) => e.color === color)?.images[0] || "", myproduct?.title, myproduct?.shortDesc, myproduct?.longDesc, myproduct?.userPrice)}>
               <div>
                 <div>
                   <span>Colours</span>
                   <div className="my-[10px] flex flex-wrap w-full text-white ml-[-10px]">
-                    {myproduct.colors.map((e: any) => {
+                    {myproduct?.colors.map((e: any) => {
                       return (
                         <div style={{ background: toColor(parseInt(e.color)) }} className={`w-[18px] h-[18px] p-2 flex items-center justify-center rounded-full m-2 !box-content border-[5px] border-solid`}
-                          key={`page--product-${myproduct.id}`}>
+                          key={`page--product-${myproduct?.id}`}>
                           <input type="radio" className="m-0" name={e.color} checked={e.color === color} value={e.color} onClick={() => {
                             setColor(e.color)
                             if (e.color != color) { setQuantity(0) }
@@ -251,16 +253,18 @@ const ProductDeltal = (producDeta: any) => {
               <div className="flex m-5 w-[270px] flex-row group items-center justify-start gap-[16px]" key={`related-${product.id}`}>
                 <div className="relative flex flex-col normal-border w-full leading-[20px] font-semibold">
                   <div className="w-full relative hover: flex flex-col rounded-xl z-0 h-[250px] items-center bg-slate-100 overflow-hidden">
-                    <Link href={`/productDeta/${product.id}`} className="object-contain w-full"> <Image width={344} height={360} alt="img" src={product.colors[0]?.images[0]} className="w-full h-auto  object-contain p-10" /></Link>
-                    <FontAwesomeIcon onClick={(mouse_event, id = product.id, name = product.name, url = product.url, prise = product.prise, colors = product.colors) => dispatch(addToList({ id, name, url, prise, colors }))} icon={faHeart} className={`w-[18px] ${List.find((p: any) => p.id === product.id) ? "loved" : "unloved"} cursor-pointer h-[18px] absolute right-2 top-2 text-black bg-white p-2 rounded-full`} />
-                    <div className={`w-[51px] h-[26px] absolute top-2 left-2 rounded-lg text-white text-center leading-[26px] bg-scondry ${!product.isNew && "hidden"} `}>new</div>
-                    <button onClick={(mouse_event, categore = product.categories, id = product.id, name = product.name, url = product.url, prise = product.prise, colors = product.colors) => dispatch(addToCart({ id, name, url, prise, colors, categore }))}
-                      className="w-[270px] h-[40px] absolute text-white  bottom-[-40px] group-hover:bottom-[0px] z-10 text-xl duration-300 p-1 cursor-pointer bg-scondry border-none flex items-center justify-center flex-row"
-                    ><Image alt="img" className="w-[24px] mr-[10px] h-[24px]" src={cartIcon} /><p className="m-0">add to cart</p></button>
+
+                    <FontAwesomeIcon onClick={(mouse_event, id = product.id, name = product.name, url = product.url, prise = product.prise, colors = product.colors) => dispatch(addToList({ id, name, url, prise, colors }))} icon={faHeart} className={`w-[18px] ${List.find((p: any) => p.id === product.id) ? "loved" : "unloved"} cursor-pointer h-[18px] absolute right-2 top-2 text-[#bcbbbb] bg-white p-2 rounded-full`} />
+                    <Link href={`/productDeta/${product.id}`}>
+                      <Image width={344} height={360} alt="img" src={product.colors[0]?.images[0]} className="w-full h-auto  object-contain p-10" />
+                      <div className={`w-[51px] h-[26px] absolute top-2 left-2 rounded-lg text-white text-center leading-[26px] bg-scondry ${!product.isNew && "hidden"} `}>new</div>
+                      <button className="w-[270px] h-[40px] absolute text-white  bottom-[-40px] group-hover:bottom-[0px] z-10 text-xl duration-300 p-1 cursor-pointer bg-scondry border-none flex items-center justify-center flex-row"
+                      ><Image alt="img" className="w-[24px] mr-[10px] h-[24px]" src={cartIcon} /><p className="m-0">add to cart</p></button>
+                    </Link>
                   </div>
                   <div>
                     <p className="text-black">{product.title}</p>
-                    <span className="">{`${product.prise} EGP`}</span>
+                    <span className="">{`${product.userPrice} EGP`}</span>
                   </div>
                   <div className="my-[10px] flex flex-wrap w-full text-white ml-[-10px]">
                     {product.colors.map((e: any) => {

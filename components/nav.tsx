@@ -14,6 +14,7 @@ import axios from "axios";
 import { auth } from "../src/firebase/firebase";
 import { useDispatch } from 'react-redux';
 import { createList } from '../src/redux/slices/searchSlice';
+import { list } from "@chakra-ui/react";
 
 interface NavItemProps {
   text: string;
@@ -36,7 +37,7 @@ const Nav = () => {
   const dispatch = useDispatch()
   const fetchSearch = async () => {
     try {
-      const response = await axios.get(`http://129.146.110.127:3000/searchProduct?searchQuery=${searchComponentSetValue}`);
+      const response = await axios.get(`https://backend.touchtechco.com/searchProduct?searchQuery=${searchComponentSetValue}`);
       return response.data.data;
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -47,20 +48,6 @@ const Nav = () => {
   const List = useSelector((state: any) => state.wishList.List)
   const myredux = useSelector((state: any) => state.searchList.List)
 
-  const getTotalQuantity = () => {
-    let total = 0
-    cart.forEach((item: any) => {
-      total += item.quantity
-    })
-    return total
-  }
-  const getWishQuantity = () => {
-    let total = 0
-    List.forEach((item: any) => {
-      total++
-    })
-    return total
-  }
   const handelSubmit = (e: any) => {
     e.preventDefault()
     fetchSearch().then((data: any) => {
@@ -72,7 +59,7 @@ const Nav = () => {
 
 
   const onIconsCurvedBuyClick = useCallback(() => {
-    router.push("/cart");
+    router.push(`/cart/${uid}`);
   }, [router]);
   // const onIconsPersonClick = useCallback(() => {
   //   router.push("/login");
@@ -128,7 +115,7 @@ const Nav = () => {
           <div className="relative flex flex-row items-center justify-center gap-[2vw]">
 
             <div className="relative max-sm:hidden"><NavItem text="" icon={faHeart} href="/wishList" /> <span className="bg-[#d61414] absolute top-[-10px] right-[0] px-1 text-white rounded-full ">
-              {getWishQuantity() || 0}</span></div>
+              {List.length || 0}</span></div>
 
             <div onClick={(e, id = uid) => { router.push(`/${id ? id : "login"}`) }}>
               <Image alt="img"
@@ -143,7 +130,7 @@ const Nav = () => {
                 src={buyImg}
                 onClick={onIconsCurvedBuyClick}
               />
-              <span className="bg-[#d61414] absolute top-[-8px] right-[-5px] px-1 text-white rounded-full ">{getTotalQuantity() || 0}</span>
+              <span className="bg-[#d61414] absolute top-[-8px] right-[-5px] px-1 text-white rounded-full ">{cart.length || 0}</span>
             </div>
             <div className="hidden max-sm:block"><Sidebar /></div>
 

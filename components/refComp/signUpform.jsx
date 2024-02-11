@@ -46,7 +46,7 @@ const Signup = () => {
   } = useForm(formOptions);
 
   const postUser = async (userData) => {
-    const url = 'http://129.146.110.127:3000/gen?coll=users'
+    const url = `https://backend.touchtechco.com/gen?coll=users`
     console.log(userData)
     try {
       const response = await axios.post(url ,userData);
