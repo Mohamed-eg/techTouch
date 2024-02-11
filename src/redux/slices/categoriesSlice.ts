@@ -1,4 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { auth } from "../../firebase/firebase";
+const uid = auth.currentUser?.uid
 // import { useEffect } from "react";
 // import axios from 'axios';
 
@@ -25,7 +27,7 @@ interface CategoriesState {
     selectedCategory: Category | string;
     allproducts: allProducts | any;
     selectedProducts: any
-
+    currentUser: any
 }
 
 // const fetchData = async () => {
@@ -100,7 +102,8 @@ const initialState: CategoriesState = {
         { createdAt: "2024-01-07T14", quantety: 95, title: "Tools", id: "9", imageLink: "/device-smart-watch.svg" },],
     selectedCategory: 'computer',
     selectedProducts: [],
-    allproducts: statecData
+    allproducts: statecData,
+    currentUser: uid
 };
 
 const categoriesSlice = createSlice({

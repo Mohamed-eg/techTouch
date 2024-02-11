@@ -17,14 +17,9 @@ import { useEffect, useId, useState } from "react"
 import { generateUniqueId } from "../../functions"
 import { auth } from "../../src/firebase/firebase"
 const ProductDeltal = (producDeta: any) => {
-  const [url, setUrl] = useState('');
-  if (typeof window !== 'undefined') {
-    const url = window?.location.href;
-    setUrl(url)
-  }
-
-  const parts = url.split('/');
-  const productId = parts[parts.length - 1];
+  // const url = window?.location.href;
+  // const parts = url.split('/');
+  const productId = producDeta.id;
   const uid = auth.currentUser?.uid
   const milliseconds = Date.now();
   const isoDate = new Date(milliseconds).toISOString();
@@ -121,7 +116,7 @@ const ProductDeltal = (producDeta: any) => {
 
   const getmyproduct = async () => {
     try {
-      const response = await axios.get(`https://backend.touchtechco.com/product?id=${productId}`);
+      const response = await axios.get(`https://backend.touchtechco.com/product?id=${producDeta.id}`);
       setMyproduct(response.data.data);
       // return response.data.data;
     } catch (error) {

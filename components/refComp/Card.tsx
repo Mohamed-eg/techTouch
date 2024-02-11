@@ -54,18 +54,17 @@ const Cart: NextPage = () => {
       console.log(res)
     })
   }
+  const userId = useSelector((state: any) => state.categories.currentUser);
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const url = window.location.href;
-      const parts = url.split('/');
-      const userID = parts[parts.length - 1];
-      setUid(userID)
-      getmycart(userID).then((res) => {
-        setMyCart(res)
-        setCart(res)
-        console.log(res)
-      }) // Call the getmycart function only if cart is truthy
-    }
+    // const url = window.location.href;
+    // const parts = url.split('/');
+    // const userID = parts[parts.length - 1];
+    setUid(userId)
+    getmycart(userId).then((res) => {
+      setMyCart(res)
+      setCart(res)
+      console.log(res)
+    }) // Call the getmycart function only if cart is truthy
     console.log(cart)
   }, [])
   return (
