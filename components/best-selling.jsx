@@ -9,7 +9,7 @@ const BestSelling = () => {
   const [data, setData] = useState([]);
   const fetchBest = async () => {
     try {
-      const response = await axios.get('`https://backend.touchtechco.com/bestSelling');
+      const response = await axios.get('https://backend.touchtechco.com/bestSelling');
       return response.data.data;
     } catch (error) {
       console.error('Error fetching data:', error);

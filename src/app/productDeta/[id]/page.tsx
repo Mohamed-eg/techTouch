@@ -9,9 +9,7 @@ const page = ({ params }: { params: { id: string } }) => {
   return (
     <>
       <MainHeader />
-      <ProductDeltal params={{
-        id: params.id
-      }} />
+      <ProductDeltal params={{ id: params.id }} />
       <FooterComp
         frameDivPosition="unset"
         frameDivBottom="unset"

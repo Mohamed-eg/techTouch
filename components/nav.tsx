@@ -59,7 +59,7 @@ const Nav = () => {
 
 
   const onIconsCurvedBuyClick = useCallback(() => {
-    router.push(`/cart/${uid}`);
+    router.push(`/cart/id=${uid}`);
   }, [router]);
   // const onIconsPersonClick = useCallback(() => {
   //   router.push("/login");

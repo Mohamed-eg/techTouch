@@ -14,9 +14,14 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { removeItem } from "../../src/redux/slices/productsSlice";
 import { setCart } from "../../src/redux/slices/productsSlice";
+import { useSearchParams } from 'next/navigation';
+
 import { setUserId } from "firebase/analytics";
-const Cart: NextPage = (params: any) => {
-  const uid = params.uid;
+const Cart = (params: any) => {
+  const searchParams = useSearchParams();
+  const query = searchParams.get('id');
+  const uid = params.id;
+  console.log(query)
   const [userID, setUid] = useState<string | any>(null)
   let shipping = 0
   const cart = useSelector((state: any) => state.products.cart)
@@ -31,7 +36,7 @@ const Cart: NextPage = (params: any) => {
   const getmycart = async (userID: string | null) => {
     console.log(userID)
     try {
-      const response = await axios.get(`https://backend.touchtechco.com/userGen?coll=cart&userId=${userID}`);
+      const response = await axios.get(`https://backend.touchtechco.com/userGen?coll=cart&userId=fgw7clYXEnfnCyvcJXSPgdY7lha2`);
       return response.data.data;
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -59,8 +64,8 @@ const Cart: NextPage = (params: any) => {
     // const url =  .location.href;
     // const parts = url.split('/');
     // const userID = parts[parts.length - 1];
-    setUid(uid)
-    getmycart(uid).then((res) => {
+    setUid(query)
+    getmycart(query).then((res) => {
       setMyCart(res)
       setCart(res)
       console.log(res)
