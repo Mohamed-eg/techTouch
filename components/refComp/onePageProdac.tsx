@@ -32,7 +32,6 @@ const OnePageProdac = (props: any) => {
               <div className="w-full relative hover: flex flex-col rounded-xl z-0 h-[250px] items-center bg-slate-100 overflow-hidden">
 
                 <FontAwesomeIcon onClick={(mouse_event, id = product.id, name = product.title, url = product.url, prise = product.prise, colors = product.colors) => {
-                  // handelHartClick(id)
                   dispatch(addToList({ id, name, url, prise, colors, userId }))
                 }} icon={faHeart} className={`w-[18px] cursor-pointer ${List.find((p: any) => p.id === product.id) ? "loved" : "unloved"} h-[18px] absolute right-2 top-2 text-[#cfcfcf] bg-white p-2 rounded-full`} />
                 <Link href={userId ? `/productDeta/id?id=${product.id}` : `./login`}>

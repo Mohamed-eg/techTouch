@@ -33,8 +33,7 @@ const Cart = (params: any) => {
     })
     return totalPrise
   }
-  const getmycart = async (userID: string | null) => {
-    console.log(userID)
+  const getmycart = async () => {
     try {
       const response = await axios.get(`https://backend.touchtechco.com/userGen?coll=cart&userId=${query}`);
       return response.data.data;
@@ -54,10 +53,16 @@ const Cart = (params: any) => {
     }
   }
   const handelDelete = (id: string) => {
-    deleteOne(id).then((res) => {
-      removeItem(id)
-      setCart(cart)
-      console.log(res)
+    deleteOne(id).then(() => {
+      getmycart().then((res) => {
+        setMyCart(res)
+        setCart(res)
+        console.log(cart)
+      })
+      // removeItem(id)
+      // console.log(cart)
+      // setCart(cart)
+      // console.log(cart)
     })
   }
   // const userId = useSelector((state: any) => state.categories.currentUser);
@@ -66,7 +71,7 @@ const Cart = (params: any) => {
     // const parts = url.split('/');
     // const userID = parts[parts.length - 1];
     setUid(query)
-    getmycart(query).then((res) => {
+    getmycart().then((res) => {
       setMyCart(res)
       setCart(res)
       console.log(res)

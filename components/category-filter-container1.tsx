@@ -9,7 +9,7 @@ import Link from "next/link";
 
 const CategoryFilterContainer1: NextPage = () => {
 
-  const categories = useSelector((state: any) => state.categories)
+  const categories = useSelector((state: any) => state.categories.allCategories)
   return (
     <div className=" flex flex-col items-start w-full justify-start gap-[60px] text-center text-base text-primary1 font-title-20px-semibold">
       <div className=" flex flex-row items-end justify-start max-sm:gap-[0] max-sm:w-full gap-[47vw]">
@@ -51,7 +51,7 @@ const CategoryFilterContainer1: NextPage = () => {
             1440: { slidesPerView: 5 },
           }}
         >
-          {categories.allCategories.map((category: any) => {
+          {categories.map((category: any) => {
             return (
               <SwiperSlide className=" !w-[170px]" key={category.title}>
                 <Link href={`./home`}>

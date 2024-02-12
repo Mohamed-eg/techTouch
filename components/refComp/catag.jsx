@@ -1,8 +1,9 @@
 "use client";
-import { Fragment, useState } from "react";
+import { Fragment, useState,useEffect } from "react";
 import { addToCart } from "../../src/redux/slices/productsSlice";
 import { addToList } from "../../src/redux/slices/wishListSlice";
 import { setSelectedProducts } from "../../src/redux/slices/categoriesSlice";
+import { setSelectedCategory } from "../../src/redux/slices/categoriesSlice";
 import productImg from "../../public/ideapadgaming3i01500x500-1@2x.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
@@ -13,6 +14,8 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 import FooterComp from "../footer";
 import MainHeader from "../main-header";
 import Image from "next/image";
+import { ColorPicker, useColor } from "react-color-palette";
+import "react-color-palette/css";
 import cartIcon from "../../public/Buy.svg";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/pagination";
@@ -27,6 +30,7 @@ import {
   PlusIcon,
   Squares2X2Icon,
 } from "@heroicons/react/20/solid";
+
 
 const sortOptions = [
   { name: "Most Popular", href: "#", current: true },
@@ -87,12 +91,31 @@ const isitcheaked = () => {
 };
 
 export default function Categorypage() {
-  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(true);
-  const categories = useSelector((state) => state.categories.allCategories);
+  const [catProd,setCatProd] = useState([]);
+  const [checked,setChecked] = useState(false)
   const AllProducts = useSelector((state) => state.categories.allproducts);
-  const selectedProduct = useSelector(
-    (state) => state.categories.selectedProducts
+  const categories = useSelector((state) => state.categories.allCategories)
+  const [color, setColor] = useColor("rgb(86 30 203)");
+  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(true);
+  const selectedCategory = useSelector(
+    (state) => state.categories.selectedCategory
   );
+  const fetchCat = async () => {
+    console.log(selectedCategory)
+    try {
+      const response = await axios.get(`https://backend.touchtechco.com/fieldGen?coll=products&filedName=categoryId&filedValue=${selectedCategory}`);
+      return response.data.data;
+
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      return null;
+    }
+  };
+  useEffect(()=>{
+    fetchCat().then((res)=>{setCatProd(res)
+      console.log(catProd)})
+
+  },[selectedCategory])
   const List = useSelector((state) => state.wishList.List);
   const dispatch = useDispatch();
   return (
@@ -154,17 +177,17 @@ export default function Categorypage() {
                       ))}
                     </ul> */}
 
-                    {filters.map((section) => (
+
                       <Disclosure
                         as="div"
-                        key={section.id}
+                        key={"mobilecolor"}
                         className="border-t border-gray-200 px-4 py-6">
                         {({ open }) => (
                           <>
                             <h3 className="-mx-2 -my-3 flow-root">
                               <Disclosure.Button className="flex w-full items-center justify-between bg-white px-2 py-3 text-gray-400 hover:text-gray-500">
                                 <span className="font-medium text-gray-900">
-                                  {section.name}
+                                  color
                                 </span>
                                 <span className="ml-6 flex items-center">
                                   {open ? (
@@ -183,22 +206,56 @@ export default function Categorypage() {
                             </h3>
                             <Disclosure.Panel className="pt-6">
                               <div className="space-y-6">
-                                {section.options.map((option, optionIdx) => (
+                              <ColorPicker color={color} onChange={setColor} />;
+                              </div>
+                            </Disclosure.Panel>
+                          </>
+                        )}
+                      </Disclosure>
+                      <Disclosure
+                        as="div"
+                        key={"mobileid"}
+                        className="border-t border-gray-200 px-4 py-6">
+                        {({ open }) => (
+                          <>
+                            <h3 className="-mx-2 -my-3 flow-root">
+                              <Disclosure.Button className="flex w-full items-center justify-between bg-white px-2 py-3 text-gray-400 hover:text-gray-500">
+                                <span className="font-medium text-gray-900">
+                                  category
+                                </span>
+                                <span className="ml-6 flex items-center">
+                                  {open ? (
+                                    <MinusIcon
+                                      className="h-5 w-5"
+                                      aria-hidden="true"
+                                    />
+                                  ) : (
+                                    <PlusIcon
+                                      className="h-5 w-5"
+                                      aria-hidden="true"
+                                    />
+                                  )}
+                                </span>
+                              </Disclosure.Button>
+                            </h3>
+                            <Disclosure.Panel className="pt-6">
+                              <div className="space-y-6">
+                                {categories.map((option, optionIdx) => (
                                   <div
-                                    key={option.value}
+                                    key={option.title}
                                     className="flex items-center">
                                     <input
-                                      id={`filter-mobile-${section.id}-${optionIdx}`}
-                                      name={`${section.id}[]`}
-                                      defaultValue={option.value}
+                                      id={`filter-mobile-${option.id}-${optionIdx}`}
+                                      name={`${option.id}[]`}
+                                      defaultValue={option.title}
                                       type="checkbox"
-                                      defaultChecked={option.checked}
+                                      defaultChecked={true}
                                       className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                                     />
                                     <label
-                                      htmlFor={`filter-mobile-${section.id}-${optionIdx}`}
+                                      htmlFor={`filter-mobile-${option.id}-${optionIdx}`}
                                       className="ml-3 min-w-0 flex-1 text-gray-500">
-                                      {option.label}
+                                      {option.title}
                                     </label>
                                   </div>
                                 ))}
@@ -207,7 +264,7 @@ export default function Categorypage() {
                           </>
                         )}
                       </Disclosure>
-                    ))}
+  
                   </form>
                 </Dialog.Panel>
               </Transition.Child>
@@ -218,7 +275,7 @@ export default function Categorypage() {
         <main className="mx-auto  max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="w-full !flex justify-center items-center overflow-hidden">
             <Swiper
-              className="!flex justify-center items-center"
+              className="!flex justify-center !w-[100vw] items-center"
               modules={[Pagination, A11y]}
               slidesPerView={1}
               loop={true}
@@ -226,35 +283,35 @@ export default function Categorypage() {
               <SwiperSlide className="">
                 <Image
                   alt="img"
-                  className="w-full object-contain"
+                  className="w-full object-contain rounded-lg"
                   src={slidesImg}
                 />
               </SwiperSlide>
               <SwiperSlide className="">
                 <Image
                   alt="img"
-                  className="w-full object-contain"
+                  className="w-full object-contain rounded-lg"
                   src={slidesImg}
                 />
               </SwiperSlide>
               <SwiperSlide className="">
                 <Image
                   alt="img"
-                  className="w-full object-contain"
+                  className="w-full object-contain rounded-lg"
                   src={slidesImg}
                 />
               </SwiperSlide>
               <SwiperSlide className="">
                 <Image
                   alt="img"
-                  className="w-full object-contain"
+                  className="w-full object-contain rounded-lg"
                   src={slidesImg}
                 />
               </SwiperSlide>
               <SwiperSlide className="">
                 <Image
                   alt="img"
-                  className="w-full object-contain"
+                  className="w-full object-contain rounded-lg"
                   src={slidesImg}
                 />
               </SwiperSlide>
@@ -263,7 +320,7 @@ export default function Categorypage() {
 
           <div className="flex items-baseline justify-between border-b border-gray-200 pb-6">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900">
-              New Arrivals
+              explore our products
             </h1>
 
             <div className="flex items-center">
@@ -334,10 +391,8 @@ export default function Categorypage() {
             <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
               <div className="lg:col-span-3 ">
                 <div className="w-full flex flex-row items-center justify-center flex-wrap">
-                  {AllProducts.flat()
-                    .filter((p) => {
-                      return p.ischeaked;
-                    })
+                  {catProd?null:<h1>there is no product matcheing</h1>}
+                  {catProd?.flat()
                     .map((product) => {
                       {
                         /* {selectedProduct.map((product) => { */
@@ -437,17 +492,17 @@ export default function Categorypage() {
               {/* Filters */}
               <form className="hidden lg:block">
                 <h3 className="sr-only">Categories</h3>
-                {filters.map((section) => (
+                 
                   <Disclosure
                     as="div"
-                    key={section.id}
+                    key={"useid"}
                     className="border-b border-gray-200 py-6">
                     {({ open }) => (
                       <>
                         <h3 className="-my-3 flow-root">
                           <Disclosure.Button className="flex w-full items-center justify-between rounded-lg bg-white py-3 text-sm text-gray-400 hover:text-gray-500">
                             <span className="font-medium text-gray-900">
-                              {section.name}
+                              color
                             </span>
                             <span className="ml-6 flex items-center">
                               {open ? (
@@ -466,26 +521,60 @@ export default function Categorypage() {
                         </h3>
                         <Disclosure.Panel className="pt-6">
                           <div className="space-y-4">
-                            {section.options.map((option, optionIdx) => (
+                          <ColorPicker color={color} onChange={setColor} />;
+                          </div>
+                        </Disclosure.Panel>
+                      </>
+                    )}
+                  </Disclosure>
+                  <Disclosure
+                    as="div"
+                    key={"altid"}
+                    className="border-b border-gray-200 py-6">
+                    {({ open }) => (
+                      <>
+                        <h3 className="-my-3 flow-root">
+                          <Disclosure.Button className="flex w-full items-center justify-between rounded-lg bg-white py-3 text-sm text-gray-400 hover:text-gray-500">
+                            <span className="font-medium text-gray-900">
+                              category
+                            </span>
+                            <span className="ml-6 flex items-center">
+                              {open ? (
+                                <MinusIcon
+                                  className="h-5 w-5"
+                                  aria-hidden="true"
+                                />
+                              ) : (
+                                <PlusIcon
+                                  className="h-5 w-5"
+                                  aria-hidden="true"
+                                />
+                              )}
+                            </span>
+                          </Disclosure.Button>
+                        </h3>
+                        <Disclosure.Panel className="pt-6">
+                          <div className="space-y-4">
+                            {categories.map((option, optionIdx) => (
                               <div
-                                key={option.value}
+                                key={option.title}
                                 className="flex items-center">
                                 <input
-                                  id={`filter-${section.id}-${optionIdx}`}
-                                  name={`${section.id}[]`}
-                                  defaultValue={option.value}
+                                  id={`filter-${option.id}-${optionIdx}`}
+                                  name={`${option.id}[]`}
+                                  defaultValue={option.title}
                                   type="checkbox"
-                                  defaultChecked={option.checked}
+                                  defaultChecked={checked}
                                   className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                                  onClick={(e, category = option.value) => {
-                                    option.checked = !option.checked;
-                                    dispatch(setSelectedProducts({ category }));
+                                  onClick={(e, categoryId = option.id) => {
+                                    setChecked(!checked)
+                                    dispatch(setSelectedCategory(option.id));
                                   }}
                                 />
                                 <label
-                                  htmlFor={`filter-${section.id}-${optionIdx}`}
+                                  htmlFor={`filter-${option.id}-${optionIdx}`}
                                   className="ml-3 text-sm text-gray-900">
-                                  {option.label}
+                                  {option.title}
                                 </label>
                               </div>
                             ))}
@@ -494,7 +583,7 @@ export default function Categorypage() {
                       </>
                     )}
                   </Disclosure>
-                ))}
+                
               </form>
             </div>
           </section>
