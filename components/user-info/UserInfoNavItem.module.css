@@ -1,0 +1,14 @@
+.Main {
+  padding: 15px;
+  cursor: pointer;
+
+  font-weight: 600;
+}
+
+.Main:hover {
+  color: #0a5c99;
+}
+
+.active {
+  color: #0a5c99;
+}

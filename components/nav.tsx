@@ -117,7 +117,7 @@ const Nav = () => {
             <div className="relative max-sm:hidden"><NavItem text="" icon={faHeart} href="/wishList" /> <span className="bg-[#d61414] absolute top-[-10px] right-[0] px-1 text-white rounded-full ">
               {List.length || 0}</span></div>
 
-            <div onClick={(e, id = uid) => { router.push(`/${id ? id : "login"}`) }}>
+            <div onClick={(e, id = uid) => { router.push(`/user-info/${id ? id : "login"}`) }}>
               <Image alt="img"
                 className="relative w-[2.2vw] h-[2.2vw] max-md:w-[5vw] max-md:h-[5vw] max-w-8 max-h-8 overflow-hidden object-cover max-sm:hidden cursor-pointer"
                 src={userImg}

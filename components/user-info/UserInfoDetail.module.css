@@ -1,0 +1,35 @@
+.Main {
+  border: 1px solid rgb(221, 221, 221);
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0px 0px 15px #0000000e;
+  background-color: white;
+
+  font-size: 0.97rem;
+
+  flex-grow: 4;
+}
+
+.Main td,
+.Main th {
+  padding: 12px;
+}
+
+.Main thead th {
+  font-weight: 600;
+}
+
+.Main tbody th {
+  font-weight: 500;
+}
+
+.Main a {
+  font-weight: 500;
+
+  text-decoration: none;
+  color: #0a5c99;
+}
+
+.Main a:hover {
+  color: #024274;
+}
