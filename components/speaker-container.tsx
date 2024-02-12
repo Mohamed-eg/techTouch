@@ -2,6 +2,7 @@
 import type { NextPage } from "next";
 import Link from "next/link"
 import { useMemo, type CSSProperties } from "react";
+import { auth } from "../src/firebase/firebase";
 import UnderLineIcon from "./under-line-icon";
 
 type SpeakerContainerType = {
@@ -19,6 +20,7 @@ const SpeakerContainer: NextPage<SpeakerContainerType> = ({
   propWidth,
   productID,
 }) => {
+  const userId = auth.currentUser?.uid;
   const amazonWirelessSpeakersStyle: CSSProperties = useMemo(() => {
     return {
       width: propWidth,
@@ -38,7 +40,7 @@ const SpeakerContainer: NextPage<SpeakerContainerType> = ({
           {productDescription}
         </div>
       </div>
-      <Link href={`./productDeta/${productID}`}>
+      <Link className=" cursor-pointer" href={userId ? `/productDeta/id?id=${productID}` : `./login`}>
         <div className=" flex flex-col items-start justify-start text-base text-secondary-colors-white font-title-20px-semibold">
           <div className="relative leading-[24px] cursor-pointer font-medium">Shop Now</div>
           <UnderLineIcon

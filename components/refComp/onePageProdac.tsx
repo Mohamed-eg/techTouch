@@ -35,9 +35,9 @@ const OnePageProdac = (props: any) => {
                   // handelHartClick(id)
                   dispatch(addToList({ id, name, url, prise, colors, userId }))
                 }} icon={faHeart} className={`w-[18px] cursor-pointer ${List.find((p: any) => p.id === product.id) ? "loved" : "unloved"} h-[18px] absolute right-2 top-2 text-[#cfcfcf] bg-white p-2 rounded-full`} />
-                <Link href={`/productDeta/id?id=${product.id}`}>
+                <Link href={userId ? `/productDeta/id?id=${product.id}` : `./login`}>
                   <div className="object-contain w-full">
-                    <Image alt="img" width={240} height={250} src={product.colors[0].images[0]} className="w-full h-auto !rounded-lg object-contain p-5" /></div>
+                    <Image alt="img" width={240} height={250} src={product.colors[0].images[0]} className="w-full h-auto !rounded-t-lg object-contain " /></div>
 
                   <div className={`w-[51px] h-[26px] absolute top-2 left-2 !rounded-lg text-white text-center leading-[26px] bg-scondry ${!product.isNew && "hidden"} `}>new</div>
 

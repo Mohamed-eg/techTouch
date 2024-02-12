@@ -42,7 +42,7 @@ const randomID =`${isoDate}-${randomStrind}`
   const handeldeletitem = (id=randomID) => {
     deletItem(id).then((response) => {
       console.log(response)
-      console.log(id, isoDate, userId)
+      console.log(id, isoDate)
     });
   }
 
@@ -79,4 +79,4 @@ const listSlice = createSlice({
 });
 
 export const wishListReducer = listSlice.reducer;
-export const { addToList, removeItem } = listSlice.actions;
+export const { addToList, removeItem,changAll } = listSlice.actions;

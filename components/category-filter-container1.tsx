@@ -55,10 +55,10 @@ const CategoryFilterContainer1: NextPage = () => {
             return (
               <SwiperSlide className=" !w-[170px]" key={category.title}>
                 <Link href={`./home`}>
-                  <div className="relative flex flex-row w-[170px] h-[145px] items-center cursor-poniter justify-center peer border hover:bg-scondry border-[#0000004d] border-solid rounded-3xl gap-[16px]">
-                    <div className="relative leading-[20px] hover:text-white font-semibold">
-                      <Image width={140} height={80} alt="img" src={category.imageLink} className="text-white rounded-lg bg-cover" />
-                      <p className="text-[#000] peer-hover:text-white">{category.title}</p>
+                  <div className="relative flex flex-row w-[170px] h-[145px] !p-0 items-center cursor-poniter justify-center peer border hover:bg-scondry border-[#0000004d] border-solid rounded-3xl overflow-hidden">
+                    <div className="relative w-full leading-[20px] mt-0 hover:text-white font-semibold">
+                      <Image width={140} height={80} alt="img" src={category.imageLink} className="text-white w-full m-0 h-auto mt-0 rounded-t-lg bg-cover" />
+                      <p className="text-[#000] m-0 pb-3 peer-hover:text-white">{category.title}</p>
                     </div>
                   </div>
                 </Link>

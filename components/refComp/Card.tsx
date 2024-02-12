@@ -56,6 +56,7 @@ const Cart = (params: any) => {
   const handelDelete = (id: string) => {
     deleteOne(id).then((res) => {
       removeItem(id)
+      setCart(cart)
       console.log(res)
     })
   }

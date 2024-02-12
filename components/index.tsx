@@ -16,6 +16,7 @@ import { useDispatch } from 'react-redux';
 import { setAllProducts } from '../src/redux/slices/categoriesSlice';
 import { setCategories } from '../src/redux/slices/categoriesSlice';
 import { setCart } from '../src/redux/slices/productsSlice';
+import { changAll } from '../src/redux/slices/wishListSlice';
 import { useSearchParams } from 'next/navigation';
 
 const HOME = () => {
@@ -44,6 +45,16 @@ const HOME = () => {
     console.log(userID)
     try {
       const response = await axios.get(`https://backend.touchtechco.com/userGen?coll=cart&userId=${userID}`);
+      return response.data.data;
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      return null;
+    }
+  };
+  const getmyList = async (userID: String | undefined) => {
+    console.log(userID)
+    try {
+      const response = await axios.get(`https://backend.touchtechco.com/userGen?coll=cart&wishlist=${userID}`);
       return response.data.data;
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -79,6 +90,10 @@ const HOME = () => {
     getmycart(userID).then((data: any) => {
       console.log(data)
       if (data != null) { dispatch(setCart(data)) }
+    })
+    getmyList(userID).then((data: any) => {
+      console.log(data)
+      if (data != null) { dispatch(changAll(data)) }
     })
     // fetchnewArrival().then((data: any) => {
     //   console.log(data)

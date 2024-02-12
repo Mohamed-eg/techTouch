@@ -6,7 +6,8 @@
   padding-bottom: 100px !important;
 }
 
-.swiper-button-next, .swiper-button-prev {
+.swiper-button-next,
+.swiper-button-prev {
   border-radius: 50%;
   width: 40px !important;
   height: 40px !important;
@@ -27,13 +28,15 @@
           filter: invert(100%);
 }
 
-.icon-box, .icon-box-selected {
+.icon-box,
+.icon-box-selected {
   padding-top: 80px;
   position: relative;
   border: 1px solid #eeeeee;
 }
 
-.icon-box div, .icon-box-selected div {
+.icon-box div,
+.icon-box-selected div {
   position: absolute;
   top: 20px;
 }
@@ -183,5 +186,13 @@
 
 .border-teansparent {
   border: 5px solid transparent;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+a * {
+  text-decoration: none !important;
 }
 /*# sourceMappingURL=index.css.map */
