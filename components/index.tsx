@@ -15,10 +15,13 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { setAllProducts } from '../src/redux/slices/categoriesSlice';
 import { setCategories } from '../src/redux/slices/categoriesSlice';
-
+import { setCart } from '../src/redux/slices/productsSlice';
+import { useSearchParams } from 'next/navigation';
 
 const HOME = () => {
   const dispatch = useDispatch()
+  const searchParams = useSearchParams();
+  const query = searchParams.get('id');
   const fetchHome = async () => {
     try {
       const response = await axios.get(`https://backend.touchtechco.com/homeProducts`);
@@ -31,6 +34,16 @@ const HOME = () => {
   const fetchCategories = async () => {
     try {
       const response = await axios.get(`https://backend.touchtechco.com/categories`);
+      return response.data.data;
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      return null;
+    }
+  };
+  const getmycart = async (userID: String | undefined) => {
+    console.log(userID)
+    try {
+      const response = await axios.get(`https://backend.touchtechco.com/userGen?coll=cart&userId=${userID}`);
       return response.data.data;
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -56,12 +69,17 @@ const HOME = () => {
   //   }
   // };
   useEffect(() => {
+    const userID = auth.currentUser?.uid
     fetchHome().then((data: any) => {
       if (data != null) { dispatch(setAllProducts(data)) }
     });
     fetchCategories().then((data: any) => {
       if (data != null) { dispatch(setCategories(data)) }
     });
+    getmycart(userID).then((data: any) => {
+      console.log(data)
+      if (data != null) { dispatch(setCart(data)) }
+    })
     // fetchnewArrival().then((data: any) => {
     //   console.log(data)
     //   // dispatch(setAllProducts(data))

@@ -16,10 +16,13 @@ import axios from "axios"
 import { useEffect, useId, useState } from "react"
 import { generateUniqueId } from "../../functions"
 import { auth } from "../../src/firebase/firebase"
+import { useSearchParams } from 'next/navigation';
 const ProductDeltal = (producDeta: any) => {
+  const searchParams = useSearchParams();
+  const query = searchParams.get('id');
   // const url =  ?.location.href;
   // const parts = url.split('/');
-  const productId = producDeta.id;
+  // const productId = producDeta.id;
   const uid = auth.currentUser?.uid
   const milliseconds = Date.now();
   const isoDate = new Date(milliseconds).toISOString();
@@ -116,7 +119,8 @@ const ProductDeltal = (producDeta: any) => {
 
   const getmyproduct = async () => {
     try {
-      const response = await axios.get(`https://backend.touchtechco.com/product?id=${producDeta.id}`);
+      const response = await axios.get(`https://backend.touchtechco.com/product?id=${query}`);
+      console.log(query)
       setMyproduct(response.data.data);
       // return response.data.data;
     } catch (error) {
@@ -125,10 +129,10 @@ const ProductDeltal = (producDeta: any) => {
     }
   };
   useEffect(() => {
-    if (productId) {
-      getmyproduct(); // Call the getmyproduct function only if productId is truthy
+    if (query) {
+      getmyproduct(); // Call the getmyproduct function only if query is truthy
     }
-  }, [productId])
+  }, [query])
 
   const postCart = async (id: any, quantity: any, color: any, image: any, name: any, short: any, long: any, price: any) => {
     console.log(isoDate, uid)

@@ -22,40 +22,6 @@ const OnePageProdac = (props: any) => {
   const dispatch = useDispatch()
   const List = useSelector((state: any) => state.wishList.List)
   const userId = auth.currentUser?.uid
-  // useEffect(() => {
-
-  // })
-  // const fetchWish = async (id: any) => {
-  //   try {
-  //     const response = await axios.post(`https://backend.touchtechco.com/gen?coll=wishlist`, {
-  //       "id": id,
-  //       "productId": id,
-  //       "addedAt": isoDate,
-  //       "userId": userId
-  //     });
-  //     return response;
-  //   } catch (error) {
-  //     console.error('Error fetching data:', error);
-  //     return null;
-  //   }
-  // };
-
-  // <<<<<<< HEAD
-  // const handelHartClick = (id: any, name: any, url: any, prise: any, colors: any) => {
-  //   dispatch(addToList({ id, name, url, prise, colors }))
-  // fetchWish(id).then((response: any) => {
-  //   console.log(response)
-  // });
-  // }
-  // =======
-  //   // const handelHartClick = (id: any) => {
-  //   //   fetchWish(id).then((response: any) => {
-  //   //     console.log(response)
-  //   //     console.log(id, isoDate, userId)
-  //   //   });
-  //   // }
-
-  // >>>>>>> 9fdfc6e4c46e04638fab7d203cb3ffd22920662e
   return (
     <div className="w-full flex flex-row items-center justify-center flex-wrap">
       {mypage?.map((product: any) => {
@@ -69,7 +35,7 @@ const OnePageProdac = (props: any) => {
                   // handelHartClick(id)
                   dispatch(addToList({ id, name, url, prise, colors, userId }))
                 }} icon={faHeart} className={`w-[18px] cursor-pointer ${List.find((p: any) => p.id === product.id) ? "loved" : "unloved"} h-[18px] absolute right-2 top-2 text-[#cfcfcf] bg-white p-2 rounded-full`} />
-                <Link href={`/productDeta/${product.id}`}>
+                <Link href={`/productDeta/id?id=${product.id}`}>
                   <div className="object-contain w-full">
                     <Image alt="img" width={240} height={250} src={product.colors[0].images[0]} className="w-full h-auto !rounded-lg object-contain p-5" /></div>
 

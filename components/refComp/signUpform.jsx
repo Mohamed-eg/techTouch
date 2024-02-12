@@ -27,6 +27,7 @@ const Signup = () => {
   const validationSchema = Yup.object().shape({
     fullName: Yup.string().required("Full name is required"),
     phoneNumber: Yup.string().required("Phone number is required"),
+    phoneNumberTwo: Yup.string().min(11,"Phone number must be at least 11 Num"),
     email: Yup.string().email("Email is invalid").required("Email is required"),
     password: Yup.string()
       .min(6, "Password must be at least 6 characters")
@@ -69,18 +70,17 @@ const Signup = () => {
           "name": data.fullName,
           "email": data.email,
           "createdAt": isoDate,
-          "imageLink": "http/aha.com",
+          "imageLink": "http/lolol.com",
           "local": false,
           "userType": "user",
-          "gender": null,
-          "birthDate": null,
-          "blocked": false,
-          "flag": null,
+          "primaryPhone":data.phoneNumber,
+          "secondaryPhone":data.phoneNumberTwo,
           "needEmailVerification": false
         }
         console.log("Success. The user is created in Firebase");
          postUser(userData ).then((res) => {
           console.log(res)
+          router.push(`./`)
         });
       });
     } catch (error) {
@@ -163,6 +163,28 @@ const Signup = () => {
                   {errors.phoneNumber && (
                     <p className="mt-2 text-sm text-red-600">
                       {errors.phoneNumber.message}
+                    </p>
+                  )}
+                </div>
+                <div className="mt-6">
+                  <label
+                    htmlFor="phoneNumberTwo"
+                    className="block text-sm font-medium text-gray-900">
+                    Phone number two
+                  </label>
+                  <div className="w-full div-shadow rounded-md flex flex-row items-center justify-between px-2  hover:border-indigo-500 hover:ring-indigo-500">
+                    <input
+                      {...register("phoneNumberTwo")}
+                      type="tel"
+                      id="phoneNumberTwo"
+                      autoComplete="tel"
+                      className="mt-1 block w-[80%] bg-[#56165000] border-none outline-none sm:text-sm focus:ring-0 focus:ring-offset-0"
+                    />
+                    <Image className="formIcon" alt="message" src={call} />
+                  </div>
+                  {errors.phoneNumberTwo && (
+                    <p className="mt-2 text-sm text-red-600">
+                      {errors.phoneNumberTwo.message}
                     </p>
                   )}
                 </div>
