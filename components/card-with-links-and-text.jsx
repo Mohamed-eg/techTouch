@@ -13,12 +13,14 @@ const CardWithLinksAndText = (props) => {
            
           src="/wishlist@2x.png"
         />
-        <Image height={5} alt="img"
+      <div className="flex items-center justify-center w-full h-auto rounded-t-lg">
+      <Image height={140} alt="img"
           width={190}
-          className="absolute top-[calc(50%_-_90px)] left-[calc(50%_-_95px)] w-[190px] h-[180px] overflow-hidden object-cover"
+          className="relative !rounded-t-lg overflow-hidden w-full h-auto object-contain"
            
           src={props?.imageLink}
         />
+      </div>
       </Link>
       <div className=" flex flex-col items-start justify-start gap-[8px]">
         <p className="m-0 relative leading-[24px] font-medium">

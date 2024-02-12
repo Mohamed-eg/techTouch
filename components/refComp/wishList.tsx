@@ -48,7 +48,7 @@ const WishList = () => {
                       // handelHartClick(id)
                       dispatch(addToList({ id, name, url, prise, colors }))
                     }} icon={faHeart} className={`w-[18px] cursor-pointer ${List.find((p: any) => p.id === product.id) ? "loved" : "unloved"} h-[18px] absolute right-2 top-2 text-[#cfcfcf] bg-white p-2 rounded-full`} />
-                    <Link href={`/productDeta/${product.id}`} className="object-contain w-full"> <Image alt="img" width={240} height={250} src={product.colors[0].images[0]} className="w-full h-auto  object-contain p-5" />
+                    <Link href={`/productDeta/${product.id}`} className="object-contain w-full"> <Image alt="img" width={240} height={250} src={product.colors[0].images[0]} className="w-full h-auto  object-contain rounded-t-lg" />
                       <div className={`w-[51px] h-[26px] absolute top-2 left-2 rounded-lg text-white text-center leading-[26px] bg-scondry ${!product.isNew && "hidden"} `}>new</div>
                       <button onClick={(mouse_event, categore = product.categories, id = product.id, name = product.name, url = product.url, prise = product.prise, colors = product.colors) => dispatch(addToCart({ id, name, url, prise, colors, categore }))}
                         className="w-[240px] h-[40px] absolute text-white  bottom-[-40px] group-hover:bottom-[0px] z-10 text-xl duration-300 p-1 cursor-pointer bg-scondry border-none flex items-center justify-center flex-row"

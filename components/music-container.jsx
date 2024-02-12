@@ -4,8 +4,11 @@ import { useState , useEffect} from "react";
 import Image from 'next/image'
 import speakerImg from '../public/jbl-boombox-2-hero-020-x1-1-1@2x.png'
 import axios from "axios";
+import Link from "next/link";
+import { auth } from "../src/firebase/firebase";
 
 const MusicContainer = () => {
+  const userId =auth.currentUser?.uid;
   const [data, setData] = useState({});
   const fetchHighlight = async () => {
     try {
@@ -37,6 +40,7 @@ const MusicContainer = () => {
             <div className="flex items-center justify-center rounded-full text-black bg-white w-[50px] h-[50px]">{data?data.days:"9"}days</div>
           </div>
           <div className="w-[40vw]  max-sm:w-full flex flex-row items-center justify-center">
+            <Link href={userId ? `/productDeta/id?id=${data.id}` : `./login`}>
             <div className="w-full rounded-lg  flex flex-col items-center justify-center py-0 pr-0 box-border">
               <Image alt="img"
                 className="relative !rounded-lg w-[32vw] max-sm:w-full h-[22.7vw] z-30 mr-11 object-contain"
@@ -46,6 +50,7 @@ const MusicContainer = () => {
               />
             <div className="absolute rounded-[50%] bg-gainsboro-200 [filter:blur(200px)] w-[35vw] h-[35vw]" />
             </div>
+            </Link>
           </div>
         </div>
       </div>

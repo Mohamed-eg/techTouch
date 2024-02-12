@@ -5,7 +5,10 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import {useState,useEffect} from "react"
 import axios from "axios";
+import Link from "next/link";
+import { auth } from "../src/firebase/firebase"
 const BestSelling = () => {
+ const userId = auth.currentUser?.uid
   const [data, setData] = useState([]);
   const fetchBest = async () => {
     try {
@@ -50,6 +53,7 @@ const BestSelling = () => {
           {data?.map(p=>{
             return (
               <SwiperSlide key={`best-prode${p.id}`}>
+                <Link href={userId ? `/productDeta/id?id=${p.id}` : `./login`}>
               <CardWithLinksAndText
                 title={p.title}
                 price={p.userPrice}
@@ -57,6 +61,7 @@ const BestSelling = () => {
                 id={p.id}
                 key={`best-${p.id}`}
               />
+              </Link>
               </SwiperSlide>
             )
           })}
