@@ -36,7 +36,7 @@ const Cart = (params: any) => {
   const getmycart = async (userID: string | null) => {
     console.log(userID)
     try {
-      const response = await axios.get(`https://backend.touchtechco.com/userGen?coll=cart&userId=fgw7clYXEnfnCyvcJXSPgdY7lha2`);
+      const response = await axios.get(`https://backend.touchtechco.com/userGen?coll=cart&userId=${query}`);
       return response.data.data;
     } catch (error) {
       console.error('Error fetching data:', error);
