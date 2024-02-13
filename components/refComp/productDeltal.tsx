@@ -183,13 +183,13 @@ const ProductDeltal = (producDeta: any) => {
         <div className="flex flex-row p-12 justify-center items-start ">
           <div className="flex w-[50%] flex-row">
             <div className="flex flex-col w-[25%]">
-              <div className=" rounded-xl flex items-center justify-center mr-5 mb-[20px] bg-slate-100"><Image className="w-full h-auto object-cover" alt="product" width={120} height={120} src={myproduct?.colors[0]?.images[1]}></Image></div>
-              <div className=" rounded-xl flex items-center justify-center mr-5 mb-[20px] bg-slate-100"><Image className="w-full h-auto object-cover" alt="product" width={120} height={120} src={myproduct?.colors[0]?.images[2]}></Image></div>
-              <div className=" rounded-xl flex items-center justify-center mr-5 mb-[20px] bg-slate-100"><Image className="w-full h-auto object-cover" alt="product" width={120} height={120} src={myproduct?.colors[0]?.images[3]}></Image></div>
-              <div className=" rounded-xl flex items-center justify-center mr-5 bg-slate-100"><Image className="w-full h-auto object-cover" alt="product" width={120} height={120} src={myproduct?.colors[0]?.images[4]}></Image></div>
+              <div className=" rounded-xl flex items-center justify-center mr-5 mb-[20px] bg-slate-100"><Image className="w-full h-auto object-contain" alt="product" width={120} height={120} src={myproduct?.colors[0]?.images[1]}></Image></div>
+              <div className=" rounded-xl flex items-center justify-center mr-5 mb-[20px] bg-slate-100"><Image className="w-full h-auto object-contain" alt="product" width={120} height={120} src={myproduct?.colors[0]?.images[2]}></Image></div>
+              <div className=" rounded-xl flex items-center justify-center mr-5 mb-[20px] bg-slate-100"><Image className="w-full h-auto object-contain" alt="product" width={120} height={120} src={myproduct?.colors[0]?.images[3]}></Image></div>
+              <div className=" rounded-xl flex items-center justify-center mr-5 bg-slate-100"><Image className="w-full h-auto object-contain" alt="product" width={120} height={120} src={myproduct?.colors[0]?.images[4]}></Image></div>
             </div>
             <div className="w-[75%] rounded-xl flex justify-center items-center bg-slate-100 m-5">
-              <Image className="w-full h-auto object-cover " alt="product" width={446} height={315} src={myproduct?.colors[0]?.images[0]}></Image>
+              <Image className="w-full h-auto object-contain " alt="product" width={446} height={315} src={myproduct?.colors[0]?.images[0]}></Image>
             </div>
           </div>
           <div className="flex flex-col items-start justify-start ml-16 w-[30%] text-black">
@@ -225,7 +225,7 @@ const ProductDeltal = (producDeta: any) => {
                 </div>
                 <div>
                   <button type="submit" className="bg-blue text-white rounded-xl mx-2 px-10 py-3 border-none outline-none">Add to cart</button>
-                  <button className="rounded-lg bg-white border p-2 border-[#eee] outline-none"><FontAwesomeIcon
+                  <button className={`rounded-lg bg-white border p-2 border-[#eee] outline-none ${List.find((p: any) => p.id === myproduct.id) ? "loved" : "unloved"} `}><FontAwesomeIcon
                     onClick={(mouse_event, producId = myproduct?.id, name = myproduct?.title, url = myproduct?.colors[0].images[0], prise = myproduct?.userPrice, colors = myproduct?.colors, userId = uid) => {
                       dispatch(addToList({ producId, name, url, prise, colors, userId }))
                     }}

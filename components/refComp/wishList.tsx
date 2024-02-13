@@ -19,19 +19,27 @@ const WishList = () => {
   let List = useSelector((state: any) => state.wishList.List)
   const userId = auth.currentUser?.uid
   console.log(List)
-  // const getList =async ()=>{
-  //   try {
-  //     const response = await axios.get(`https://backend.touchtechco.com/userGen?coll=wishlist&userId=${userId}`)
-  //     return response.data.data;
-  //   } catch (error) {
-  //     console.error('Error fetching data:', error);
-  //     return null;
-  //   }
-  // } بترجع {id:productId,productId:productId,createdAt,userId}
-  // useEffect(()=>{
-  //   getList().then(data => { console.log(data)
-  //   dispatch(addToList({ id, name, url, prise, colors })) });
-  // })
+  const getList = async () => {
+    try {
+      const response = await axios.get(`https://backend.touchtechco.com/userGen?coll=wishlist&userId=${userId}`)
+      return response.data.data;
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      return null;
+    }
+  }
+  //  بترجع {id:randomeId,productId:productId,createdAt,userId}
+  useEffect(() => {
+    getList().then(data => {
+      console.log(data)
+      data.map((p: any) => {
+        (id = p.id, productId = p.productId, userId = p.userId) => {
+
+          dispatch(addToList({ id, productId, userId }))
+        }
+      })
+    });
+  })
   return (
     <>
       <MainHeader />
@@ -44,9 +52,9 @@ const WishList = () => {
               <div className="flex m-5 w-[240px] h-[450px] flex-row group items-stretch justify-start gap-[16px]" key={`prod-${product.id}`}>
                 <div className="relative flex flex-col normal-border w-full leading-[20px] font-semibold">
                   <div className="w-full relative hover: flex flex-col rounded-xl z-0 h-[250px] items-center bg-slate-100 overflow-hidden">
-                    <FontAwesomeIcon onClick={(mouse_event, id = product.id, name = product.title, url = product.url, prise = product.prise, colors = product.colors) => {
+                    <FontAwesomeIcon onClick={(mouse_event, id = product.id, productId = product.productId, userId = product.userId) => {
                       // handelHartClick(id)
-                      dispatch(addToList({ id, name, url, prise, colors }))
+                      dispatch(addToList({ id, productId, userId }))
                     }} icon={faHeart} className={`w-[18px] cursor-pointer ${List.find((p: any) => p.id === product.id) ? "loved" : "unloved"} h-[18px] absolute right-2 top-2 text-[#cfcfcf] bg-white p-2 rounded-full`} />
                     <Link href={`/productDeta/${product.id}`} className="object-contain w-full"> <Image alt="img" width={240} height={250} src={product.colors[0].images[0]} className="w-full h-auto  object-contain rounded-t-lg" />
                       <div className={`w-[51px] h-[26px] absolute top-2 left-2 rounded-lg text-white text-center leading-[26px] bg-scondry ${!product.isNew && "hidden"} `}>new</div>

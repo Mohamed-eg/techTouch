@@ -12,9 +12,11 @@ import { useDispatch } from 'react-redux';
 import { toColor } from "../../functions"
 import Link from "next/link";
 import axios from "axios";
-import { auth } from "../../src/firebase/firebase"
+import { auth } from "../../src/firebase/firebase";
+import { v4 as uuidv4 } from 'uuid';
 
 const OnePageProdac = (props: any) => {
+  const randomID = uuidv4(); // ⇨ '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed'
   const mypage = props.PageProducts;
   const milliseconds = Date.now();
   const isoDate = new Date(milliseconds).toISOString();
@@ -31,9 +33,9 @@ const OnePageProdac = (props: any) => {
 
               <div className="w-full relative hover: flex flex-col rounded-xl z-0 h-[250px] items-center bg-slate-100 overflow-hidden">
 
-                <FontAwesomeIcon onClick={(mouse_event, id = product.id, name = product.title, url = product.url, prise = product.prise, colors = product.colors) => {
-                  dispatch(addToList({ id, name, url, prise, colors, userId }))
-                }} icon={faHeart} className={`w-[18px] cursor-pointer ${List.find((p: any) => p.id === product.id) ? "loved" : "unloved"} h-[18px] absolute right-2 top-2 text-[#cfcfcf] bg-white p-2 rounded-full`} />
+                <FontAwesomeIcon onClick={(mouse_event, id = randomID, productId = product.id, name = product.title, url = product.url, prise = product.prise, colors = product.colors) => {
+                  dispatch(addToList({ id, productId, name, url, prise, colors, userId }))
+                }} icon={faHeart} className={`w-[18px] cursor-pointer ${List.find((p: any) => p.productId === product.id) ? "loved" : "unloved"} h-[18px] absolute right-2 top-2 text-[#cfcfcf] bg-white p-2 rounded-full`} />
                 <Link className=" h-auto w-full object-contain" href={userId ? `/productDeta/id?id=${product.id}` : `./login`}>
                   <div className="object-cover h-auto w-full">
                     <Image alt="img" width={240} height={250} src={product.colors[0].images[0]} className="w-full h-[240px] !rounded-t-lg object-cover " /></div>
