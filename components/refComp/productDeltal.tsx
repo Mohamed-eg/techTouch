@@ -188,7 +188,7 @@ const ProductDeltal = (producDeta: any) => {
     e.preventDefault()
     console.log(id, quantity, color, image, title, short, long, price)
     quantity > 0 && postCart(id, quantity, color, image, title, short, long, price).then((res) => {
-      alert(`you have added ${quantity} ${title} with color ${color}`)
+      alert(`👍 you have added ${quantity} ${title} with color ${color} to cart 🛒`)
       console.log(res);
     });
     quantity > 0 && dispatch(addToCart({ id, quantity, title, image, price, color }))
@@ -197,7 +197,7 @@ const ProductDeltal = (producDeta: any) => {
   return (
     <>
       <section className="relative w-full mt-[200px] mb-[50px] overflow-hidden flex flex-col items-center justify-center">
-        <div><span>Home</span><span>/{myproduct?.title}</span></div>
+        <div className="text-xl font-extrabold text-primary1"><span>Home</span><span> / {myproduct?.title}</span></div>
         <div className="flex flex-row p-12 justify-center items-start ">
           <div className="flex w-[50%] flex-row">
             <div className="flex flex-col w-[25%]">
@@ -238,7 +238,7 @@ const ProductDeltal = (producDeta: any) => {
               <div className="flex flex-row mt-4 items-center">
                 <div>
                   <button className="bg-white p-1 hover:bg-primary1 border-[#eee] px-[5px] border text-lg rounded-l-[8px]" onClick={() => { quantity > 0 ? setQuantity(quantity - 1) : setQuantity(0) }} type="button">➖</button>
-                  <span style={{ background: toColor(parseInt(color)) }} className="border-y border-[#eee] px-5 py-2 rounded-md ">{quantity || 0}</span>
+                  <span style={{ background: toColor(parseInt(color)) }} className="border-y border-[#eee] px-5 py-2">{quantity || 0}</span>
                   <button type="button" className="bg-white border-[#eee] p-1 text-lg border hover:bg-primary1 rounded-r-[8px]" onClick={() => { setQuantity(quantity + 1) }}>➕</button>
                 </div>
                 <div>

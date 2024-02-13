@@ -132,7 +132,7 @@ const Nav = () => {
                 src={buyImg}
                 onClick={onIconsCurvedBuyClick}
               />
-              {(cart.length === 0 || '0') ? null : <span className="bg-[#d61414] absolute top-[-8px] right-[-5px] px-1 text-white rounded-full ">{cart.length || 0}</span>}
+              {cart.length === 0 ? null : <span className="bg-[#d61414] absolute top-[-8px] right-[-5px] px-1 text-white rounded-full ">{cart.length || 0}</span>}
             </div>
             <div className="hidden max-sm:block"><Sidebar /></div>
 
