@@ -15,7 +15,7 @@
     "@reduxjs/toolkit": "^2.0.1",
     "axios": "^1.6.7",
     "firebase": "^10.7.2",
-    "next": "^13.2.4",
+    "next": "13.4.13",
     "react": "^18.2.0",
     "react-color-palette": "^7.1.0",
     "react-dom": "^18.2.0",

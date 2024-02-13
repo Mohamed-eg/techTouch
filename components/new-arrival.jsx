@@ -8,7 +8,7 @@ import newArrivalImg1 from '../public/ps5slimgoedkopeplaystation-large-1@2x.png'
 import newArrivalImg2 from '../public/blender-juice-machine@2x.png'
 import newArrivalImg3 from '../public/69694768-amazonechopngcliparttransparentamazonechopng-1@2x.png'
 import newArrivalImg4 from '../public/headphones-audio-for-listen@2x.png'
-import circle from '../public/ellipse-24@2x.png'
+// import circle from '../public/ellipse-24@2x.png'
 import axios from "axios"
 
 const NewArrival = () => {
@@ -96,14 +96,14 @@ useEffect(()=>{
               />
               <div className="absolute top-[calc(50%_-_112px)] left-[calc(50%_-_105px)]  w-[25%] h-[50%] overflow-hidden" />
             </div>
-                <Image width={190} height={190} alt="img"
+                {/* <Image width={190} height={190} alt="img"
                   className="absolute top-[calc(50%_-_111px)] left-[calc(50%_-_95px)] w-[17vw] h-[18vw] object-cover"
                   src={circle}
                 />
               <Image width={190} height={190} alt="img"
                 className="absolute top-[calc(50%_-_119px)] left-[calc(50%_-_119px)] w-[19vw] h-[19vw] object-cover"
                 src={circle}
-              />
+              /> */}
           </div>
         </div>
       </div>
