@@ -184,13 +184,14 @@ const ProductDeltal = (producDeta: any) => {
   const cart = useSelector((state: any) => state.products.cart)
   // const mypage = AllProducts.find((page: any) => { return (page.find((product: any) => { return (product.id == myid) })) });
 
-  const handelSubmit = (e: any, id: any, quantity: any, color: any, image: any, name: any, short: any, long: any, price: any) => {
+  const handelSubmit = (e: any, id: any, quantity: any, color: any, image: any, title: any, short: any, long: any, price: any) => {
     e.preventDefault()
-    console.log(id, quantity, color, image, name, short, long, price)
-    quantity > 0 && postCart(id, quantity, color, image, name, short, long, price).then((res) => {
+    console.log(id, quantity, color, image, title, short, long, price)
+    quantity > 0 && postCart(id, quantity, color, image, title, short, long, price).then((res) => {
+      alert(`you have added ${quantity} ${title} with color ${color}`)
       console.log(res);
     });
-    quantity > 0 && dispatch(addToCart({ id, quantity, name, image, price, color }))
+    quantity > 0 && dispatch(addToCart({ id, quantity, title, image, price, color }))
     console.log(cart)
   }
   return (
@@ -236,13 +237,13 @@ const ProductDeltal = (producDeta: any) => {
               </div>
               <div className="flex flex-row mt-4 items-center">
                 <div>
-                  <button className="bg-white p-1 border-[#eee] px-[5px] border text-lg rounded-l-[8px]" onClick={() => { quantity > 0 ? setQuantity(quantity - 1) : setQuantity(0) }} type="button">-</button>
+                  <button className="bg-white p-1 hover:bg-primary1 border-[#eee] px-[5px] border text-lg rounded-l-[8px]" onClick={() => { quantity > 0 ? setQuantity(quantity - 1) : setQuantity(0) }} type="button">➖</button>
                   <span style={{ background: toColor(parseInt(color)) }} className="border-y border-[#eee] px-5 py-2 rounded-md ">{quantity || 0}</span>
-                  <button type="button" className="bg-white border-[#eee] p-1 text-lg border  rounded-r-[8px]" onClick={() => { setQuantity(quantity + 1) }}>+</button>
+                  <button type="button" className="bg-white border-[#eee] p-1 text-lg border hover:bg-primary1 rounded-r-[8px]" onClick={() => { setQuantity(quantity + 1) }}>➕</button>
                 </div>
                 <div>
-                  <button type="submit" className="bg-blue text-white rounded-xl mx-2 px-10 py-3 border-none outline-none">Add to cart</button>
-                  <button className={`rounded-lg bg-white border p-2 border-[#eee] outline-none ${List.find((p: any) => p.productId === myproduct.id) ? "loved" : "unloved"} `}><FontAwesomeIcon
+                  <button type="submit" className="bg-blue cursor-pointer hover:bg-primary1 text-white rounded-xl mx-2 px-10 py-3 border-none outline-none">Add to cart</button>
+                  <button type="button" className={`rounded-lg bg-white border p-2 border-[#eee] hover:shadow-lg cursor-pointer outline-none ${List.find((p: any) => p.productId === myproduct.id) ? "loved" : "unloved"} `}><FontAwesomeIcon
                     onClick={(mouse_event, id = randomeId, productId = myproduct.id, productData = { title: myproduct.title, userPrice: myproduct.userPrice, colors: myproduct.colors }) => {
                       userId && dispatch(addToList({ id, productId, productData, userId }))
                     }}
