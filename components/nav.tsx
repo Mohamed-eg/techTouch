@@ -114,7 +114,7 @@ const Nav = () => {
           </form>
           <div className="relative flex flex-row items-center justify-center gap-[2vw]">
 
-            <div className="relative max-sm:hidden"><NavItem text="" icon={faHeart} href="/wishList" /> <span className="bg-[#d61414] absolute top-[-10px] right-[0] px-1 text-white rounded-full ">
+            <div className="relative max-sm:hidden"><NavItem text="" icon={faHeart} href="/wishList" /> <span className="bg-[#d61414] absolute top-[-12px] right-[-7px] px-1 text-white rounded-full ">
               {List.length || 0}</span></div>
 
             <div onClick={(e, id = uid) => { router.push(`/${id ? id : "login"}`) }}>

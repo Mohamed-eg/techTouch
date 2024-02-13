@@ -19,8 +19,8 @@ import "react-color-palette/css";
 import cartIcon from "../../public/Buy.svg";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/pagination";
-import { Pagination, A11y } from "swiper/modules";
 import "swiper/css";
+import { Pagination } from "swiper/modules";
 import slidesImg from "../../public/Photo.png";
 import Link from "next/link";
 import {
@@ -30,6 +30,9 @@ import {
   PlusIcon,
   Squares2X2Icon,
 } from "@heroicons/react/20/solid";
+import axios from "axios";
+import { setCategories } from "../../src/redux/slices/categoriesSlice";
+
 
 
 const sortOptions = [
@@ -100,30 +103,44 @@ export default function Categorypage() {
   const selectedCategory = useSelector(
     (state) => state.categories.selectedCategory
   );
-  const fetchCat = async () => {
-    console.log(selectedCategory)
+    const dispatch = useDispatch();
+  const fetchCategories = async () => {
     try {
-      const response = await axios.get(`https://backend.touchtechco.com/fieldGen?coll=products&filedName=categoryId&filedValue=${selectedCategory}`);
+      const response = await axios.get(`https://backend.touchtechco.com/categories`);
       return response.data.data;
-
     } catch (error) {
       console.error('Error fetching data:', error);
       return null;
     }
   };
-  useEffect(()=>{
-    fetchCat().then((res)=>{setCatProd(res)
-      console.log(catProd)})
+  useEffect(() => {
+    fetchCategories().then((data) => {
+      if (data != null) { dispatch(setCategories(data)) }
+    });
+  }, [])
+  // const fetchCat = async () => {
+  //   console.log(selectedCategory)
+  //   try {
+  //     const response = await axios.get(`https://backend.touchtechco.com/fieldGen?coll=products&filedName=categoryId&filedValue=${selectedCategory}`);
+  //     return response.data.data;
 
-  },[selectedCategory])
+  //   } catch (error) {
+  //     console.error('Error fetching data:', error);
+  //     return null;
+  //   }
+  // };
+  // useEffect(()=>{
+  //   fetchCat().then((res)=>{setCatProd(res)
+  //     console.log(catProd)})
+
+  // },[selectedCategory])
   const List = useSelector((state) => state.wishList.List);
-  const dispatch = useDispatch();
   return (
     <div className="bg-white">
       <MainHeader />
       <div>
         {/* Mobile filter dialog */}
-        <Transition.Root show={mobileFiltersOpen} as={Fragment}>
+        {/* <Transition.Root show={mobileFiltersOpen} as={Fragment}>
           <Dialog
             as="div"
             className="relative z-40 lg:hidden"
@@ -160,11 +177,11 @@ export default function Categorypage() {
                       <span className="sr-only">Close menu</span>
                       <XMarkIcon className="h-6 w-6" aria-hidden="true" />
                     </button>
-                  </div>
+                  </div> */}
 
                   {/* Filters */}
-                  <form className="mt-4 border-t border-gray-200">
-                    <h3 className="sr-only">Categories</h3>
+                  {/* <form className="mt-4 border-t border-gray-200">
+                    <h3 className="sr-only">Categories</h3> */}
                     {/* <ul
                       role="list"
                       className="px-2 py-3 font-medium text-gray-900">
@@ -178,7 +195,7 @@ export default function Categorypage() {
                     </ul> */}
 
 
-                      <Disclosure
+                      {/* <Disclosure
                         as="div"
                         key={"mobilecolor"}
                         className="border-t border-gray-200 px-4 py-6">
@@ -270,48 +287,47 @@ export default function Categorypage() {
               </Transition.Child>
             </div>
           </Dialog>
-        </Transition.Root>
+        </Transition.Root> */}
 
-        <main className="mx-auto  max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="w-full !flex justify-center items-center overflow-hidden">
+        <main className="mx-auto mt-[200px] max-w-7xl  rounded-xl px-4 sm:px-6 lg:px-8">
+          <div className="w-full !flex justify-center  rounded-xl items-center overflow-hidden">
             <Swiper
-              className="!flex justify-center !w-[100vw] items-center"
-              modules={[Pagination, A11y]}
-              slidesPerView={1}
+              className="!flex justify-center  !p-0 rounded-xl !w-[100vw] items-center"
+              modules={[Pagination]}
               loop={true}
               pagination={{ clickable: true }}>
-              <SwiperSlide className="">
+              <SwiperSlide className=" rounded-xl">
                 <Image
                   alt="img"
-                  className="w-full object-contain rounded-lg"
+                  className="w-full h-auto object-contain rounded-lg"
                   src={slidesImg}
                 />
               </SwiperSlide>
-              <SwiperSlide className="">
+              <SwiperSlide className=" rounded-xl">
                 <Image
                   alt="img"
-                  className="w-full object-contain rounded-lg"
+                  className="w-full h-auto object-contain rounded-lg"
                   src={slidesImg}
                 />
               </SwiperSlide>
-              <SwiperSlide className="">
+              <SwiperSlide className=" rounded-xl">
                 <Image
                   alt="img"
-                  className="w-full object-contain rounded-lg"
+                  className="w-full h-auto object-contain rounded-lg"
                   src={slidesImg}
                 />
               </SwiperSlide>
-              <SwiperSlide className="">
+              <SwiperSlide className=" rounded-xl">
                 <Image
                   alt="img"
-                  className="w-full object-contain rounded-lg"
+                  className="w-full h-auto object-contain rounded-lg"
                   src={slidesImg}
                 />
               </SwiperSlide>
-              <SwiperSlide className="">
+              <SwiperSlide className=" rounded-xl">
                 <Image
                   alt="img"
-                  className="w-full object-contain rounded-lg"
+                  className="w-full h-auto object-contain rounded-lg"
                   src={slidesImg}
                 />
               </SwiperSlide>
@@ -392,105 +408,110 @@ export default function Categorypage() {
               <div className="lg:col-span-3 ">
                 <div className="w-full flex flex-row items-center justify-center flex-wrap">
                   {catProd?null:<h1>there is no product matcheing</h1>}
-                  {catProd?.flat()
-                    .map((product) => {
-                      {
-                        /* {selectedProduct.map((product) => { */
-                      }
+                  {categories
+                    .map((category) => {
                       return (
-                        <div
-                          className="flex m-5 w-[240px] flex-row group items-center justify-start gap-[16px]"
-                          key={`prod-${product.id}`}>
-                          <div className="relative flex flex-col normal-border w-full leading-[20px] font-semibold">
-                            <div className="w-full relative hover: flex flex-col rounded-xl z-0 h-[250px] items-center bg-slate-100 overflow-hidden">
-                              <Link
-                                href={`/productDeta/${product.id}`}
-                                className="object-contain w-full">
-                                {" "}
-                                <Image
-                                  alt="img"
-                                  src={productImg}
-                                  className="w-full h-auto  object-contain p-10"
-                                />
-                              </Link>
-                              <FontAwesomeIcon
-                                onClick={(
-                                  mouse_event,
-                                  id = product.id,
-                                  name = product.name,
-                                  url = product.url,
-                                  prise = product.prise,
-                                  colors = product.colors
-                                ) =>
-                                  dispatch(
-                                    addToList({ id, name, url, prise, colors })
-                                  )
-                                }
-                                icon={faHeart}
-                                className={`w-[18px] cursor-pointer ${
-                                  List.find((p) => p.id === product.id)
-                                    ? "loved"
-                                    : "unloved"
-                                } h-[18px] absolute right-2 top-2 text-black bg-white p-2 rounded-full`}
-                              />
-                              <div
-                                className={`w-[51px] h-[26px] absolute top-2 left-2 rounded-lg text-white text-center leading-[26px] bg-scondry ${
-                                  !product.isNew && "hidden"
-                                } `}>
-                                new
-                              </div>
-                              <button
-                                onClick={(
-                                  mouse_event,
-                                  categore = product.categories,
-                                  id = product.id,
-                                  name = product.name,
-                                  url = product.url,
-                                  prise = product.prise,
-                                  colors = product.colors
-                                ) =>
-                                  dispatch(
-                                    addToCart({
-                                      id,
-                                      name,
-                                      url,
-                                      prise,
-                                      colors,
-                                      categore,
-                                    })
-                                  )
-                                }
-                                className="w-[240px] h-[40px] absolute text-white  bottom-[-40px] group-hover:bottom-[0px] z-10 text-xl duration-300 p-1 cursor-pointer bg-scondry border-none flex items-center justify-center flex-row">
-                                <Image
-                                  alt="img"
-                                  className="w-[24px] mr-[10px] h-[24px]"
-                                  src={cartIcon}
-                                />
-                                <p className="m-0">add to cart</p>
-                              </button>
-                            </div>
-                            <div>
-                              <p className="text-black">{product.categories}</p>
-                              <span className="">{`${product.prise} EGP`}</span>
-                            </div>
-                            <div className="my-[10px] text-white ml-[-10px]">
-                              {product.colors.map((color) => {
-                                return (
-                                  <div
-                                    className={`w-[18px] h-[18px] px-3 inline rounded-full m-2 !box-content border border-solid border-black  bg-${color}`}
-                                    key={`-product-${product.id}`}></div>
-                                );
-                              })}
-                              <h2>{product.categories}</h2>
-                            </div>
+                        <Link className="m-10 " href={`./home`}>
+                        <div className="relative flex flex-col w-[170px] h-[145px] !p-0 items-center cursor-poniter justify-center peer border hover:bg-scondry border-[#0000004d] border-solid rounded-3xl overflow-hidden">
+                          <div className="relative w-full leading-[20px] mt-0 hover:text-white font-semibold">
+                            <Image width={140} height={80} alt="img" src={category.imageLink} className="text-white w-full m-0 h-auto mt-0 rounded-t-lg bg-cover" />
                           </div>
                         </div>
+                        <p className="text-[#000] m-0 pb-3 peer-hover:text-scondry">{category.title}</p>
+                      </Link>
+                        // <div
+                        //   className="flex m-5 w-[240px] flex-row group items-center justify-start gap-[16px]"
+                        //   key={`prod-${product.id}`}>
+                        //   <div className="relative flex flex-col normal-border w-full leading-[20px] font-semibold">
+                        //     <div className="w-full relative hover: flex flex-col rounded-xl z-0 h-[250px] items-center bg-slate-100 overflow-hidden">
+                        //       <Link
+                        //         href={`/productDeta/${product.id}`}
+                        //         className="object-contain w-full">
+                        //         {" "}
+                        //         <Image
+                        //           alt="img"
+                        //           src={productImg}
+                        //           className="w-full h-auto  object-contain p-10"
+                        //         />
+                        //       </Link>
+                        //       <FontAwesomeIcon
+                        //         onClick={(
+                        //           mouse_event,
+                        //           id = product.id,
+                        //           name = product.name,
+                        //           url = product.url,
+                        //           prise = product.prise,
+                        //           colors = product.colors
+                        //         ) =>
+                        //           dispatch(
+                        //             addToList({ id, name, url, prise, colors })
+                        //           )
+                        //         }
+                        //         icon={faHeart}
+                        //         className={`w-[18px] cursor-pointer ${
+                        //           List.find((p) => p.id === product.id)
+                        //             ? "loved"
+                        //             : "unloved"
+                        //         } h-[18px] absolute right-2 top-2 text-black bg-white p-2 rounded-full`}
+                        //       />
+                        //       <div
+                        //         className={`w-[51px] h-[26px] absolute top-2 left-2 rounded-lg text-white text-center leading-[26px] bg-scondry ${
+                        //           !product.isNew && "hidden"
+                        //         } `}>
+                        //         new
+                        //       </div>
+                        //       <button
+                        //         onClick={(
+                        //           mouse_event,
+                        //           categore = product.categories,
+                        //           id = product.id,
+                        //           name = product.name,
+                        //           url = product.url,
+                        //           prise = product.prise,
+                        //           colors = product.colors
+                        //         ) =>
+                        //           dispatch(
+                        //             addToCart({
+                        //               id,
+                        //               name,
+                        //               url,
+                        //               prise,
+                        //               colors,
+                        //               categore,
+                        //             })
+                        //           )
+                        //         }
+                        //         className="w-[240px] h-[40px] absolute text-white  bottom-[-40px] group-hover:bottom-[0px] z-10 text-xl duration-300 p-1 cursor-pointer bg-scondry border-none flex items-center justify-center flex-row">
+                        //         <Image
+                        //           alt="img"
+                        //           className="w-[24px] mr-[10px] h-[24px]"
+                        //           src={cartIcon}
+                        //         />
+                        //         <p className="m-0">add to cart</p>
+                        //       </button>
+                        //     </div>
+                        //     <div>
+                        //       <p className="text-black">{product.categories}</p>
+                        //       <span className="">{`${product.prise} EGP`}</span>
+                        //     </div>
+                        //     <div className="my-[10px] text-white ml-[-10px]">
+                        //       {product.colors.map((color) => {
+                        //         return (
+                        //           <div
+                        //             className={`w-[18px] h-[18px] px-3 inline rounded-full m-2 !box-content border border-solid border-black  bg-${color}`}
+                        //             key={`-product-${product.id}`}></div>
+                        //         );
+                        //       })}
+                        //       <h2>{product.categories}</h2>
+                        //     </div>
+                        //   </div>
+                        // </div>
                       );
                     })}
                 </div>
               </div>
               {/* Filters */}
-              <form className="hidden lg:block">
+              {/* <form className="hidden lg:block">
                 <h3 className="sr-only">Categories</h3>
                  
                   <Disclosure
@@ -584,7 +605,7 @@ export default function Categorypage() {
                     )}
                   </Disclosure>
                 
-              </form>
+              </form> */}
             </div>
           </section>
         </main>

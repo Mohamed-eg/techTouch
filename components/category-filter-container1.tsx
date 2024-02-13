@@ -3,9 +3,9 @@ import type { NextPage } from "next";
 import { useSelector } from "react-redux";
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { useEffect } from "react"
 import 'swiper/css';
 import Link from "next/link";
-
 
 const CategoryFilterContainer1: NextPage = () => {
 
@@ -60,7 +60,7 @@ const CategoryFilterContainer1: NextPage = () => {
                       <Image width={140} height={80} alt="img" src={category.imageLink} className="text-white w-full m-0 h-auto mt-0 rounded-t-lg bg-cover" />
                     </div>
                   </div>
-                  <p className="text-[#000] m-0 pb-3 peer-hover:text-white">{category.title}</p>
+                  <p className="text-[#000] m-0 pb-3 peer-hover:text-scondry">{category.title}</p>
                 </Link>
               </SwiperSlide>
             )
