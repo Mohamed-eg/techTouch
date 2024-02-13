@@ -17,6 +17,9 @@ import { useEffect, useId, useState } from "react"
 import { generateUniqueId } from "../../functions"
 import { auth } from "../../src/firebase/firebase"
 import { useSearchParams } from 'next/navigation';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import { v4 as uuidv4 } from 'uuid';
 const ProductDeltal = (producDeta: any) => {
   const searchParams = useSearchParams();
   const query = searchParams.get('id');
@@ -26,7 +29,7 @@ const ProductDeltal = (producDeta: any) => {
   const uid = auth.currentUser?.uid
   const milliseconds = Date.now();
   const isoDate = new Date(milliseconds).toISOString();
-  const randomeId = generateUniqueId()
+  const randomeId = uuidv4(); // ⇨ '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed'
   const [myproduct, setMyproduct] = useState({
     "_id": "AhMb1EJXlqEnPaCB6v4L-1704645506555640",
     "id": "AhMb1EJXlqEnPaCB6v4L-1704645506555640",
@@ -116,21 +119,35 @@ const ProductDeltal = (producDeta: any) => {
   })
   const [color, setColor] = useState("")
   const [quantity, setQuantity] = useState(0)
+  const [SimilarProducts, setSimilarProducts] = useState([])
+  const userId = useSelector((state: any) => state.categories.currentUser)
 
   const getmyproduct = async () => {
     try {
       const response = await axios.get(`https://backend.touchtechco.com/product?id=${query}`);
-      console.log(query)
       setMyproduct(response.data.data);
       // return response.data.data;
     } catch (error) {
       console.error('Error fetching data:', error);
       // return null;
     }
+  }; searchParams
+  const getSimilarProducts = async () => {
+    try {
+      const response = await axios.get(`https://backend.touchtechco.com/getSimilarProducts?id=${query}`);
+      setSimilarProducts(response.data.data);
+      return response.data.data;
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      return null;
+    }
   };
   useEffect(() => {
     if (query) {
       getmyproduct(); // Call the getmyproduct function only if query is truthy
+      getSimilarProducts().then((res) => {
+        console.log(res)
+      }); // Call the getmyproduct function only if query is truthy
     }
   }, [query])
 
@@ -183,13 +200,13 @@ const ProductDeltal = (producDeta: any) => {
         <div className="flex flex-row p-12 justify-center items-start ">
           <div className="flex w-[50%] flex-row">
             <div className="flex flex-col w-[25%]">
-              <div className=" rounded-xl flex items-center justify-center mr-5 mb-[20px] bg-slate-100"><Image className="w-full h-auto object-contain" alt="product" width={120} height={120} src={myproduct?.colors[0]?.images[1]}></Image></div>
-              <div className=" rounded-xl flex items-center justify-center mr-5 mb-[20px] bg-slate-100"><Image className="w-full h-auto object-contain" alt="product" width={120} height={120} src={myproduct?.colors[0]?.images[2]}></Image></div>
-              <div className=" rounded-xl flex items-center justify-center mr-5 mb-[20px] bg-slate-100"><Image className="w-full h-auto object-contain" alt="product" width={120} height={120} src={myproduct?.colors[0]?.images[3]}></Image></div>
-              <div className=" rounded-xl flex items-center justify-center mr-5 bg-slate-100"><Image className="w-full h-auto object-contain" alt="product" width={120} height={120} src={myproduct?.colors[0]?.images[4]}></Image></div>
+              <div className=" rounded-xl flex items-center justify-center mr-5 mb-[20px] bg-slate-100"><Image className="w-full h-[100%] object-cover rounded-lg" alt="product" width={120} height={120} src={myproduct?.colors[0]?.images[1]}></Image></div>
+              <div className=" rounded-xl flex items-center justify-center mr-5 mb-[20px] bg-slate-100"><Image className="w-full h-[100%] object-cover rounded-lg" alt="product" width={120} height={120} src={myproduct?.colors[0]?.images[2]}></Image></div>
+              <div className=" rounded-xl flex items-center justify-center mr-5 mb-[20px] bg-slate-100"><Image className="w-full h-[100%] object-cover rounded-lg" alt="product" width={120} height={120} src={myproduct?.colors[0]?.images[3]}></Image></div>
+              <div className=" rounded-xl flex items-center justify-center mr-5 bg-slate-100"><Image className="w-full h-[100%] object-cover rounded-lg" alt="product" width={120} height={120} src={myproduct?.colors[0]?.images[4]}></Image></div>
             </div>
             <div className="w-[75%] rounded-xl flex justify-center items-center bg-slate-100 m-5">
-              <Image className="w-full h-auto object-contain " alt="product" width={446} height={315} src={myproduct?.colors[0]?.images[0]}></Image>
+              <Image className="w-full h-[446px] object-cover rounded-xl " alt="product" width={446} height={315} src={myproduct?.colors[0]?.images[0]}></Image>
             </div>
           </div>
           <div className="flex flex-col items-start justify-start ml-16 w-[30%] text-black">
@@ -225,9 +242,9 @@ const ProductDeltal = (producDeta: any) => {
                 </div>
                 <div>
                   <button type="submit" className="bg-blue text-white rounded-xl mx-2 px-10 py-3 border-none outline-none">Add to cart</button>
-                  <button className={`rounded-lg bg-white border p-2 border-[#eee] outline-none ${List.find((p: any) => p.id === myproduct.id) ? "loved" : "unloved"} `}><FontAwesomeIcon
-                    onClick={(mouse_event, producId = myproduct?.id, name = myproduct?.title, url = myproduct?.colors[0].images[0], prise = myproduct?.userPrice, colors = myproduct?.colors, userId = uid) => {
-                      dispatch(addToList({ producId, name, url, prise, colors, userId }))
+                  <button className={`rounded-lg bg-white border p-2 border-[#eee] outline-none ${List.find((p: any) => p.productId === myproduct.id) ? "loved" : "unloved"} `}><FontAwesomeIcon
+                    onClick={(mouse_event, id = randomeId, productId = myproduct.id, productData = { title: myproduct.title, userPrice: myproduct.userPrice, colors: myproduct.colors }) => {
+                      userId && dispatch(addToList({ id, productId, productData, userId }))
                     }}
                     icon={faHeart} className="" /></button>
                 </div>
@@ -255,38 +272,53 @@ const ProductDeltal = (producDeta: any) => {
       </section>
       <section className="relative w-full overflow-hidden flex flex-col items-center justify-center px-24">
         <div><span></span><h2 className="text-blue">Related item</h2></div>
-        <div className="flex flex-row my-12">
-          {AllProducts[0].slice(0, 4).map((product: any) => {
-            return (
-              <div className="flex m-5 w-[270px] flex-row group items-center justify-start gap-[16px]" key={`related-${product.id}`}>
-                <div className="relative flex flex-col normal-border w-full leading-[20px] font-semibold">
-                  <div className="w-full relative hover: flex flex-col rounded-xl z-0 h-[250px] items-center bg-slate-100 overflow-hidden">
 
-                    <FontAwesomeIcon onClick={(mouse_event, id = product.id, name = product.name, url = product.url, prise = product.prise, colors = product.colors) => dispatch(addToList({ id, name, url, prise, colors }))} icon={faHeart} className={`w-[18px] ${List.find((p: any) => p.id === product.id) ? "loved" : "unloved"} cursor-pointer h-[18px] absolute right-2 top-2 text-[#bcbbbb] bg-white p-2 rounded-full`} />
-                    <Link href={`/productDeta/${product.id}`}>
-                      <Image width={344} height={360} alt="img" src={product.colors[0]?.images[0]} className="w-full h-auto  object-contain p-10" />
-                      <div className={`w-[51px] h-[26px] absolute top-2 left-2 rounded-lg text-white text-center leading-[26px] bg-scondry ${!product.isNew && "hidden"} `}>new</div>
-                      <button className="w-[270px] h-[40px] absolute text-white  bottom-[-40px] group-hover:bottom-[0px] z-10 text-xl duration-300 p-1 cursor-pointer bg-scondry border-none flex items-center justify-center flex-row"
-                      ><Image alt="img" className="w-[24px] mr-[10px] h-[24px]" src={cartIcon} /><p className="m-0">add to cart</p></button>
-                    </Link>
-                  </div>
-                  <div>
-                    <p className="text-black">{product.title}</p>
-                    <span className="">{`${product.userPrice} EGP`}</span>
-                  </div>
-                  <div className="my-[10px] flex flex-wrap w-full text-white ml-[-10px]">
-                    {product.colors.map((e: any) => {
-                      return (
-                        <div style={{ background: toColor(parseInt(e.color)) }} className={`w-[18px] h-[18px] inline rounded-full m-2 !box-content border-[5px] border-solid`}
-                          key={`page-product-${e.color}`}></div>
-                      )
-                    })}
+        <Swiper
+          className="!flex justify-center items-center"
+          spaceBetween={50}
+          slidesPerView={1}
+          breakpoints={{
+            480: { slidesPerView: 2 },
+            740: { slidesPerView: 3 },
+            1020: { slidesPerView: 4 },
+            1440: { slidesPerView: 5 },
+          }}
+        >
+          {SimilarProducts?.map((product: any) => {
+            return (
+              <SwiperSlide className=" !w-[170px]" key={product.id}>
+                <div className="flex m-5 w-[270px] flex-row group items-center justify-start gap-[16px]" key={`related-${product.id}`}>
+                  <div className="relative flex flex-col normal-border w-full leading-[20px] font-semibold">
+                    <div className="w-full relative hover: flex flex-col rounded-xl z-0 h-[250px] items-center bg-slate-100 overflow-hidden">
+
+                      <FontAwesomeIcon onClick={(mouse_event, id = randomeId, productId = product.id, productData = { title: product.title, userPrice: product.prise, colors: product.colors }) => {
+                        userId && dispatch(addToList({ id, productId, productData, userId: userId }))
+                      }} icon={faHeart} className={`w-[18px] ${List.find((p: any) => p.productId === product.id) ? "loved" : "unloved"} cursor-pointer h-[18px] absolute right-2 top-2 text-[#bcbbbb] bg-white p-2 rounded-full`} />
+                      <Link href={`/productDeta/${product.id}`}>
+                        <Image width={344} height={250} alt="img" src={product.colors[0]?.images[0]} className="w-full h-[250px]  object-cover" />
+                        <div className={`w-[51px] h-[26px] absolute top-2 left-2 rounded-lg text-white text-center leading-[26px] bg-scondry ${!product.isNew && "hidden"} `}>new</div>
+                        <button className="w-[270px] h-[40px] absolute text-white  bottom-[-40px] group-hover:bottom-[0px] z-10 text-xl duration-300 p-1 cursor-pointer bg-scondry border-none flex items-center justify-center flex-row"
+                        ><Image alt="img" className="w-[24px] mr-[10px] h-[24px]" src={cartIcon} /><p className="m-0">add to cart</p></button>
+                      </Link>
+                    </div>
+                    <div>
+                      <p className="text-black">{product.title}</p>
+                      <span className="">{`${product.userPrice} EGP`}</span>
+                    </div>
+                    <div className="my-[10px] flex flex-wrap w-full text-white ml-[-10px]">
+                      {product.colors.map((e: any) => {
+                        return (
+                          <div style={{ background: toColor(parseInt(e.color)) }} className={`w-[18px] h-[18px] inline rounded-full m-2 !box-content border-[5px] border-solid`}
+                            key={`page-product-${e.color}`}></div>
+                        )
+                      })}
+                    </div>
                   </div>
                 </div>
-              </div>
+              </SwiperSlide>
             )
           })}
-        </div>
+        </Swiper>
       </section>
     </>
   )

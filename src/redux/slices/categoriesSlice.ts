@@ -103,13 +103,16 @@ const initialState: CategoriesState = {
     selectedCategory: 'computer',
     selectedProducts: [],
     allproducts: statecData,
-    currentUser: uid
+    currentUser: ''
 };
 
 const categoriesSlice = createSlice({
     name: 'categories',
     initialState,
     reducers: {
+        setCurrentUser: (state, action) => {
+            state.currentUser = action.payload
+        },
         setCategories: (state, action: PayloadAction<Category[]>) => {
             state.allCategories = action.payload as unknown as StringObjectArray;
         },
@@ -168,6 +171,6 @@ const categoriesSlice = createSlice({
     },
 });
 
-export const { setCategories, setSelectedCategory, setAllProducts, setSelectedProducts } = categoriesSlice.actions;
+export const { setCategories, setSelectedCategory, setAllProducts, setSelectedProducts, setCurrentUser } = categoriesSlice.actions;
 
 export default categoriesSlice.reducer;

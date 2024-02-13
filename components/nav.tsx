@@ -114,8 +114,10 @@ const Nav = () => {
           </form>
           <div className="relative flex flex-row items-center justify-center gap-[2vw]">
 
-            <div className="relative max-sm:hidden"><NavItem text="" icon={faHeart} href="/wishList" /> <span className="bg-[#d61414] absolute top-[-12px] right-[-7px] px-1 text-white rounded-full ">
-              {List.length || 0}</span></div>
+            <div className="relative max-sm:hidden text-[21px]">
+              <NavItem text="" icon={faHeart} href="/wishList" />
+              {List.length ? <span className="bg-[#d61414] absolute top-[-12px] right-[-7px] px-1 text-sm text-white rounded-full ">{List.length || 0}</span> : null}
+            </div>
 
             <div onClick={(e, id = uid) => { router.push(`/${id ? id : "login"}`) }}>
               <Image alt="img"
@@ -130,7 +132,7 @@ const Nav = () => {
                 src={buyImg}
                 onClick={onIconsCurvedBuyClick}
               />
-              <span className="bg-[#d61414] absolute top-[-8px] right-[-5px] px-1 text-white rounded-full ">{cart.length || 0}</span>
+              {(cart.length === 0 || '0') ? null : <span className="bg-[#d61414] absolute top-[-8px] right-[-5px] px-1 text-white rounded-full ">{cart.length || 0}</span>}
             </div>
             <div className="hidden max-sm:block"><Sidebar /></div>
 

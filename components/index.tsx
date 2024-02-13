@@ -13,13 +13,14 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../src/firebase/firebase";
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { setAllProducts } from '../src/redux/slices/categoriesSlice';
+import { setAllProducts, setCurrentUser } from '../src/redux/slices/categoriesSlice';
 import { setCategories } from '../src/redux/slices/categoriesSlice';
 import { setCart } from '../src/redux/slices/productsSlice';
 import { changAll } from '../src/redux/slices/wishListSlice';
 import { useSearchParams } from 'next/navigation';
 
 const HOME = () => {
+  const myuser = auth.currentUser
   const dispatch = useDispatch()
   const searchParams = useSearchParams();
   const query = searchParams.get('id');
@@ -80,7 +81,7 @@ const HOME = () => {
   //   }
   // };
   useEffect(() => {
-    const userID = auth.currentUser?.uid
+    const userID = myuser?.uid
     fetchHome().then((data: any) => {
       if (data != null) { dispatch(setAllProducts(data)) }
     });
@@ -103,7 +104,8 @@ const HOME = () => {
     //   console.log(data)
     //   // dispatch(setAllProducts(data))
     // });
-  }, [])
+    dispatch(setCurrentUser(userID))
+  }, [myuser])
 
   return (
     <main className="relative bg-secondary-colors-white w-full overflow-hidden">

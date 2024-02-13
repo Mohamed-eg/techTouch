@@ -33,12 +33,12 @@ const OnePageProdac = (props: any) => {
 
               <div className="w-full relative hover: flex flex-col rounded-xl z-0 h-[250px] items-center bg-slate-100 overflow-hidden">
 
-                <FontAwesomeIcon onClick={(mouse_event, id = randomID, productId = product.id, name = product.title, url = product.url, prise = product.prise, colors = product.colors) => {
-                  dispatch(addToList({ id, productId, name, url, prise, colors, userId }))
+                <FontAwesomeIcon onClick={(mouse_event, id = randomID, productId = product.id, productData = { title: product.title, userPrice: product.prise, colors: product.colors }) => {
+                  userId && dispatch(addToList({ id, productId, productData, userId: userId }))
                 }} icon={faHeart} className={`w-[18px] cursor-pointer ${List.find((p: any) => p.productId === product.id) ? "loved" : "unloved"} h-[18px] absolute right-2 top-2 text-[#cfcfcf] bg-white p-2 rounded-full`} />
                 <Link className=" h-auto w-full object-contain" href={userId ? `/productDeta/id?id=${product.id}` : `./login`}>
                   <div className="object-cover h-auto w-full">
-                    <Image alt="img" width={240} height={250} src={product.colors[0].images[0]} className="w-full h-[240px] !rounded-t-lg object-cover " /></div>
+                    <Image alt="img" width={240} height={250} src={product.colors[0].images[0]} className="w-full h-[250px] !rounded-t-lg object-cover " /></div>
 
                   <div className={`w-[51px] h-[26px] absolute top-2 left-2 !rounded-lg text-white text-center leading-[26px] bg-scondry ${!product.isNew && "hidden"} `}>new</div>
 

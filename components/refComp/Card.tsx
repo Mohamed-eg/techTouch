@@ -9,6 +9,7 @@ import { auth } from "../../src/firebase/firebase";
 import { getAuth, onAuthStateChanged, User } from "@firebase/auth";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useDispatch } from 'react-redux';
 import { toColor } from "../../functions"
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -22,10 +23,11 @@ const Cart = (params: any) => {
   const query = searchParams.get('id');
   const uid = params.id;
   console.log(query)
-  const [userID, setUid] = useState<string | any>(null)
+  const [userID, setUid] = useState<string | any>(query)
   let shipping = 0
   const cart = useSelector((state: any) => state.products.cart)
   const [mycart, setMyCart] = useState(cart)
+  const dispatch = useDispatch()
   const getTotalPrise = () => {
     let totalPrise = 0;
     mycart.map((product: any) => {
@@ -53,6 +55,7 @@ const Cart = (params: any) => {
     }
   }
   const handelDelete = (id: string) => {
+    dispatch(removeItem(id))
     deleteOne(id).then(() => {
       getmycart().then((res) => {
         setMyCart(res)
@@ -115,7 +118,7 @@ const Cart = (params: any) => {
                     </div>
                   </div>
                 </div>
-                {userID === null ? <div><Link href="./login">please sign in</Link> </div> : null}
+                {(userID === undefined || null || 'undefined') ? <div className='p-10 text-primary1 w-full text-[21px] text-center hover:text-[#199aeb]'><Link href="/login">please log in🔑</Link> </div> : null}
                 {mycart?.map((product: any) => {
                   return (
                     <div key={`${product.id}-cart`} className="relative rounded-lg bg-bg shadow-[0px_1px_13px_rgba(0,_0,_0,_0.05)] w-full flex flex-row items-center justify-between overflow-hidden ">
@@ -139,8 +142,13 @@ const Cart = (params: any) => {
                       <div className="flex items-center justify-center w-[20%] leading-[24px]">
                         {`${product.currentPrice?.toFixed(2)} EGP`}
                       </div>
-                      <div className="flex items-center justify-center w-[20%] overflow-hidden ">
-                        <div className="py-1.5 px-3 border-[1.5px] border-solid rounded-lg border-gray-200 relative leading-[24px]">{parseInt(product.quantity)}</div>
+                      <div className="flex items-center justify-center flex-row w-[20%] overflow-hidden ">
+                        <div className="py-1.5 px-3 border-[1.5px] border-solid rounded-lg border-gray-200 relative leading-[24px]">{parseInt(product.quantity)}
+                        </div>
+                        <div className="flex items-center justify-between flex-col">
+                          <button type="button">⬆</button>
+                          <button type="button">⬇</button>
+                        </div>
                       </div>
                       <div className="flex items-center justify-center w-[20%] overflow-hidden ">
                         <div className="py-1.5 px-3 border-[1.5px] border-solid rounded-lg border-gray-200 relative leading-[24px]"><div style={{ background: toColor(parseInt(product.color)) }} className="flex w-4 h-4 rounded-full" ></div>
@@ -153,20 +161,20 @@ const Cart = (params: any) => {
                     </div>)
                 })}
               </div>
-              <Link href={"../"} className="self-stretch  flex flex-row no-underline items-center justify-start cursor-pointer text-primary font-rubik">
-                <div className="rounded-lg  flex flex-row items-center justify-center py-4 px-12 border-[1px] border-solid border-primary">
+              <Link href={"./"} className="self-stretch  flex flex-row no-underline items-center justify-start cursor-pointer text-primary font-rubik">
+                <div className="rounded-lg  flex flex-row items-center justify-center hover:bg-primary hover:text-white py-4 px-12 border-[1px] border-solid border-primary">
                   <div className="relative leading-[24px]">Return To Shop</div>
                 </div>
               </Link>
             </div>
             <div className="self-stretch  flex flex-row items-start justify-start gap-[173px]">
-              <div className=" flex flex-row items-end justify-start gap-[16px]">
+              {/* <div className=" flex flex-row items-end justify-start gap-[16px]">
                 <input type="text" placeholder="Coupon code" className="rounded-lg outline-none text-[18px] bg-text w-[300px] overflow-hidden py-4 px-6 border-[1px] border-solid border-text">
                 </input>
                 <div className="rounded-lg cursor-pointer bg-primary text-[18px] py-4 px-12 text-bg">
                   Apply Coupon
                 </div>
-              </div>
+              </div> */}
               <div className="flex-1 rounded-2xl shadow-[0px_0px_5px_rgba(12,_26,_75,_0.04),_0px_4px_20px_-2px_rgba(50,_50,_71,_0.02)] overflow-hidden flex flex-col items-start justify-start py-8 px-6 gap-[32px] border-[1.5px] border-solid border-gray-200">
                 <div className="flex flex-col items-start justify-start gap-[24px]">
                   <div className="relative text-xl leading-[28px] font-medium">
@@ -191,7 +199,7 @@ const Cart = (params: any) => {
                     <div className="relative leading-[24px]">{`${getTotalPrise() + shipping}`}</div>
                   </div>
                 </div>
-                <button className="rounded-2xl bg-primary font-medium text-[18px] cursor-pointer py-4 px-12 text-bg">
+                <button className="rounded-2xl hover:bg-[#199aeb] hover:text-white border-none bg-primary1 font-medium text-[18px] cursor-pointer py-4 px-12 text-bg">
                   Procees to checkout
                 </button>
               </div>

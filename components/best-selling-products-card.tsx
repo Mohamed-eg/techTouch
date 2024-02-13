@@ -38,7 +38,7 @@ const BestSellingProductsCard: NextPage<BestSellingProductsCardType> = ({
   }, [propMargin]);
 
   return (
-    <div className=" flex flex-col items-start justify-start gap-[20px] text-left text-base text-primary1 font-title-20px-semibold">
+    <div className=" flex flex-col items-start justify-start mx-5 gap-[20px] text-left text-base text-primary1 font-title-20px-semibold">
       <div className=" flex flex-row items-center justify-start gap-[16px]">
         <div className="relative w-5 h-10">
           <div
