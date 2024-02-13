@@ -1,0 +1,44 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "src/redux/provider.jsx",
+    "src/redux/slices/productsSlice.js",
+    "src/app/productDeta/[id].js",
+    "components/music-container.jsx",
+    "components/best-selling.jsx",
+    "components/card-with-links-and-text.jsx",
+    "components/new-arrival.jsx",
+    "src/app/cart/[uid]/page.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
