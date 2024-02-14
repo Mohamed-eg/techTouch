@@ -59,10 +59,10 @@ const Cart = (params: any) => {
     try {
       const response = await axios.patch(`https://backend.touchtechco.com/gen?coll=cart&id=${productId}`, {
 
-        quantity: quantity
+        "quantity": quantity
 
       })
-      return response.data
+      return response.status
     } catch (error) {
       console.error('Error fetching data:', error);
       return null;
@@ -73,10 +73,10 @@ const Cart = (params: any) => {
     try {
       const response = await axios.patch(`https://backend.touchtechco.com/gen?coll=cart&id=${productId}`, {
 
-        quantity: quantity
+        "quantity": quantity
 
       })
-      return response.data
+      return response.status
     } catch (error) {
       console.error('Error fetching data:', error);
       return null;
