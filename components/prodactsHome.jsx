@@ -65,7 +65,7 @@ const ProdactsHome = () => {
                       }}
                       icon={faHeart}
                       className={`w-[18px] cursor-pointer ${
-                        List.find((p) => p.id === product.id)
+                        List.find((p) => p.productId === product.id)
                           ? "loved"
                           : "unloved"
                       } h-[18px] absolute right-2 top-2 text-[#cfcfcf] cursor-pointer bg-white p-2 rounded-full`}
