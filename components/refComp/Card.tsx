@@ -118,7 +118,7 @@ const Cart = (params: any) => {
                     </div>
                   </div>
                 </div>
-                {(userID === undefined || null || 'undefined') ? <div className='p-10 text-primary1 w-full text-[21px] text-center hover:text-[#199aeb]'><Link href="/login">please log in🔑</Link> </div> : null}
+                {(userID === undefined || null) ? <div className='p-10 text-primary1 w-full text-[21px] text-center hover:text-[#199aeb]'><Link href="/login">please log in🔑</Link> </div> : null}
                 {mycart?.map((product: any) => {
                   return (
                     <div key={`${product.id}-cart`} className="relative rounded-lg bg-bg shadow-[0px_1px_13px_rgba(0,_0,_0,_0.05)] w-full flex flex-row items-center justify-between overflow-hidden ">

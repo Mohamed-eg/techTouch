@@ -81,7 +81,7 @@ const WishList = () => {
                   </div>
                   <div>
                     <p className="text-black">{product.productData.title}</p>
-                    <span className=" text-primary1">{`${parseFloat(product.productData.userPrice.toFixed(2))} EGP`}</span>
+                    <span className=" text-primary1">{`${parseFloat(product.productData.userPrice?.toFixed(2))} EGP`}</span>
                   </div>
                   <div className="my-[10px] flex flex-wrap w-full text-white ml-[-10px]">
                     {product.productData.colors?.map((e: any) => {

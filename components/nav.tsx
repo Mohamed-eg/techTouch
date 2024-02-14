@@ -31,7 +31,8 @@ const NavItem: React.FC<NavItemProps> = ({ text, icon, href }) => {
 };
 
 const Nav = () => {
-  const uid = auth.currentUser?.uid
+  // const uid = auth.currentUser?.uid
+  const uid = useSelector((state: any) => state.categories.currentUser)
   const router = useRouter()
   const [searchComponentSetValue, setSearchComponentSetValue] = useState("");
   const dispatch = useDispatch()
