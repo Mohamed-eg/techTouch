@@ -12,12 +12,15 @@ import productImg from '../public/ideapadgaming3i01500x500-1@2x.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from 'react-redux';
-import { toColor } from "../functions"
+import { toColor } from "../functions";
+import { v4 as uuidv4 } from 'uuid';
 
 const ProdactsHome = () => {
   const mydata = useSelector((state) => state.searchList.List);
   const dispatch = useDispatch()
   const List = useSelector((state) => state.wishList.List)
+  const randomID = uuidv4(); // ⇨ '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed'
+  const userId = useSelector((state) => state.categories.currentUser)
 
   return (
     <div>
@@ -33,7 +36,7 @@ const ProdactsHome = () => {
             </div>
           </div>
           <h1 className="m-0 relative text-17xl tracking-[0.04em] leading-[48px] font-semibold font-heading-24px-semibold text-text2">
-            {List?"no resalt fond 😢":"Explore Our Products✨"}
+            {mydata?"Explore Our Products✨":"no resalt fond 🔎"}
           </h1>
         </div>
         <div className=" flex items-center justify-start flex-wrap w-full">
@@ -53,26 +56,19 @@ const ProdactsHome = () => {
                         width={240}
                         height={250}
                         src={product.colors[0].images[0]}
-                        className="w-full h-auto  object-contain p-5"
+                        className="w-full h-[250px]  object-cover"
                       />
                     </Link>
                     <FontAwesomeIcon
-                      onClick={(
-                        mouse_event,
-                        id = product.id,
-                        name = product.title,
-                        url = product.url,
-                        prise = product.prise,
-                        colors = product.colors
-                      ) =>
-                        dispatch(addToList({ id, name, url, prise, colors }))
-                      }
+                      onClick={(mouse_event, id = randomID, productId = product.id, productData = { title: product.title, userPrice: product.prise, colors: product.colors }) => {
+                        userId && dispatch(addToList({ id, productId, productData, userId: userId }))
+                      }}
                       icon={faHeart}
                       className={`w-[18px] cursor-pointer ${
                         List.find((p) => p.id === product.id)
                           ? "loved"
                           : "unloved"
-                      } h-[18px] absolute right-2 top-2 text-black bg-white p-2 rounded-full`}
+                      } h-[18px] absolute right-2 top-2 text-[#cfcfcf] cursor-pointer bg-white p-2 rounded-full`}
                     />
                     <div
                       className={`w-[51px] h-[26px] absolute top-2 left-2 rounded-lg text-white text-center leading-[26px] bg-scondry ${
