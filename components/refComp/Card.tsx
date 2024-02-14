@@ -54,6 +54,34 @@ const Cart = (params: any) => {
       return null;
     }
   }
+  const increase = async (productId: String, quantity: String) => {
+    console.log(productId, quantity)
+    try {
+      const response = await axios.patch(`https://backend.touchtechco.com/gen?coll=cart&id=${productId}`, {
+
+        quantity: quantity
+
+      })
+      return response.data
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      return null;
+    }
+  }
+  const decrease = async (productId: String, quantity: String) => {
+    console.log(productId, quantity)
+    try {
+      const response = await axios.patch(`https://backend.touchtechco.com/gen?coll=cart&id=${productId}`, {
+
+        quantity: quantity
+
+      })
+      return response.data
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      return null;
+    }
+  }
   const handelDelete = (id: string) => {
     dispatch(removeItem(id))
     deleteOne(id).then(() => {
@@ -66,6 +94,18 @@ const Cart = (params: any) => {
       // console.log(cart)
       // setCart(cart)
       // console.log(cart)
+    })
+  }
+  const handelIncrease = (productId: any, quantity: any) => {
+    const newQuantity = `${parseInt(quantity) + 1}`
+    increase(productId, newQuantity).then((res) => {
+      console.log(res)
+    })
+  }
+  const handeldecrease = (productId: any, quantity: any) => {
+    const newQuantity = `${parseInt(quantity) - 1}`
+    decrease(productId, newQuantity).then((res) => {
+      console.log(res)
     })
   }
   // const userId = useSelector((state: any) => state.categories.currentUser);
@@ -146,8 +186,12 @@ const Cart = (params: any) => {
                         <div className="py-1.5 px-3 border-[1.5px] border-solid rounded-lg border-gray-200 relative leading-[24px]">{parseInt(product.quantity)}
                         </div>
                         <div className="flex items-center justify-between flex-col">
-                          <button type="button">⬆</button>
-                          <button type="button">⬇</button>
+                          <button type="button" className=' p-0 m-2 bg-transparent rounded-full border-none shadow-lg text-center cursor-pointer text-lg w-8 h-8 hover:bg-[#0daac2]'
+                            onClick={() => { handelIncrease(product.id, product.quantity) }}
+                          >⬆</button>
+                          <button type="button" className=' p-0 m-2 bg-transparent rounded-full border-none shadow-lg text-center cursor-pointer text-lg w-8 h-8 hover:bg-[#0daac2]'
+                            onClick={() => { handeldecrease(product.id, product.quantity) }}
+                          >⬇</button>
                         </div>
                       </div>
                       <div className="flex items-center justify-center w-[20%] overflow-hidden ">
@@ -161,7 +205,7 @@ const Cart = (params: any) => {
                     </div>)
                 })}
               </div>
-              <Link href={"./"} className="self-stretch  flex flex-row no-underline items-center justify-start cursor-pointer text-primary font-rubik">
+              <Link href={"/"} className="self-stretch  flex flex-row no-underline items-center justify-start cursor-pointer text-primary font-rubik">
                 <div className="rounded-lg  flex flex-row items-center justify-center hover:bg-primary hover:text-white py-4 px-12 border-[1px] border-solid border-primary">
                   <div className="relative leading-[24px]">Return To Shop</div>
                 </div>
